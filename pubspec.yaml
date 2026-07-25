@@ -1,0 +1,15 @@
+name: kelicap_components_workspace
+
+environment:
+  sdk: ">=3.12.0 <4.0.0"
+
+workspace:
+  - components
+
+dev_dependencies:
+  melos: ^8.0.0
+  lints: ^6.0.0
+
+melos:
+  # All the content of your previous melos.yaml file goes here
+  # (e.g., scripts, command configs, etc.)

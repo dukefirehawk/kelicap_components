@@ -1,0 +1,133 @@
+<!--
+ Copyright (c) 2016, the Dart project authors.  Please see the AUTHORS file
+ for details. All rights reserved. Use of this source code is governed by a
+ BSD-style license that can be found in the LICENSE file.
+-->
+<div class="stepper stepper-body mixin"
+     #stepper
+     [attr.orientation]="orientation"
+     [attr.size]="size"
+     [acxStickyElement]="afterStepperElement"
+     [sticky]="stickyHeader">
+  <div class="stepper-step"
+       [attr.aria-label]="stepAriaLabel(step)"
+       *ngFor="let step of steps"
+       [attr.orientation]="orientation"
+       [attr.size]="size"
+       [class.can-select]="step.isSelectable"
+       attr.active="{{step.activeStr}}"
+       attr.selectable="{{step.isSelectable}}"
+       [disabled]="step.isNotSelectable"
+       buttonDecorator
+       (trigger)="jumpStep(step.index)">
+    <!-- Step number in circle -->
+        <span class="stepper-step-index"
+              [attr.orientation]="orientation"
+              [attr.active]="step.activeStr"
+              [attr.complete]="step.completeStr"
+              [class.partially-complete]="step.partiallyComplete"
+              [class.can-select]="step.isSelectable">
+          {{step.complete ? "" : step.index + 1}}
+          <span *ngIf="step.complete">
+            <material-icon icon="check"></material-icon>
+          </span>
+        </span>
+    <!-- Step label -->
+    <div class="stepper-step-header"
+         [attr.orientation]="orientation"
+         [attr.size]="size">
+      <span class="stepper-step-name"
+            [attr.active]="step.activeStr"
+            [attr.complete]="step.completeStr">
+        {{step.name}}
+      </span>
+      <div class="stepper-step-optional"
+           [attr.orientation]="orientation"
+           [attr.optional]="step.isOptionalStr"
+           [attr.size]="size">
+        {{step.isOptional ? optionalMsg : ''}}
+          <span *ngIf="step.isSelectable">
+            <material-icon icon="mode_edit"
+                   class="edit-icon"
+                   [attr.orientation]="orientation"
+                   [attr.size]="size">
+            </material-icon>
+          </span>
+      </div>
+    </div>
+    <div *ngIf="!step.isLast"
+         class="step-line"
+         [attr.orientation]="orientation"
+         [attr.size]="size">
+    </div>
+    <div *ngIf="shouldInlineContent && !stepperDone"
+         class="stepper-content mixin"
+         [attr.orientation]="orientation"
+         [attr.size]="size"
+         (keypress)="stopPropagationOfEnterAndSpace($event)">
+      <template [ngIf]="step.active || keepInactiveStepsInDom">
+        <div class="provided-content mixin"
+             [class.hidden]="!step.active && keepInactiveStepsInDom">
+          <template [portalHost]="steps[step.index]"></template>
+          <span *ngIf="activeStep != null && !activeStep!.hideButtons"
+                class="button-container">
+            <material-yes-no-buttons
+                class="stepper-yes-no-buttons"
+                raised
+                yesHighlighted
+                [disabled]="activeStep!.busy"
+                [yesDisabled]="!activeStep!.canContinue"
+                (yes)="stepForward($event, activeStep!)"
+                (no)="stepBackward($event, activeStep!)"
+                [yesText]="yesText"
+                [noText]="noText"
+                [noDisplayed]="!activeStep!.cancelHidden && activeStep!.index != 0">
+            </material-yes-no-buttons>
+          </span>
+        </div>
+      </template>
+      <div *ngIf="!step.active && step.summaryDirective != null"
+           class="step-summary-directive">
+        <template [portalHost]="step.summaryDirective"></template>
+      </div>
+      <div *ngIf="step.shouldShowSummary"
+           class="stepper-step-summary">
+        {{step.completeSummary}}
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="!shouldInlineContent && !stepperDone && steps.length > 0"
+     class="stepper-content mixin"
+     [attr.orientation]="orientation"
+     [attr.size]="size">
+  <div *ngIf="!keepInactiveStepsInDom" class="provided-content mixin">
+    <template [portalHost]="activeStep"></template>
+  </div>
+  <ng-container *ngIf="keepInactiveStepsInDom">
+    <div *ngFor="let step of steps"
+         class="provided-content mixin"
+         [class.hidden]="step != activeStep">
+      <template [portalHost]="step"></template>
+    </div>
+  </ng-container>
+    <span *ngIf="activeStep != null && !activeStep!.hideButtons" class="button-container">
+      <material-yes-no-buttons
+          raised
+          yesHighlighted
+          [disabled]="activeStep!.busy"
+          [yesDisabled]="!activeStep!.canContinue"
+          (yes)="stepForward($event, activeStep!)"
+          (no)="stepBackward($event, activeStep!)"
+          [yesText]="yesText"
+          [noText]="noText"
+          [noDisplayed]="!activeStep!.cancelHidden && activeStep!.index != 0">
+      </material-yes-no-buttons>
+    </span>
+</div>
+<div #afterStepperElement></div>
+<div *ngIf="announceCurrentStep"
+     aria-live="assertive"
+     class="visible-to-screen-reader-only">
+  {{stepAriaAnnounce}}
+</div>

@@ -1,0 +1,116 @@
+<!--
+ Copyright (c) 2016, the Dart project authors.  Please see the AUTHORS file
+ for details. All rights reserved. Use of this source code is governed by a
+ BSD-style license that can be found in the LICENSE file.
+-->
+<div class="panel themeable"
+     [class.open]="isExpanded"
+     [class.background]="anotherExpanded"
+     keyupBoundary>
+
+  <!-- Title section -->
+<header #headerPanel
+     [class.hidden]="headerHidden"
+     [attr.role]="headerRole"
+     [attr.aria-level]="attributeToString(headerAriaLevel)">
+  <div class="header"
+          buttonDecorator
+          #expandCollapseButton
+          #headerContent
+          keyboardOnlyFocusIndicator
+          [disabled]="disabled || headerHidden"
+          [class.closed] = "!isExpanded"
+          [attr.aria-expanded]="attributeToString(isExpanded)"
+          [class.disable-header-expansion]="disableHeaderExpansion"
+          [attr.aria-label]="headerMsg"
+          [attr.aria-describedby]="panelDescription.id"
+          [attr.aria-controls]="mainId.id"
+          (trigger)="handleHeaderClick">
+    <material-icon
+        *ngIf="shouldShowExpandIcon && shouldExpandOnLeft"
+        role="none"
+        class="expand-button expand-on-left"
+        [icon]="expandIcon"
+        [class.expand-more]="shouldFlipExpandIcon"
+        (click)="handleExpandIconClick">
+    </material-icon>
+    <div class="panel-name" aria-hidden="true">
+      <ng-content select="[name]"></ng-content>
+      <p class="primary-text">{{name}}</p>
+      <p class="secondary-text" *ngIf="secondaryText != null">{{secondaryText}}</p>
+    </div>
+
+    <div class="panel-description" autoId #panelDescription="autoId" aria-hidden="true">
+      <ng-content select="[value]"></ng-content>
+    </div>
+
+    <material-icon *ngIf="shouldShowExpandIcon && !shouldExpandOnLeft"
+                   class="expand-button"
+                   [icon]="expandIcon"
+                   [class.expand-more]="shouldFlipExpandIcon"
+                   (click)="handleExpandIconClick">
+    </material-icon>
+  </div>
+  <div class="action" *ngIf="!shouldShowExpandIcon && !headerHidden" #action>
+    <ng-content select="[action]"></ng-content>
+  </div>
+</header>
+
+<!-- Expanded section -->
+<main #mainPanel
+      [class.hidden]="!isExpanded"
+      role="region"
+      autoId
+      #mainId="autoId"
+      [attr.aria-hidden]="attributeToString(!isExpanded)">
+  <div #mainContent *deferredContent="forceContent: forceContentWhenClosed">
+    <div #contentWrapper class="content-wrapper" [class.hidden-header]="hideExpandedHeader">
+      <material-icon
+          *ngIf="shouldShowHiddenHeaderExpandIcon && shouldExpandOnLeft"
+          #expandCollapseButton
+          [icon]="expandIcon"
+          class="expand-button expand-on-left"
+          buttonDecorator
+          keyboardOnlyFocusIndicator
+          (trigger)="collapse()"
+          [attr.aria-expanded]="attributeToString(isExpanded)"
+          [attr.aria-controls]="mainId.id"
+          [attr.aria-label]="closePanelMsg">
+      </material-icon>
+      <div class="content">
+        <ng-content></ng-content>
+      </div>
+      <material-icon
+          *ngIf="shouldShowHiddenHeaderExpandIcon && !shouldExpandOnLeft"
+          #expandCollapseButton
+          [icon]="expandIcon"
+          class="expand-button"
+          buttonDecorator
+          keyboardOnlyFocusIndicator
+          (trigger)="collapse()"
+          [attr.aria-expanded]="attributeToString(isExpanded)"
+          [attr.aria-label]="closePanelMsg">
+      </material-icon>
+    </div>
+
+      <div *ngIf="!showSaveCancel" class="toolbelt">
+        <ng-content select="[toolbelt]"></ng-content>
+      </div>
+
+      <material-yes-no-buttons
+          *ngIf="showSaveCancel"
+          reverse
+          class="action-buttons"
+          [pending]="activeSaveCancelAction"
+          [yesText]="saveText"
+          [noText]="cancelText"
+          [yesDisabled]="saveDisabled"
+          [enterAccepts]="enterAccepts"
+          [noDisplayed]="cancelDisplayed"
+          (yes)="doSave"
+          (no)="doCancel">
+      </material-yes-no-buttons>
+  </div>
+</main>
+
+</div>

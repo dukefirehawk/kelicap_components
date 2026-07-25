@@ -1,0 +1,14 @@
+name: kelicap_components_workspace
+repository: https://github.com/dukefirehawk/kelicap_components
+
+packages:
+  - components
+
+ignore:
+#   - compiler
+#   - web
+#   - tests
+
+command:
+  bootstrap:
+    usePubspecOverrides: true
