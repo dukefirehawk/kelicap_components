@@ -235,7 +235,7 @@ class MenuItemGroupsComponent
     this._changeDetector,
     this._idGenerator,
   ) {
-    this._subMenuOpener = DelayedAction(_menuDelay, _openSubMenuOnHover);
+    _subMenuOpener = DelayedAction(_menuDelay, _openSubMenuOnHover);
   }
 
   /// Returns list of highlighted segments for a given input, using provided

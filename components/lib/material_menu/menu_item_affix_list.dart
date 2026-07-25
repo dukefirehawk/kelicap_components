@@ -41,6 +41,7 @@ class MenuItemAffixListComponent implements HasDisabled, OnDestroy {
 
   MenuItemAffixListComponent(this._cdRef);
 
+  @override
   @Input()
   set disabled(bool? disabled) {
     _disabled = disabled ?? false;
@@ -48,6 +49,7 @@ class MenuItemAffixListComponent implements HasDisabled, OnDestroy {
     _updateItemProperties();
   }
 
+  @override
   bool get disabled => _disabled;
 
   /// Observable list of affix items.

@@ -256,10 +256,10 @@ class MaterialRippleComponent implements OnDestroy {
   void ngOnDestroy() {
     _element.removeEventListener('mousedown', _onMouseDown);
     _element.removeEventListener('keydown', _onKeyDown);
-    _ripplePool!.forEach((ripple) {
+    for (var ripple in _ripplePool!) {
       if (ripple?.parentElement == _element) {
         ripple!.remove();
       }
-    });
+    }
   }
 }

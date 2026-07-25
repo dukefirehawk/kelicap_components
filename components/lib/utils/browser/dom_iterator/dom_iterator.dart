@@ -21,21 +21,18 @@ class DomTreeIterator implements Iterator<Element> {
 
   /// Creates new dom iterator.
   /// [element] : element to start iteration from.
-  /// [reverse] : if true, will iterate back in dom order.
-  /// [scope] : scope to limit the iteration.
-  /// [wraps] : if set to true, will not stop at the end of scope,
+  /// [_reverse] : if true, will iterate back in dom order.
+  /// [_scope] : scope to limit the iteration.
+  /// [_wraps] : if set to true, will not stop at the end of scope,
   ///   but instead will wrap through beginning and will end upon hitting
   ///   the starting element instead.
   DomTreeIterator(
     Element? element, {
-    bool reverse = false,
-    Element? scope,
-    bool wraps = false,
+    this._reverse = false,
+    this._scope,
+    this._wraps = false,
   }) : _element = element,
-       _startingElement = element,
-       _reverse = reverse,
-       _scope = scope,
-       _wraps = wraps {
+       _startingElement = element {
     if (_wraps && _scope == null) {
       throw Exception('global wrapping is disallowed, scope is required');
     }

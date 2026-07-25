@@ -64,7 +64,7 @@ class DomService {
   int _nextFrameId = -1;
   Completer<num>? _nextFrameCompleter;
   Future<num>? _nextFrameFuture;
-  DomServiceState _state = DomServiceState.Idle;
+  DomServiceState _state = DomServiceState.idle;
   bool _crossAppInitialized = false;
   StreamController<Null>? _onIdleController;
   Stream<Null>? _onIdleStream;
@@ -129,7 +129,7 @@ class DomService {
   ///     } else {
   ///       domService.scheduleRead(readClientMetrics);
   ///     }
-  bool get isReadingDom => (_state == DomServiceState.Reading);
+  bool get isReadingDom => (_state == DomServiceState.reading);
 
   /// Indicates to users that we are currently processing items in the write
   /// queue.
@@ -143,7 +143,7 @@ class DomService {
   ///     } else {
   ///       domService.scheduleWrite(writeClientMetrics);
   ///     }
-  bool get isWritingDom => (_state == DomServiceState.Writing);
+  bool get isWritingDom => (_state == DomServiceState.writing);
 
   /// Advances the animation frame future, without waiting for the window's
   /// callback. If there were already an animation frame scheduled, it will
@@ -157,9 +157,7 @@ class DomService {
     _ngZone.run(() {});
     while (steps > 0) {
       if (_nextFrameFuture == null) return;
-      if (highResTimer == null) {
-        highResTimer = DateTime.now().millisecondsSinceEpoch;
-      }
+      highResTimer ??= DateTime.now().millisecondsSinceEpoch;
       assert(_nextFrameCompleter != null);
       final completer = _nextFrameCompleter!;
       _window.cancelAnimationFrame(_nextFrameId);
@@ -235,9 +233,9 @@ class DomService {
   /// DisposableCallback callback = new DisposableCallback(fn);
   /// domService.scheduleRead(callback);
   Disposable scheduleRead(DomReadWriteFn fn) {
-    if (_state == DomServiceState.Reading) {
+    if (_state == DomServiceState.reading) {
       fn();
-      return Disposable.Noop;
+      return Disposable.noop;
     }
     // This is temporary until all the callers are fixed.
     DisposableCallback callback = DisposableCallback(fn);
@@ -254,9 +252,9 @@ class DomService {
   /// DisposableCallback callback = new DisposableCallback(fn);
   /// domService.scheduleWrite(callback);
   Disposable scheduleWrite(DomReadWriteFn fn) {
-    if (_state == DomServiceState.Writing) {
+    if (_state == DomServiceState.writing) {
       fn();
-      return Disposable.Noop;
+      return Disposable.noop;
     }
     // This is temporary until all the callers are fixed.
     DisposableCallback callback = DisposableCallback(fn);
@@ -287,7 +285,7 @@ class DomService {
   }
 
   void _processQueues() {
-    assert(_state == DomServiceState.Idle);
+    assert(_state == DomServiceState.idle);
     // If all reads and writes were cancelled, prematurely exit.
     if (_domReadQueue.isEmpty && _domWriteQueue.isEmpty) {
       _scheduledProcessQueue = false;
@@ -295,16 +293,16 @@ class DomService {
     }
 
     // Execute all DOM reads.
-    _state = DomServiceState.Reading;
+    _state = DomServiceState.reading;
     _processQueue(_domReadQueue);
 
     // Execute all DOM writes.
-    _state = DomServiceState.Writing;
+    _state = DomServiceState.writing;
     final previousWriteQueueLength = _processQueue(_domWriteQueue);
     _writeQueueChangedLayout = previousWriteQueueLength > 0;
 
     // Mention we are now in an 'Idle'. state (neither reading or writing).
-    _state = DomServiceState.Idle;
+    _state = DomServiceState.idle;
 
     // If we have mutated the DOM in this queue, subscribers to
     // `onLayoutChanged` will want to be notified, perhaps to recalculate
@@ -364,12 +362,12 @@ class DomService {
       _ngZone.runOutsideKelicap(() {
         // Capture events from Angular
         _ngZone.onTurnStart.listen((_) {
-          if (_state != DomServiceState.Idle) return;
+          if (_state != DomServiceState.idle) return;
           _insideDigest = true;
         });
         // Trigger a layout check after the digest.
         _ngZone.onEventDone.listen((_) {
-          if (_state != DomServiceState.Idle) return;
+          if (_state != DomServiceState.idle) return;
           _insideDigest = false;
           // Reduce layout checks to only those zone turns that mutated DOM.
           if (isDomMutatedPredicate == null ||
@@ -459,8 +457,9 @@ class DomService {
   /// Returns a subscription that allows pausing, resuming and canceling the
   /// observer.
   @Deprecated("Use onLayoutChanged instead")
-  StreamSubscription<DomService> addLayoutObserver(void domReadCallback()) =>
-      onLayoutChanged!.listen((_) => domReadCallback());
+  StreamSubscription<DomService> addLayoutObserver(
+    void Function() domReadCallback,
+  ) => onLayoutChanged!.listen((_) => domReadCallback());
 
   String describeStability() {
     return {
@@ -563,13 +562,13 @@ class DomService {
 /// State for [DomService] implementations to use.
 enum DomServiceState {
   /// The DOM service is currently not processing the queue.
-  Idle,
+  idle,
 
   /// The DOM service is executing all scheduled writes to the DOM.
-  Writing,
+  writing,
 
   /// The DOM service is executing all scheduled reads to the DOM.
-  Reading,
+  reading,
 }
 
 class _ChangeTracker<T> {

@@ -24,15 +24,14 @@ class HighlightAssistant {
   );
 
   /// Whether matches should only highlight at the start of words.
-  bool _matchFromStartOfWord;
+  final bool _matchFromStartOfWord;
 
-  /// Creates new HighlightAssistant, using provided [optionHighlighter] or
+  /// Creates new HighlightAssistant, using provided [_optionHighlighter] or
   /// TextHighlighter if no value is provided.
   HighlightAssistant({
-    Highlighter? optionHighlighter,
-    bool matchFromStartOfWord = false,
-  }) : _optionHighlighter = optionHighlighter,
-       _matchFromStartOfWord = matchFromStartOfWord;
+    this._optionHighlighter,
+    this._matchFromStartOfWord = false,
+  });
 
   List<HighlightedTextSegment> highlightOption<T>(
     String lastQuery,

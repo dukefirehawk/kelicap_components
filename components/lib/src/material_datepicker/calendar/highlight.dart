@@ -32,20 +32,25 @@ class Highlight {
 
   List<String>? _classes;
 
-  Highlight(this.start, this.end, this.containedRanges,
-      {this.classIndexOffset = 0, this.group = 0});
+  Highlight(
+    this.start,
+    this.end,
+    this.containedRanges, {
+    this.classIndexOffset = 0,
+    this.group = 0,
+  });
 
   List<String>? get classes => _classes ?? _initClasses();
 
   List<String>? _initClasses() {
-    _classes = ['highlight']
-      ..addAll(_positionClasses())
-      ..addAll(_colorClasses());
+    _classes = ['highlight', ..._positionClasses(), ..._colorClasses()];
     return _classes;
   }
 
-  List<String> _positionClasses() =>
-      ['start-${start + classIndexOffset}', 'end-${end + classIndexOffset}'];
+  List<String> _positionClasses() => [
+    'start-${start + classIndexOffset}',
+    'end-${end + classIndexOffset}',
+  ];
   Iterable<String> _colorClasses() =>
       containedRanges.map((r) => 'highlight-${r.id}');
 
@@ -60,7 +65,9 @@ abstract class _HasHighlights {
 
   /// `true` if the two highlights are for the same set of calendar selections.
   static bool? _matchingRangesEq(Highlight a, Highlight b) => _setEq(
-      a.containedRanges.map((r) => r.id), b.containedRanges.map((r) => r.id));
+    a.containedRanges.map((r) => r.id),
+    b.containedRanges.map((r) => r.id),
+  );
 
   CalendarState? _state;
   List<Highlight>? _highlights;
@@ -80,7 +87,9 @@ abstract class _HasHighlights {
     _highlights = _mergedHighlights().toList();
 
     // Force initialize highlights' classes
-    _highlights!.forEach((h) => h.classes);
+    for (var h in _highlights!) {
+      h.classes;
+    }
   }
 
   /// Gets the selected ranges which contain both given dates.
@@ -88,7 +97,8 @@ abstract class _HasHighlights {
     List<CalendarSelection> selections = _state?.selections ?? [];
     return selections
         .where(
-            (r) => _state!.highlighted(r.id, a) && _state!.highlighted(r.id, b))
+          (r) => _state!.highlighted(r.id, a) && _state!.highlighted(r.id, b),
+        )
         .toList();
   }
 

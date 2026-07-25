@@ -145,8 +145,11 @@ class MenuModel<T> implements HasIcon, AcceptsWidth {
 ///     new MenuItem(label, tooltip: tooltip,
 ///                  action:action, icon:icon, subMenu:subMenu);
 class MenuItem<T> with MenuItemMixin implements HasUIDisplayName, HasIcon {
+  @override
   final String label;
+  @override
   final String secondaryLabel;
+  @override
   final String tooltip;
   final String ariaLabel;
 
@@ -156,12 +159,15 @@ class MenuItem<T> with MenuItemMixin implements HasUIDisplayName, HasIcon {
   /// [itemSuffixes] are right aligned in the menu, while this should be left
   /// aligned close to the label.
   final String labelAnnotation;
+  @override
   final MenuModel<T> subMenu;
 
   // This should be final as all the other state in this class, but needs
   // to first migrate clients.
+  @override
   final ActionWithContext? actionWithContext;
 
+  @override
   final Icon? icon;
 
   /// List of rendered suffixes for this menu item.
@@ -207,7 +213,7 @@ class MenuItem<T> with MenuItemMixin implements HasUIDisplayName, HasIcon {
            itemSuffixes ??
            ObservableList<MenuItemAffix>.from(itemSuffix as Iterable<dynamic>),
        cssClasses = BuiltList<String>((cssClasses ?? const <String>[])),
-       this.subMenu = subMenu ?? MenuModel([]),
+       subMenu = subMenu ?? MenuModel([]),
        ariaLabel = ariaLabel ?? label {
     assert(
       itemSuffix == null || itemSuffixes == null,

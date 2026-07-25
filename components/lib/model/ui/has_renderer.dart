@@ -22,14 +22,14 @@ ItemRenderer<T> newCachingItemRenderer<T>(ItemRenderer<T> itemRenderer) {
     return itemRenderer;
   }
   var cache = <T, String?>{};
-  ItemRenderer<T> cachingItemRenderer = (T item) {
+  String? cachingItemRenderer(T item) {
     String? value = cache[item];
     if (value == null) {
       value = itemRenderer(item);
       cache[item] = value;
     }
     return value;
-  };
+  }
   _rendererMarker[cachingItemRenderer] = cachingItemRenderer;
 
   return cachingItemRenderer;

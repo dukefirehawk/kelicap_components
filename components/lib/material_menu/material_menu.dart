@@ -68,6 +68,7 @@ class MaterialMenuComponent extends Object
   String buttonText = '';
 
   /// Whether the menu is disabled or not.
+  @override
   @Input()
   bool disabled = false;
 

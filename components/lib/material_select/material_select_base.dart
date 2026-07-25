@@ -33,6 +33,7 @@ abstract class MaterialSelectBase<T> extends SelectionContainer<T>
   /// Note: The spec clearly lays out predefined list sizes so use
   /// the default, expanding size, sparingly.
   int get width => _width;
+  @override
   set width(val) {
     _width = getInt(val, defaultValue: 0);
     assert(_width >= 0 && _width <= 5);

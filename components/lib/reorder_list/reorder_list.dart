@@ -130,11 +130,7 @@ class ReorderListComponent implements OnDestroy {
 
   @ContentChildren(ReorderItemDirective)
   set items(List<ReorderItemDirective> value) {
-    _items = Map.fromIterable(
-      value,
-      key: (e) => e.handleElement,
-      value: (e) => e.element,
-    );
+    _items = { for (var e in value) e.handleElement : e.element };
     _refreshItems();
   }
 
@@ -516,9 +512,7 @@ class ReorderListComponent implements OnDestroy {
 
   // Handles shift key selection when onClick event is fired.
   void _handleShift(int index) {
-    if (_pivotItemIndex == null) {
-      _pivotItemIndex = index;
-    }
+    _pivotItemIndex ??= index;
 
     var indexes = List<int>.from(
       range(min(_pivotItemIndex!, index), max(_pivotItemIndex!, index)),

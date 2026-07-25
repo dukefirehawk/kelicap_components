@@ -18,6 +18,7 @@ mixin class MaterialButtonWrapper implements HasDisabled {
   String? buttonAriaLabel;
 
   /// Whether the button is disabled.
+  @override
   @Input()
   bool disabled = false;
 

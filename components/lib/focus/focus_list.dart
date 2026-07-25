@@ -42,8 +42,8 @@ class FocusListDirective implements OnDestroy {
     this._ngZone,
     @Attribute('role') String? role,
     @Attribute('ignoreUpAndDown') String? ignoreUpAndDown,
-  ) : this.role = role ?? 'list',
-      this.ignoreUpAndDown = attributeToBool(
+  ) : role = role ?? 'list',
+      ignoreUpAndDown = attributeToBool(
         ignoreUpAndDown,
         defaultValue: false,
       );
@@ -63,16 +63,16 @@ class FocusListDirective implements OnDestroy {
   set listItems(List<FocusableItem> listItems) {
     _children.clear();
     _disposer.dispose();
-    listItems.forEach((i) {
+    for (var i in listItems) {
       _children.add(i);
       _disposer.addDisposable(i.focusmove.listen(_moveFocus));
-    });
+    }
     // Since this is updating children that were already dirty-checked,
     // need to delay this change until next angular cycle.
     _ngZone.runAfterChangesObserved(() {
-      _children.forEach((c) {
+      for (var c in _children) {
         c.tabbable = false;
-      });
+      }
       if (_children.isNotEmpty) {
         if (autoFocusIndex != null) {
           focus(autoFocusIndex); // This will also make the item tabbable.
@@ -112,9 +112,9 @@ class FocusListDirective implements OnDestroy {
   /// Makes the [index] tab focusable and makes all other tabs unfocusable.
   void setTabbable(int index) {
     if (index < 0 || index >= _length) return;
-    _children.forEach((i) {
+    for (var i in _children) {
       i.tabbable = false;
-    });
+    }
     _children[index].tabbable = true;
   }
 

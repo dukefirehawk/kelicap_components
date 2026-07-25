@@ -44,6 +44,7 @@ class MaterialListComponent implements AcceptsWidth {
   @Input()
   String size = MaterialListSize.auto;
 
+  @override
   @Deprecated('Use size input instead.')
   @Input()
   set width(val) {

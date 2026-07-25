@@ -12,9 +12,11 @@ class CalendarWeek extends _HasHighlights {
   List? _spacers;
   Date? _end;
 
-  CalendarWeek(this._start, CalendarState? state,
-      [this._startingWeekday = DateTime.monday])
-      : super(state) {
+  CalendarWeek(
+    this._start,
+    CalendarState? state, [
+    this._startingWeekday = DateTime.monday,
+  ]) : super(state) {
     _end = _start.add(days: numDays - 1);
     if (_end!.isAfter(_endOfMonth)) {
       _end = _endOfMonth;
@@ -48,7 +50,9 @@ class CalendarWeek extends _HasHighlights {
 
   void update(CalendarState? state) {
     _state = state;
-    days!.forEach((d) => d.updateClasses(state));
+    for (var d in days!) {
+      d.updateClasses(state);
+    }
     _updateHighlights();
   }
 

@@ -157,9 +157,9 @@ class FocusMoveEvent {
     KeyboardEvent kbEvent,
   ) {
     int keyCode = kbEvent.keyCode;
-    final preventDefaultFn = () {
+    void preventDefaultFn() {
       kbEvent.preventDefault();
-    };
+    }
     if (_isHomeKey(keyCode)) {
       return FocusMoveEvent.homeKey(item, preventDefaultFn);
     }
@@ -200,7 +200,7 @@ class AutoFocusDirective extends RootFocusable implements OnInit, OnDestroy {
   // These fields are not final to support nulling them out for easier memory
   // leak detection.
   Focusable? _focusable;
-  DomService _domService;
+  final DomService _domService;
   ModalComponent? _modal;
   PopupRef? _popupRef;
 

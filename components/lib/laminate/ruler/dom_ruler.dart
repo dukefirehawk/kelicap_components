@@ -13,6 +13,7 @@ import 'package:kelicap_components/utils/browser/dom_service/dom_service.dart';
 /// Measures and tracks size changes for HTML elements in Dart web applications.
 @Injectable()
 abstract class DomRuler implements Ruler<Element> {
+  @override
   Stream<Rectangle> track(Element element, {bool aways = false});
 
   factory DomRuler(Document document, DomService domService) = DomRulerImpl;

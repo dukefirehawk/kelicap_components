@@ -5,7 +5,6 @@
 import 'dart:async';
 
 import 'package:kelicap/kelicap.dart';
-import 'package:kelicap/src/meta.dart';
 import 'package:kelicap_components/interfaces/has_disabled.dart';
 import 'package:kelicap_components/material_datepicker/material_datepicker.dart';
 import 'package:kelicap_components/material_datepicker/material_time_picker.dart';
@@ -99,6 +98,7 @@ class MaterialDateTimePickerComponent implements HasDisabled {
   int increment = 1;
 
   /// Whether changing the selected date and time should be disabled.
+  @override
   @Input()
   bool disabled = false;
 

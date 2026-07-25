@@ -39,9 +39,11 @@ class MaterialStackableDrawerComponent
     parent?.isExpanded = newVisible;
   }
 
+  @override
   @HostBinding('class.mat-drawer-collapsed')
   bool get hostMatDrawerCollapsed => !visible;
 
+  @override
   @HostBinding('class.mat-drawer-expanded')
   bool get hostMatDrawerExpanded => visible;
 

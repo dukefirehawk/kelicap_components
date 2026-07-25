@@ -133,7 +133,7 @@ class PositionStickyController implements StickyController {
   ) {
     (stickyElement.element as HTMLElement).style
       ..position = 'sticky'
-      ..zIndex = '${zIndex}';
+      ..zIndex = '$zIndex';
     (stickyElement.element as HTMLElement).style.setProperty(
       positionProperty,
       '${offset}px',
@@ -286,11 +286,11 @@ class _StickyElement {
   bool operator ==(Object other) {
     if (other is! _StickyElement) return false;
     _StickyElement o = other;
-    return this.element == o.element &&
-        this.position == o.position &&
-        this.range == o.range &&
-        this.stickyClass == o.stickyClass &&
-        this.stickyKey == o.stickyKey;
+    return element == o.element &&
+        position == o.position &&
+        range == o.range &&
+        stickyClass == o.stickyClass &&
+        stickyKey == o.stickyKey;
   }
 
   @override

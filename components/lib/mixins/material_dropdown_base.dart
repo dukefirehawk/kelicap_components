@@ -62,6 +62,7 @@ mixin class MaterialDropdownBase
   String? slide;
 
   /// Whether the popup should close when the document pressed.
+  @override
   bool? autoDismiss = true;
 
   bool _visible = false;
@@ -93,14 +94,17 @@ mixin class MaterialDropdownBase
     }
   }
 
+  @override
   void close() {
     visible = false;
   }
 
+  @override
   void open() {
     visible = true;
   }
 
+  @override
   void toggle() {
     visible = !visible;
   }

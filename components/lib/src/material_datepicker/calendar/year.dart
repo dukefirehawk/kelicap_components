@@ -54,7 +54,9 @@ class CalendarYear extends _HasHighlights {
     // TODO(google): Disable CSS transitions here somehow
     _state = state;
     if (months != null) {
-      months!.forEach((m) => m.update(state));
+      for (var m in months!) {
+        m.update(state);
+      }
     }
     _updateHighlights();
   }

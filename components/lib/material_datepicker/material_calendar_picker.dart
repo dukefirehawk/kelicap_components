@@ -948,7 +948,7 @@ class _Month {
 
   _Month(this.year, this.month);
 
-  _Month.fromDate(Date date) : this.year = date.year, this.month = date.month;
+  _Month.fromDate(Date date) : year = date.year, month = date.month;
 
   void next() {
     if (++month > 12) {

@@ -91,7 +91,7 @@ class OverlayService {
       return true;
     }());
     if (useDomSynchronously is bool) {
-      this._useDomSynchronously = useDomSynchronously;
+      _useDomSynchronously = useDomSynchronously;
     }
   }
 }

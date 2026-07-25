@@ -84,6 +84,7 @@ class MaterialYesNoButtonsComponent implements HasDisabled {
   /// Whether the buttons should be disabled.
   ///
   /// Default value is `false`.
+  @override
   @Input()
   bool disabled = false;
 

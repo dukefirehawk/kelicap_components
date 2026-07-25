@@ -100,26 +100,24 @@ class GestureListener implements Disposable {
   StreamController<GestureEvent>? _scrollController;
   Disposer? _disposer;
 
-  /// Events are added to [scrollStream] at [scrollInterval] intervals.
+  /// Events are added to [scrollStream] at [_scrollInterval] intervals.
   ///
   /// If the listener to [scrollStream] cannot keep up with the default rate,
-  /// a larger [scrollInterval] should be passed.
+  /// a larger [_scrollInterval] should be passed.
   GestureListener(
     this._element,
     this._isDirectionScrollable,
     this._clock, {
-    Duration scrollInterval = _defaultScrollInterval,
-  }) : _scrollInterval = scrollInterval;
+    this._scrollInterval = _defaultScrollInterval,
+  });
 
   _Gesture? _gesture;
 
   Stream<GestureEvent> get scrollStream {
-    if (_scrollController == null) {
-      _scrollController = StreamController<GestureEvent>.broadcast(
+    _scrollController ??= StreamController<GestureEvent>.broadcast(
         onListen: _startListeners,
         onCancel: _onCancel,
       );
-    }
 
     return _scrollController!.stream;
   }
@@ -164,7 +162,7 @@ class GestureListener implements Disposable {
   }
 
   void _onTouchMove(TouchEvent touchMove) {
-    if (_gesture == null) return null;
+    if (_gesture == null) return;
     if (_gesture!.finished) return _onTouchStart(touchMove);
 
     // Start capturing events if the scroll host can scroll in the direction of
@@ -181,7 +179,7 @@ class GestureListener implements Disposable {
           (delta.x > 0 && _directions[GestureDirection.left]!) ||
           (delta.x < 0 && _directions[GestureDirection.right]!)) {
         _gesture = null;
-        return null;
+        return;
       }
 
       // However, we only allow the scroll host to handle scrolling if it can
@@ -189,7 +187,7 @@ class GestureListener implements Disposable {
       // scroll hosts from fighting each other.
       if (!_isDirectionScrollable(scrollDirection(delta.x, delta.y))) {
         _gesture = null;
-        return null;
+        return;
       }
 
       _capturing = true;
@@ -201,7 +199,7 @@ class GestureListener implements Disposable {
   }
 
   void _onTouchEnd(TouchEvent touchEnd) {
-    if (_gesture == null) return null;
+    if (_gesture == null) return;
     touchEnd.stopPropagation();
     _gesture!.finish();
   }

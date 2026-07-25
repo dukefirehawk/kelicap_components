@@ -45,17 +45,12 @@ class PopupHierarchy {
     }
     _visiblePopupStack.add(child!);
 
-    if (_triggerListener == null) {
-      // Passing false to triggersOutsideAny listens to triggers on any elements.
-      _triggerListener = events
-          .triggersOutsideAny((node) => false)
-          .listen(_onTrigger);
-    }
-    if (_keyUpListener == null) {
-      _keyUpListener = EventStreamProvider<KeyboardEvent>(
-        'keyup',
-      ).forTarget(document).listen(_onKeyUp);
-    }
+    _triggerListener ??= events
+        .triggersOutsideAny((node) => false)
+        .listen(_onTrigger);
+    _keyUpListener ??= EventStreamProvider<KeyboardEvent>(
+      'keyup',
+    ).forTarget(document).listen(_onKeyUp);
   }
 
   void _disposeListeners() {

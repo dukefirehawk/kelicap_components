@@ -68,7 +68,7 @@ class MaterialTimePickerComponent extends KeyboardHandlerMixin
     bool utc = false,
   }) {
     final time = utc ? _utcTime : _localTime;
-    final minutesToTime = (minutes) => time(minutes ~/ 60, minutes % 60);
+    DateTime minutesToTime(minutes) => time(minutes ~/ 60, minutes % 60);
     return List<DateTime>.generate(
       minutesInDay ~/ increment,
       (index) => minutesToTime(index * increment),
@@ -118,6 +118,7 @@ class MaterialTimePickerComponent extends KeyboardHandlerMixin
   DateTime? get time => _withEpochDate(_time);
 
   /// Whether changing the selected time should be disabled.
+  @override
   @Input()
   bool disabled = false;
 

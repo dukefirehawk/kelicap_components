@@ -68,8 +68,10 @@ class DropdownMenuComponent extends Object
 
   bool _disabled = false;
 
+  @override
   bool get disabled => _disabled;
 
+  @override
   @Input()
   set disabled(bool? disabled) {
     _disabled = disabled ?? false;

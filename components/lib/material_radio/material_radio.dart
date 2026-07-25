@@ -55,7 +55,7 @@ class MaterialRadioComponent extends RootFocusable
     @Host() @Optional() this._group,
     @Self() @Optional() NgControl? cd,
     @Attribute('role') String? role,
-  ) : this.role = role ?? 'radio',
+  ) : role = role ?? 'radio',
       super(_root) {
     // When NgControl is present on the host element, the component
     // participates in the Forms API.
@@ -95,6 +95,7 @@ class MaterialRadioComponent extends RootFocusable
 
   /// Whether the radio should not respond to events, and have a style that
   /// suggests that interaction is not allowed.
+  @override
   @Input()
   @HostBinding('class.disabled')
   bool disabled = false;

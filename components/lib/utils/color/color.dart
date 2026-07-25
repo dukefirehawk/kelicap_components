@@ -83,8 +83,11 @@ class Color {
   /// The background must be opaque.
   num contrastRatio(Color background) {
     if (background.alpha != 1) {
-      throw ArgumentError.value(background, 'background',
-          'Cannot calculate contrast against non-opaque backgrounds.');
+      throw ArgumentError.value(
+        background,
+        'background',
+        'Cannot calculate contrast against non-opaque backgrounds.',
+      );
     }
     final Color a = alpha == 1 ? this : withBackground(background);
     final la = a._relativeLuminance;
@@ -110,10 +113,11 @@ class Color {
     if (a == null && b != null) return b.withAlpha(_lerpNum(0, b.alpha, t));
     if (b == null && a != null) return a.withAlpha(_lerpNum(a.alpha, 0, t));
     return Color.rgba(
-        _lerpNum(a!.red, b!.red, t).toInt(),
-        _lerpNum(a.green, b.green, t).toInt(),
-        _lerpNum(a.blue, b.blue, t).toInt(),
-        _lerpNum(a.alpha, b.alpha, t));
+      _lerpNum(a!.red, b!.red, t).toInt(),
+      _lerpNum(a.green, b.green, t).toInt(),
+      _lerpNum(a.blue, b.blue, t).toInt(),
+      _lerpNum(a.alpha, b.alpha, t),
+    );
   }
 
   static void _checkValues(int r, int g, int b, num a, [String? s]) {
@@ -160,8 +164,8 @@ class Color {
         final width = s.length == 6 || s.length == 8
             ? 2
             : s.length == 3 || s.length == 4
-                ? 1
-                : 0;
+            ? 1
+            : 0;
         if (width == 0) break;
         int hex(int position) {
           final start = position * width;
@@ -193,7 +197,8 @@ class Color {
           _lerpNum(background.red, red, alpha).toInt(),
           _lerpNum(background.green, green, alpha).toInt(),
           _lerpNum(background.blue, blue, alpha).toInt(),
-          _lerpNum(background.alpha, 1, alpha));
+          _lerpNum(background.alpha, 1, alpha),
+        );
 
   String get _alphaString =>
       alpha < _alphaThreshold ? '0' : alpha.toStringAsFixed(2);
@@ -209,7 +214,7 @@ class Color {
 
   /// Returns this as a string in #rrggbb or #rrggbbaa hex notation.
   String get hexString =>
-      '#${_toHex(red)}${_toHex(green)}${_toHex(blue)}${alpha == 1 ? '' : '${_toHex(255 * alpha)}'}';
+      '#${_toHex(red)}${_toHex(green)}${_toHex(blue)}${alpha == 1 ? '' : _toHex(255 * alpha)}';
 
   @override
   String toString() => rgbString;
@@ -232,7 +237,8 @@ class Color {
   /// channel.
   int distanceFrom(Color other) {
     return math.pow(other.red - red, 2) +
-        math.pow(other.blue - blue, 2) +
-        math.pow(other.green - green, 2) as int;
+            math.pow(other.blue - blue, 2) +
+            math.pow(other.green - green, 2)
+        as int;
   }
 }

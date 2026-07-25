@@ -36,5 +36,5 @@ class DisplayNameRendererDirective<T> {
   */
 }
 
-final _displayNameRenderer = (dynamic item) =>
+String? _displayNameRenderer(dynamic item) =>
     (item as HasUIDisplayName).uiDisplayName;

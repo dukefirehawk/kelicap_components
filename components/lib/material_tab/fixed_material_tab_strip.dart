@@ -40,7 +40,7 @@ class FixedMaterialTabStripComponent implements AfterViewInit {
   int _activeTabIndex = 0;
   String _tabIndicatorTransform = '';
   List<String> _tabLabels = [];
-  NgZone _ngZone;
+  final NgZone _ngZone;
 
   /// Stream of [TabChangeEvent] instances, published before the tab has
   /// changed.

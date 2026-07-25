@@ -396,14 +396,14 @@ class _SafeUriPolicy implements UriPolicy {
 
   _SafeUriPolicy(List<Uri> uriWhitelist)
     : _uriWhitelist = List.unmodifiable(uriWhitelist) {
-    _uriWhitelist.forEach(
-      (uri) => checkArgument(
+    for (var uri in _uriWhitelist) {
+      checkArgument(
         uri.path.isEmpty || uri.path.endsWith('/'),
         message:
             'Whitelisted URIs with a path must end with a slash, which '
             '$uri does not',
-      ),
-    );
+      );
+    }
   }
 
   @override

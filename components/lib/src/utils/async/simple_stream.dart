@@ -6,8 +6,8 @@ import 'dart:async';
 
 typedef StreamCallContextFunc = void Function(dynamic Function() func);
 typedef StreamCallbackFunc<T> = void Function(T value);
-typedef SubscriptionChangeListener<T> = void Function(
-    StreamSubscription<T> subscription);
+typedef SubscriptionChangeListener<T> =
+    void Function(StreamSubscription<T> subscription);
 
 /// A ListenOnly Implementation of a [Stream].  It only supports the listen
 /// method with the onData parameter.  Additionally, the streamsubscription can
@@ -66,28 +66,24 @@ class SimpleStream<T> extends Stream<T> implements EventSink<T> {
   bool _subscriptionRemoved = false;
 
   /// List of streams to cleanup.
-  static List<SimpleStream<dynamic>> _cleanupStreams = [];
+  static final List<SimpleStream<dynamic>> _cleanupStreams = [];
 
-  SimpleStream({bool isSync = false, bool runInZone = false})
-      : _isSync = isSync,
-        _runInZone = runInZone;
+  SimpleStream({this._isSync = false, this._runInZone = false});
 
-  SimpleStream.broadcast(
-      {bool isSync = false,
-      bool runInZone = false,
-      SubscriptionChangeListener<T>? onListen,
-      SubscriptionChangeListener<T>? onCancel})
-      : _isSync = isSync,
-        _runInZone = runInZone,
-        _onListen = onListen,
-        _onCancel = onCancel;
+  SimpleStream.broadcast({
+    this._isSync = false,
+    this._runInZone = false,
+    this._onListen,
+    this._onCancel,
+  });
 
   bool get isSync => _isSync;
 
   @override
-  Stream<T> asBroadcastStream(
-      {void onListen(StreamSubscription<T> subscription)?,
-      void onCancel(StreamSubscription<T> subscription)?}) {
+  Stream<T> asBroadcastStream({
+    void Function(StreamSubscription<T> subscription)? onListen,
+    void Function(StreamSubscription<T> subscription)? onCancel,
+  }) {
     if (onListen != null || onCancel != null) {
       throw UnsupportedError('Not supported outside constructor.');
     }
@@ -157,8 +153,11 @@ class SimpleStream<T> extends Stream<T> implements EventSink<T> {
   /// Sends a single item to all listeners.
   /// It validates that the callback is not null before making the call.
   /// If [len] is passed in, the item is sent to first [len] listeners.
-  void _sendItem(List<SimpleStreamSubscription<T>>? listeners, T item,
-      [int len = -1]) {
+  void _sendItem(
+    List<SimpleStreamSubscription<T>>? listeners,
+    T item, [
+    int len = -1,
+  ]) {
     // Make sure we don't send the event to listeners that were added during
     // the callback.
     if (len == -1) {
@@ -244,8 +243,12 @@ class SimpleStream<T> extends Stream<T> implements EventSink<T> {
   }
 
   @override
-  StreamSubscription<T> listen(void onData(T event)?,
-      {Function? onError, void onDone()?, bool? cancelOnError}) {
+  StreamSubscription<T> listen(
+    void Function(T event)? onData, {
+    Function? onError,
+    void Function()? onDone,
+    bool? cancelOnError,
+  }) {
     // Don't allow listening to a closed stream, it will throw exception in
     // non checked mode since subscriptions will be null once the stream is
     // closed.
@@ -255,7 +258,13 @@ class SimpleStream<T> extends Stream<T> implements EventSink<T> {
       contextZone = Zone.current;
     }
     var sub = SimpleStreamSubscription<T>(
-        this, onData, onDone, onError, cancelOnError, contextZone);
+      this,
+      onData,
+      onDone,
+      onError,
+      cancelOnError,
+      contextZone,
+    );
     if (_subscriptions!.isEmpty) {
       _subscriptions = [sub];
     } else {
@@ -274,12 +283,12 @@ class LastStateStream<T> extends SimpleStream<T?> {
   /// The last item that was added to the stream.
   T? _lastItem;
 
-  LastStateStream(
-      {super.isSync,
-      super.runInZone,
-      SubscriptionChangeListener<dynamic>? super.onListen,
-      SubscriptionChangeListener<dynamic>? super.onCancel})
-      : super.broadcast();
+  LastStateStream({
+    super.isSync,
+    super.runInZone,
+    SubscriptionChangeListener<dynamic>? super.onListen,
+    SubscriptionChangeListener<dynamic>? super.onCancel,
+  }) : super.broadcast();
 
   @override
   void add(T? item) {
@@ -288,12 +297,20 @@ class LastStateStream<T> extends SimpleStream<T?> {
   }
 
   @override
-  StreamSubscription<T?> listen(void onData(T? event)?,
-      {Function? onError, void onDone()?, bool? cancelOnError}) {
-    SimpleStreamSubscription<T?> sub = super.listen(onData,
-        onError: onError,
-        onDone: onDone,
-        cancelOnError: cancelOnError) as SimpleStreamSubscription<T?>;
+  StreamSubscription<T?> listen(
+    void Function(T? event)? onData, {
+    Function? onError,
+    void Function()? onDone,
+    bool? cancelOnError,
+  }) {
+    SimpleStreamSubscription<T?> sub =
+        super.listen(
+              onData,
+              onError: onError,
+              onDone: onDone,
+              cancelOnError: cancelOnError,
+            )
+            as SimpleStreamSubscription<T?>;
     if (_lastItem != null) {
       /// If the stream is synchronous, send the item immediately, if it is
       /// asynchronous then make sure that items are not pending by checking
@@ -341,8 +358,14 @@ class SimpleStreamSubscription<T> implements StreamSubscription<T> {
   factory SimpleStreamSubscription._empty() =>
       SimpleStreamSubscription(null, null, null, null, false, null);
 
-  SimpleStreamSubscription(this._stream, this._callback, this._doneCallback,
-      this._onError, this._cancelOnError, this._contextZone);
+  SimpleStreamSubscription(
+    this._stream,
+    this._callback,
+    this._doneCallback,
+    this._onError,
+    this._cancelOnError,
+    this._contextZone,
+  );
 
   @override
   Future<dynamic> cancel() {
@@ -419,12 +442,12 @@ class SimpleStreamSubscription<T> implements StreamSubscription<T> {
 /// Reduces the amount of boilerplate needed by removing the need for a getter
 /// that returns the stream for Angular.
 class SimpleEmitter<T> extends SimpleStream<T> {
-  SimpleEmitter(
-      {super.isSync = true,
-      super.runInZone = true,
-      SubscriptionChangeListener<dynamic>? super.onListen,
-      SubscriptionChangeListener<dynamic>? super.onCancel})
-      : super.broadcast();
+  SimpleEmitter({
+    super.isSync = true,
+    super.runInZone = true,
+    SubscriptionChangeListener<dynamic>? super.onListen,
+    SubscriptionChangeListener<dynamic>? super.onCancel,
+  }) : super.broadcast();
 
   /// Returns `this`.
   EventSink<T> get sink => this;

@@ -26,8 +26,8 @@ class PopupSourceDirective
   ReferenceDirective? _referenceDirective;
   Focusable? _focusable;
 
-  Alignment _alignOriginX = Alignment.Start;
-  Alignment _alignOriginY = Alignment.Start;
+  Alignment _alignOriginX = Alignment.start;
+  Alignment _alignOriginY = Alignment.start;
 
   PopupSource? _popupSource;
   String? _popupId;

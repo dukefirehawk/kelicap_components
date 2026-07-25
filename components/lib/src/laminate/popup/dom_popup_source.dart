@@ -30,8 +30,8 @@ class DomPopupSourceFactory {
   /// Returns a new [DomPopupSource] from [sourceElement].
   DomPopupSource createPopupSource(
     HTMLElement sourceElement, {
-    Alignment alignOriginX = Alignment.Start,
-    Alignment alignOriginY = Alignment.Start,
+    Alignment alignOriginX = Alignment.start,
+    Alignment alignOriginY = Alignment.start,
     bool initAriaAttributes = true,
   }) {
     return DomPopupSource(
@@ -65,6 +65,7 @@ class DomPopupSource implements ElementPopupSource {
   static final bool _isRtl = determineRtl(document);
 
   final AsyncMeasureSize<HTMLElement> _asyncMeasureSize;
+  @override
   final HTMLElement sourceElement;
   final bool _initAriaAttributes;
 
@@ -73,17 +74,17 @@ class DomPopupSource implements ElementPopupSource {
   /// Setting [alignOriginX] and [alignOriginY] is used for calculating what
   /// the x and y position should be.
   ///
-  /// [initAriaAttributes] decides whether to set the popup related aria
+  /// [_initAriaAttributes] decides whether to set the popup related aria
   /// attributes. This defaults to true and can be set to false for cases where
   /// the popup source isn't the focus target.
   DomPopupSource(
     this._asyncMeasureSize,
     this.sourceElement, {
-    Alignment alignOriginX = Alignment.Start,
-    Alignment alignOriginY = Alignment.Start,
+    Alignment alignOriginX = Alignment.start,
+    Alignment alignOriginY = Alignment.start,
     Point transform = const Point(0, 0),
-    bool initAriaAttributes = true,
-  }) : _initAriaAttributes = initAriaAttributes {
+    this._initAriaAttributes = true,
+  }) {
     _alignOriginX = alignOriginX;
     _alignOriginY = alignOriginY;
   }

@@ -133,13 +133,12 @@ class SelectableMenuItem<ItemType> extends PropertyChangeNotifier
     Iterable<String>? cssClasses,
     MenuAction? action,
     ActionWithContext? actionWithContext,
-    SelectableOption selectableState = SelectableOption.Selectable,
+    this._selectableState = SelectableOption.Selectable,
     bool? shouldSelectOnItemClick,
     MenuItemAffix? itemSuffix,
     ObservableList<MenuItemAffix>? itemSuffixes,
-  }) : _selectableState = selectableState,
-       this.subMenu = subMenu ?? MenuModel([]),
-       this.icon = icon ?? Icon.blank(),
+  }) : subMenu = subMenu ?? MenuModel([]),
+       icon = icon ?? Icon.blank(),
        shouldSelectOnItemClick = shouldSelectOnItemClick ?? subMenu == null,
        itemSuffixes =
            itemSuffixes ??

@@ -43,7 +43,7 @@ abstract mixin class TreeSelectionMixin<T>
     while (parentsToCheck.isNotEmpty) {
       T parent = parentsToCheck.removeFirst();
 
-      hierarchyMap[parent]!.forEach((optionGroup) {
+      for (var optionGroup in hierarchyMap[parent]!) {
         optionGroup.toList().forEach((item) {
           if (!visited.contains(item)) {
             allChildren.add(item);
@@ -53,7 +53,7 @@ abstract mixin class TreeSelectionMixin<T>
             }
           }
         });
-      });
+      }
     }
 
     return allChildren;

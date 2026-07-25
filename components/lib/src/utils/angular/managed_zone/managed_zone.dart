@@ -53,12 +53,12 @@ abstract class ManagedZone implements Disposable {
   /// calling. [onTurnStart] may be executed *after* executing [fn].
   ///
   /// If [inInnerZone] is true, [fn] is just called normally.
-  T runInside<T>(T fn());
+  T runInside<T>(T Function() fn);
 
   /// Runs the code within [fn] outside of this zone.
   ///
   /// If [inOuterZone] is true, [fn] is just called normally.
-  T runOutside<T>(T fn());
+  T runOutside<T>(T Function() fn);
 }
 
 /// A partial implementation of [ManagedZone] without bindings to Angular.
@@ -105,30 +105,24 @@ abstract class ManagedZoneBase extends ManagedZone {
 
   @override
   Stream get onTurnStart {
-    if (_onTurnStartController == null) {
-      _onTurnStartController = StreamController.broadcast(sync: true);
-    }
+    _onTurnStartController ??= StreamController.broadcast(sync: true);
     return _onTurnStartController!.stream;
   }
 
   @override
   Stream get onTurnDone {
-    if (_onTurnDoneController == null) {
-      _onTurnDoneController = StreamController.broadcast(sync: true);
-    }
+    _onTurnDoneController ??= StreamController.broadcast(sync: true);
     return _onTurnDoneController!.stream;
   }
 
   @override
   Stream get onEventDone {
-    if (_onEventDoneController == null) {
-      _onEventDoneController = StreamController.broadcast(sync: true);
-    }
+    _onEventDoneController ??= StreamController.broadcast(sync: true);
     return _onEventDoneController!.stream;
   }
 
   @override
-  T runInside<T>(T fn()) {
+  T runInside<T>(T Function() fn) {
     if (inInnerZone) {
       return fn();
     } else {
@@ -137,7 +131,7 @@ abstract class ManagedZoneBase extends ManagedZone {
   }
 
   @override
-  T runOutside<T>(T fn()) {
+  T runOutside<T>(T Function() fn) {
     if (inOuterZone) {
       return fn();
     } else {

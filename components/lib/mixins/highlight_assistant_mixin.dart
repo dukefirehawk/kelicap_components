@@ -17,9 +17,9 @@ import 'package:kelicap_components/model/ui/highlighted_text_model.dart';
 abstract mixin class HighlightAssistantMixin<T>
     implements SelectionContainer<T>, HighlightProvider {
   @Deprecated('Use highlightFactoryRenderer instead as it allows tree-shaking.')
-  final ComponentRenderer highlightComponentRenderer = (_) =>
+  Type highlightComponentRenderer(Object? _) =>
       HighlightedValueComponent;
-  final FactoryRenderer highlightFactoryRenderer = (_) =>
+  ComponentFactory<Object>? highlightFactoryRenderer(Object? _) =>
       null; //highlight.HighlightedValueComponentNgFactory;
 
   HighlightAssistant? _highlightAssistant;

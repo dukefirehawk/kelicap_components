@@ -108,7 +108,7 @@ class ShowHideDirective implements OnInit, OnDestroy {
     });
   }
 
-  void _onTransitionEnd(void callback()) {
+  void _onTransitionEnd(void Function() callback) {
     _domService.scheduleRead(() {
       bool finished = false;
       void complete([_]) {

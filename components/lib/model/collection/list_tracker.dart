@@ -14,38 +14,33 @@ class LazyListTracker<S, T> extends Object
   List<S> _source;
   List<T?>? _target;
 
-  _MapFunction<S, T> _mapSource;
-  _MapFunction<T, S> _lookupSource;
-  Function? _onRemove;
-  Function? _onInsert;
-  Function? _onChange;
+  final _MapFunction<S, T> _mapSource;
+  final _MapFunction<T, S> _lookupSource;
+  final Function? _onRemove;
+  final Function? _onInsert;
+  final Function? _onChange;
 
   /// A callback function for performing a backward pass over inserted ranges
   /// of items.
   ///
   /// For an example on how this callback can be used to implement grouping,
   /// see the "LazyListTracker grouping" test group.
-  Function? _onInsertBackpass;
+  final Function? _onInsertBackpass;
 
   StreamSubscription? _subscription;
 
   LazyListTracker(
     List<S> source,
-    T mapSource(int index, S object),
-    S lookupSource(int index, T object), {
-    List<T>? target,
-    void onRemove(int index, S source, T target)?,
-    T onInsert(int index, S source, T target)?,
-    T onInsertBackpass(int index, S source, T target)?,
-    void onChange()?,
+    T Function(int index, S object) mapSource,
+    S Function(int index, T object) lookupSource, {
+    List<T>? this._target,
+    void Function(int index, S source, T target)? this._onRemove,
+    T Function(int index, S source, T target)? this._onInsert,
+    T Function(int index, S source, T target)? this._onInsertBackpass,
+    void Function()? this._onChange,
   }) : _source = source,
-       _target = target,
        _mapSource = mapSource,
-       _lookupSource = lookupSource,
-       _onRemove = onRemove,
-       _onInsert = onInsert,
-       _onInsertBackpass = onInsertBackpass,
-       _onChange = onChange;
+       _lookupSource = lookupSource;
 
   @override
   bool get isEmpty => _target == null || _target!.isEmpty;
@@ -215,7 +210,7 @@ class LazyListTracker<S, T> extends Object
       removed.values.forEach(disposeMapped);
     }
     if (_onChange != null) {
-      _onChange!();
+      _onChange();
     }
   }
 
@@ -231,7 +226,7 @@ class LazyListTracker<S, T> extends Object
         for (; end >= 0; end--) {
           int index = record.index + end;
           T? object =
-              _onInsertBackpass!(index, record.object[index], _target![index])
+              _onInsertBackpass(index, record.object[index], _target![index])
                   as T?;
           if (object == null) {
             break;
@@ -244,7 +239,7 @@ class LazyListTracker<S, T> extends Object
       for (int i = 0; i <= end; i++) {
         int index = record.index + i;
         T? object =
-            _onInsert!(index, record.object[index], _target![index]) as T?;
+            _onInsert(index, record.object[index], _target![index]) as T?;
         if (object != null) {
           _target![index] = object;
         }

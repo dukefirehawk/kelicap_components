@@ -35,14 +35,14 @@ class ButtonDirective extends RootFocusable
 
   String? _hostTabIndex = '0';
   final String? _nonTabbableIndex;
-  bool _shouldHandleSpaceKey;
+  final bool _shouldHandleSpaceKey;
 
   ButtonDirective(
     Element super.element,
     @Attribute('role') String? role, {
     bool addTabIndexWhenNonTabbable = false,
     bool handleSpacePresses = true,
-  }) : this.role = (role ?? 'button'),
+  }) : role = (role ?? 'button'),
        // Allow the subclass to define how the element should be made
        // untabbable.
        _nonTabbableIndex = addTabIndexWhenNonTabbable ? '-1' : null,
@@ -60,6 +60,7 @@ class ButtonDirective extends RootFocusable
   String get disabledStr => '$disabled';
 
   /// Is the component disabled.
+  @override
   @HostBinding('class.is-disabled')
   @Input()
   bool disabled = false;
@@ -68,6 +69,7 @@ class ButtonDirective extends RootFocusable
   @Input()
   bool tabbable = true;
 
+  @override
   String? get hostTabIndex {
     return tabbable && !disabled ? _hostTabIndex : _nonTabbableIndex;
   }

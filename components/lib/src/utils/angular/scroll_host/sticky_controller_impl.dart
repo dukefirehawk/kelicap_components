@@ -203,9 +203,7 @@ class StickyControllerImpl implements StickyController {
   }
 
   void _observeRowPositions() {
-    if (_orderedRows == null) {
-      _orderedRows = _rowMap.values.toList();
-    }
+    _orderedRows ??= _rowMap.values.toList();
     for (int i = 0; i < _orderedRows!.length; i++) {
       _orderedRows![i].readRowPositions();
     }
@@ -346,7 +344,7 @@ class _StickyRow implements StickyRowPosition {
     if (translateY != newY) {
       translateY = newY;
       String newTransform = 'translate3d(0px, ${translateY}px, 0px)';
-      String newZIndex = '${stickyControllerZIndex}';
+      String newZIndex = '$stickyControllerZIndex';
       if (_currentPosition != 'relative' ||
           _currentTransform != newTransform ||
           _currentZIndex != newZIndex) {

@@ -5,7 +5,6 @@
 import 'dart:async';
 
 import 'package:kelicap/kelicap.dart';
-import 'package:kelicap/experimental.dart' show changeDetectionLink;
 import 'package:kelicap_components/model/ui/has_renderer.dart';
 
 /// Dynamically renders another component, setting the [value] field on the

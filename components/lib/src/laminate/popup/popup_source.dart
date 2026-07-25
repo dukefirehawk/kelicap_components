@@ -19,8 +19,8 @@ abstract class PopupSource {
   /// Create a [PopupSource] from a predefined location ([rectangle]).
   factory PopupSource.fromRectangle(
     Rectangle rectangle, {
-    Alignment alignX = Alignment.Start,
-    Alignment alignY = Alignment.Start,
+    Alignment alignX = Alignment.start,
+    Alignment alignY = Alignment.start,
   }) {
     return _RectanglePopupSource(
       rectangle,
@@ -123,8 +123,10 @@ class _RectanglePopupSource implements PopupSource {
   }
 
   /// Called when the popup is opened.
+  @override
   void onOpen() {}
 
   /// Called when the popup is closed.
+  @override
   void onClose() {}
 }

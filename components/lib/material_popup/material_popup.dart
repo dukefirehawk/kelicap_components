@@ -270,7 +270,7 @@ class MaterialPopupComponent extends Object
     this._changeDetector,
     this._viewContainer,
     this.elementRef,
-  ) : this.role = role ?? 'dialog' {
+  ) : role = role ?? 'dialog' {
     // Close popup if parent closes.
 
     if (parentPopup != null) {
@@ -295,6 +295,7 @@ class MaterialPopupComponent extends Object
   Stream<bool> get contentVisible => _onContentVisible.stream.distinct();
 
   /// The popup visible hierarchy.
+  @override
   PopupHierarchy get hierarchy {
     _hierarchy = _hierarchy ?? PopupHierarchy();
     return _hierarchy!;
@@ -960,7 +961,7 @@ Stream<List<T>> _mergeStreams<T>(List<Stream<T>> streams) {
     sync: true,
     onListen: () {
       var i = 0;
-      streams.forEach((stream) {
+      for (var stream in streams) {
         var n = i++;
         streamSubscriptions[n] = stream.listen((result) {
           cachedResults[n] = result;
@@ -969,7 +970,7 @@ Stream<List<T>> _mergeStreams<T>(List<Stream<T>> streams) {
             streamController?.add(results);
           }
         });
-      });
+      }
     },
     onCancel: () {
       for (var sub in streamSubscriptions) {

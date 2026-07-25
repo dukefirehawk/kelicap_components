@@ -52,9 +52,7 @@ class AsyncUpdateScheduler {
   AsyncUpdateScheduler([this._updateCallback]);
 
   Stream<Null> get onUpdate {
-    if (_onUpdateStreamController == null) {
-      _onUpdateStreamController = StreamController.broadcast(sync: true);
-    }
+    _onUpdateStreamController ??= StreamController.broadcast(sync: true);
     return _onUpdateStreamController!.stream;
   }
 

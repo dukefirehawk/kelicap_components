@@ -116,6 +116,7 @@ abstract class SelectionModel<T> extends Object
   Iterable<T> get selectedValues;
 
   // Casts [values] into an Iterable<T>.
+  @override
   Iterable<T> castIterable(Iterable values);
 }
 

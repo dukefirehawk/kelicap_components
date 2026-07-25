@@ -214,6 +214,7 @@ abstract class RulerBase<E> implements Ruler<E> {
     return onWrite().then((_) => doSyncUpdate());
   }
 
+  @override
   void updateSync(
     E element, {
     List<String>? cssClasses,
@@ -229,9 +230,9 @@ abstract class RulerBase<E> implements Ruler<E> {
     bool useCssTransform = true,
   }) {
     // TODO(google): Consider another format for dimensions.
-    SetPropertyFn setProperty = (name, value) {
+    void setProperty(String? name, value) {
       setCssPropertySync(element, name, value);
-    };
+    }
     setProperty('display', null);
     setProperty('visibility', null);
     // It's important to put this first to avoid FOUC *if* becoming hidden.

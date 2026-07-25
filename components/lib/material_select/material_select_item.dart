@@ -82,6 +82,7 @@ class MaterialSelectItemComponent<T> extends ButtonDirective
     super.disabled = v;
   }
 
+  @override
   @HostBinding('class.disabled')
   bool get disabled => super.disabled;
 

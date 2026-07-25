@@ -73,7 +73,7 @@ class MaterialExpansionPanelAutoDismiss implements OnDestroy {
     var node = e.target as Element?;
     while (node != null) {
       var tagName = node.tagName.toLowerCase();
-      if (node == this._element) {
+      if (node == _element) {
         // Excludes elements belonging to this panel.
         return;
       } else if (node == _overlayContainerToken) {

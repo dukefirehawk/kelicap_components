@@ -124,11 +124,13 @@ class MaterialSelectComponent<T> extends MaterialSelectBase<T>
   /// Whether the select should be shown as disabled.
   ///
   /// Defaults to false.
+  @override
   @Input()
   set disabled(bool? v) {
     _disabled = v ?? false;
   }
 
+  @override
   bool get disabled => _disabled;
 
   bool _disabled = false;
@@ -142,6 +144,7 @@ class MaterialSelectComponent<T> extends MaterialSelectBase<T>
 
   /// A rendering function to render selection options to a String, if given a
   /// `value`.
+  @override
   @Input()
   set itemRenderer(ItemRenderer<T>? renderer) {
     _itemRenderer = renderer;

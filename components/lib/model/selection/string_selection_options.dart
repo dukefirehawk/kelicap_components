@@ -97,12 +97,10 @@ class StringSelectionOptions<T> extends SelectionOptions<T>
     ItemRenderer<T>? toFilterableString,
     StringSuggestionFilter<T>? suggestionFilter,
     ItemRenderer<String> sanitizeString = _stringFormatSuggestion,
-    bool shouldSort = false,
-    bool shouldFilterEmpty = true,
+    this._shouldSort = false,
+    this._shouldFilterEmpty = true,
   }) : _toFilterableString =
            toFilterableString ?? _defaultRenderer(sanitizeString),
-       _shouldSort = shouldSort,
-       _shouldFilterEmpty = shouldFilterEmpty,
        _sanitizeString = sanitizeString {
     _suggestionFilter = suggestionFilter ?? filterOption;
   }
@@ -196,9 +194,9 @@ class StringSelectionOptions<T> extends SelectionOptions<T>
   set optionGroups(List<OptionGroup<T>> value) {
     // This mutates value...
     if (_shouldSort) {
-      value.forEach((optionGroup) {
+      for (var optionGroup in value) {
         optionGroup.sort(_sortFn);
-      });
+      }
     }
     // Cache the data so original is kept during filtering.
     _optionGroups = value;

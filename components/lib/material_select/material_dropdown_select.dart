@@ -577,7 +577,7 @@ mixin class ActivateItemOnKeyPressMixin<T> {
     // Cached map of options to search strings.
     var searchMap = <dynamic, String>{};
 
-    var startsWith = (option, String keys) {
+    bool startsWith(option, String keys) {
       if (option == null) return false;
       var searchString = searchMap[option];
       if (searchString == null) {
@@ -585,8 +585,9 @@ mixin class ActivateItemOnKeyPressMixin<T> {
         searchMap[option] = searchString;
       }
       return searchString.startsWith(keys);
-    };
-    var maybeSelectOption = (option, String keys) {
+    }
+
+    bool maybeSelectOption(option, String keys) {
       if (Selectable.isSelectableIn(options, option) &&
           startsWith(option, keys)) {
         activeModel.activate(option);
@@ -595,7 +596,7 @@ mixin class ActivateItemOnKeyPressMixin<T> {
         return true;
       }
       return false;
-    };
+    }
 
     // If there's previously entered keys, try to match multiple keys.
     if (_enteredKeys.isNotEmpty) {

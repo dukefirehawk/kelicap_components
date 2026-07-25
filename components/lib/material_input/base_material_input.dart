@@ -298,9 +298,11 @@ class BaseMaterialInput extends FocusableMixin
   @Input()
   bool floatingLabel = false;
 
+  @override
   bool get disabled => _disabled;
 
   /// Whether or not this input is disabled (readonly input.)
+  @override
   @Input()
   set disabled(bool? disabled) {
     _disabled = disabled ?? false;
@@ -574,6 +576,7 @@ class BaseMaterialInput extends FocusableMixin
 // This is for GM migration so that the code can be shared. !g3-only
 class BaseSingleLineInputComponent extends BaseMaterialInput
     implements Focusable, ReferenceDirective, AfterViewInit, OnDestroy {
+  @override
   final ChangeDetectorRef _changeDetector;
 
   @ViewChild('inputEl')

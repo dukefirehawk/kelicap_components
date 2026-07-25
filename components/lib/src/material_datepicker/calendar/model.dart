@@ -232,7 +232,7 @@ class CalendarState {
     CausedBy cause = CausedBy.external,
     bool previewAnchoredAtStart = false,
   }) {
-    var newSelections = [val]..addAll(selections.where((s) => s.id != val.id));
+    var newSelections = [val, ...selections.where((s) => s.id != val.id)];
     return CalendarState(
       selections: newSelections,
       currentSelection: currentSelection,

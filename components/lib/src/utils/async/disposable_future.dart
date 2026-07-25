@@ -73,7 +73,7 @@ class DisposableFuture<T> implements Future<T>, Disposable {
 
   @override
   DisposableFuture<S> then<S>(
-    FutureOr<S> onValue(T value), {
+    FutureOr<S> Function(T value) onValue, {
     Function? onError,
   }) {
     return DisposableFuture(
@@ -90,12 +90,12 @@ class DisposableFuture<T> implements Future<T>, Disposable {
   }
 
   @override
-  Future<T> catchError(Function onError, {bool test(Object error)?}) {
+  Future<T> catchError(Function onError, {bool Function(Object error)? test}) {
     return _delegateFuture.catchError(onError, test: test);
   }
 
   @override
-  Future<T> whenComplete(action()) {
+  Future<T> whenComplete(Function() action) {
     return _delegateFuture.whenComplete(() {
       if (!_wasDisposed) {
         action();
@@ -107,7 +107,7 @@ class DisposableFuture<T> implements Future<T>, Disposable {
   Stream<T> asStream() => _delegateFuture.asStream();
 
   @override
-  Future<T> timeout(Duration timeLimit, {onTimeout()?}) {
+  Future<T> timeout(Duration timeLimit, {Function()? onTimeout}) {
     return _delegateFuture.timeout(
       timeLimit,
       onTimeout: onTimeout as FutureOr<T> Function()?,

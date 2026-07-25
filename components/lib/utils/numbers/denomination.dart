@@ -6,11 +6,11 @@ import 'package:fixnum/fixnum.dart';
 
 /// A denomination type for defining how large values are mapped to [suffix]es
 class Denomination {
-  static const Hundreds = Denomination._(1, '', null);
-  static const Thousands = Denomination._(1000, 'k', 1000);
-  static const Millions = Denomination._(1000000, 'M', 1000000);
-  static const Billions = Denomination._(1000000000, 'B', 1000000000);
-  static const Trillions = Denomination._(1000000000000, 'T', 1000000000000);
+  static const hundreds = Denomination._(1, '', null);
+  static const thousands = Denomination._(1000, 'k', 1000);
+  static const millions = Denomination._(1000000, 'M', 1000000);
+  static const billions = Denomination._(1000000000, 'B', 1000000000);
+  static const trillions = Denomination._(1000000000000, 'T', 1000000000000);
 
   /// The minimum value to gain the attached suffix
   final num minValue;
@@ -24,14 +24,14 @@ class Denomination {
 
   /// Returns a [Denomination] from [suffix], or null if there was no match.
   factory Denomination.fromSuffix(String suffix) {
-    if (Thousands.suffix == suffix) {
-      return Thousands;
-    } else if (Millions.suffix == suffix) {
-      return Millions;
-    } else if (Billions.suffix == suffix) {
-      return Billions;
-    } else if (Trillions.suffix == suffix) {
-      return Trillions;
+    if (thousands.suffix == suffix) {
+      return thousands;
+    } else if (millions.suffix == suffix) {
+      return millions;
+    } else if (billions.suffix == suffix) {
+      return billions;
+    } else if (trillions.suffix == suffix) {
+      return trillions;
     } else {
       // TODO: This logic need to reevaluated
       //return null;
@@ -44,16 +44,16 @@ class Denomination {
   /// If a [max] [Denomination] is provided, will not return a denomination
   /// larger than [max].
   factory Denomination.fromValue(num value, [Denomination? max]) {
-    if (value < Thousands.minValue || max == Hundreds) {
-      return Hundreds;
-    } else if (value < Millions.minValue || max == Thousands) {
-      return Thousands;
-    } else if (value < Billions.minValue || max == Millions) {
-      return Millions;
-    } else if (value < Trillions.minValue || max == Billions) {
-      return Billions;
+    if (value < thousands.minValue || max == hundreds) {
+      return hundreds;
+    } else if (value < millions.minValue || max == thousands) {
+      return thousands;
+    } else if (value < billions.minValue || max == millions) {
+      return millions;
+    } else if (value < trillions.minValue || max == billions) {
+      return billions;
     } else {
-      return Trillions;
+      return trillions;
     }
   }
 

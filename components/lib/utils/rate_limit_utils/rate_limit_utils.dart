@@ -11,8 +11,8 @@ typedef DebouncedNullaryFunction = Future Function();
 
 /// A function that rate-limits a delegate function. Helper typedef for
 /// consumers.
-typedef RateLimitStrategy<T> = UnaryFunction<T> Function(
-    UnaryFunction<T> delegate, Duration duration);
+typedef RateLimitStrategy<T> =
+    UnaryFunction<T> Function(UnaryFunction<T> delegate, Duration duration);
 
 /// Returns a wrapper function that, when called with x, executes delegate(x)
 /// [delay] from now iff there is no other call to the wrapper between now and
@@ -38,7 +38,10 @@ DebouncedFunction<T> debounce<T>(UnaryFunction<T> delegate, Duration delay) {
 }
 
 /// Wraps [debounce] so that it can be called without any arguments
-DebouncedNullaryFunction debounceNullary(void callback(), Duration delay) {
+DebouncedNullaryFunction debounceNullary(
+  void Function() callback,
+  Duration delay,
+) {
   var function = debounce((_) => callback(), delay);
   return () => function(null);
 }
@@ -53,11 +56,15 @@ UnaryFunction<T> throttle<T>(UnaryFunction<T?> delegate, Duration interval) =>
 /// be executed once the throttling period expires, starting a new throttling
 /// period.
 UnaryFunction<T> throttleGuaranteeLast<T>(
-        UnaryFunction<T?> delegate, Duration interval) =>
-    _throttle(delegate, interval, guaranteeLast: true);
+  UnaryFunction<T?> delegate,
+  Duration interval,
+) => _throttle(delegate, interval, guaranteeLast: true);
 
-UnaryFunction<T> _throttle<T>(UnaryFunction<T?> delegate, Duration interval,
-    {required bool guaranteeLast}) {
+UnaryFunction<T> _throttle<T>(
+  UnaryFunction<T?> delegate,
+  Duration interval, {
+  required bool guaranteeLast,
+}) {
   bool onCooldown = false;
   bool hasLastArg = false;
   T? lastArg;

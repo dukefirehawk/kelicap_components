@@ -10,9 +10,11 @@ import 'package:kelicap_components/model/date/date.dart';
 /// instead of plain [DateRange]s.
 class DatepickerComparison implements DateRangeComparison {
   /// The selected date range.
+  @override
   final DatepickerDateRange? range;
 
   /// The selected comparison range, if any.
+  @override
   final DatepickerDateRange? comparison;
 
   DatepickerComparison(DatepickerDateRange? range, ComparisonOption option)
@@ -37,6 +39,7 @@ class DatepickerComparison implements DateRangeComparison {
 
   DatepickerComparison.custom(this.range, this.comparison);
 
+  @override
   bool get isComparisonEnabled => comparison != null;
 
   /// Checks the comparison date range has same logic as given comparisonOption.
@@ -47,12 +50,15 @@ class DatepickerComparison implements DateRangeComparison {
       comparison!.unclamped() ==
           option.computeComparisonRange(range!.unclamped());
 
+  @override
   bool operator ==(o) =>
       o is DatepickerComparison &&
       rangeEqual(range, o.range) &&
       rangeEqual(comparison, o.comparison);
+  @override
   int get hashCode => isComparisonEnabled
       ? rangeHash(range!) ^ rangeHash(comparison!)
       : rangeHash(range!);
+  @override
   String toString() => 'DatepickerComparison -- $range / $comparison';
 }

@@ -27,9 +27,7 @@ class ZIndexer {
   static ZIndexer? _currentInstance;
 
   static void _initZIndex() {
-    if (_currentZIndex == null) {
-      _currentZIndex = hoverableAutoIncrement;
-    }
+    _currentZIndex ??= hoverableAutoIncrement;
   }
 
   factory ZIndexer() {

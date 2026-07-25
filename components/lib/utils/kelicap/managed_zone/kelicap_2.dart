@@ -13,7 +13,7 @@ export 'package:kelicap_components/src/utils/angular/managed_zone/managed_zone.d
 @Deprecated('Use NgZone directly instead')
 @Injectable()
 class Angular2ManagedZone extends ManagedZoneBase {
-  NgZone _ngZone;
+  final NgZone _ngZone;
 
   bool _isDisposed = false;
 
@@ -53,8 +53,8 @@ class Angular2ManagedZone extends ManagedZoneBase {
   bool get inInnerZone => !inOuterZone;
 
   @override
-  T runInside<T>(T fn()) => _ngZone.run(fn);
+  T runInside<T>(T Function() fn) => _ngZone.run(fn);
 
   @override
-  T runOutside<T>(T fn()) => _ngZone.runOutsideKelicap(fn);
+  T runOutside<T>(T Function() fn) => _ngZone.runOutsideKelicap(fn);
 }

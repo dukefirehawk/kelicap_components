@@ -161,6 +161,7 @@ class MaterialDatepickerComponent
   }
 
   /// Whether changing the selected date should be disabled.
+  @override
   @Input()
   set disabled(bool? value) {
     _disabled = value ?? false;
@@ -169,6 +170,7 @@ class MaterialDatepickerComponent
   }
 
   bool _disabled = false;
+  @override
   bool get disabled => _disabled;
 
   bool _popupVisible = false;

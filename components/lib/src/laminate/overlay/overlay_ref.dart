@@ -149,7 +149,7 @@ class OverlayRef implements PortalHost {
     this.overlayElement,
     this._runOutsideKelicap, {
     OverlayState? state,
-  }) : this.state = MutableOverlayState.from(state) {
+  }) : state = MutableOverlayState.from(state) {
     _stateUpdateListener = this.state.onUpdate.listen((_) => _applyChanges());
   }
 }

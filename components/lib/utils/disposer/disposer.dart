@@ -16,7 +16,7 @@ typedef DisposeFunction = void Function();
 /// A class with a [dispose] method for cleaning up resources or subscriptions.
 abstract class Disposable {
   /// A disposable that does nothing.
-  static const Disposable Noop = _NoopDisposable();
+  static const Disposable noop = _NoopDisposable();
 
   /// Creates a simple disposable that just executes [disposeFn].
   factory Disposable(DisposeFunction disposeFn) = _SingleFunctionDisposable;
@@ -77,10 +77,10 @@ class _SingleFunctionDisposable implements Disposable {
 /// Note that you should not rely on the disposal sequence for each added
 /// [disposable], just treat it random.
 class Disposer implements Disposable {
-  List<DisposeFunction> _disposeFunctions = [];
-  List<StreamSubscription<dynamic>> _disposeSubs = [];
-  List<EventSink<Object>> _disposeSinks = [];
-  List<Disposable> _disposeDisposables = [];
+  final List<DisposeFunction> _disposeFunctions = [];
+  final List<StreamSubscription<dynamic>> _disposeSubs = [];
+  final List<EventSink<Object>> _disposeSinks = [];
+  final List<Disposable> _disposeDisposables = [];
   final bool _oneShot;
   bool _disposeCalled = false;
 
@@ -123,7 +123,8 @@ class Disposer implements Disposable {
 
   /// Registers [disposable].
   StreamSubscription<T> addStreamSubscription<T>(
-      StreamSubscription<T> disposable) {
+    StreamSubscription<T> disposable,
+  ) {
     //if (disposable != null) {
     _disposeSubs.add(disposable);
     //}

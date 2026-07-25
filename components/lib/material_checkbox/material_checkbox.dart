@@ -72,7 +72,7 @@ class MaterialCheckboxComponent
           ? hostTabIndex
           : '0',
       //hostTabIndex.isNotEmpty ?? false ? hostTabIndex : '0',
-      this.role = role ?? 'checkbox' {
+      role = role ?? 'checkbox' {
     // When NgControl is present on the host element, the component
     // participates in the Forms API.
     if (cd != null) {
@@ -128,6 +128,7 @@ class MaterialCheckboxComponent
   @HostBinding('attr.aria-disabled')
   String get disabledStr => '$disabled';
 
+  @override
   @HostBinding('class.disabled')
   @Input()
   bool disabled = false;
@@ -354,5 +355,6 @@ class MaterialCheckboxComponent
 
   /// Unimplemented for M1.
   Future? focusDelegate;
+  @override
   void ngOnDestroy() {}
 }

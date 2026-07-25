@@ -12,7 +12,7 @@ import 'package:kelicap_components/content/deferred_content_aware.dart';
 const animationDuration = Duration(milliseconds: 500);
 
 class MaterialDrawerBase implements DeferredContentAware, OnInit {
-  MaterialDrawerBase({bool visible = true}) : _visible = visible;
+  MaterialDrawerBase({this._visible = true});
 
   bool _visible;
 

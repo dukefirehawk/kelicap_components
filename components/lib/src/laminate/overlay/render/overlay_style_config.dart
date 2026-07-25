@@ -88,7 +88,7 @@ class OverlayStyleConfig {
 
   final HTMLHeadElement? _styleHost;
   bool _stylesRegistered = false;
-  Document _document;
+  final Document _document;
 
   OverlayStyleConfig(Document document)
     : _styleHost = document.querySelector('head') as HTMLHeadElement?,

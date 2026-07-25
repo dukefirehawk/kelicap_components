@@ -274,10 +274,12 @@ class MaterialExpansionPanel
   }
 
   bool _disabled = false;
+  @override
   bool get disabled => _disabled;
 
   /// If true, the panel will remain in the collapsed state with no way to
   /// expand it, or if expanded by default, it will stay in expanded state.
+  @override
   @Input()
   set disabled(bool? value) {
     _disabled = value ?? false;
@@ -678,7 +680,7 @@ class MaterialExpansionPanel
       // If the content-wrapper has a top margin, it is not reflected in the
       // scroll height.
       final topMargin = window.getComputedStyle(_contentWrapper!).marginTop;
-      expandedPanelHeight = 'calc(${contentHeight}px + ${topMargin})';
+      expandedPanelHeight = 'calc(${contentHeight}px + $topMargin)';
     }
     return expandedPanelHeight;
   }

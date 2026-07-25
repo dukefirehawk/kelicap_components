@@ -213,7 +213,7 @@ class MaterialNumberValueAccessor
     @Attribute('checkInteger') String? checkInteger,
     @Attribute('blurFormat') String? blurFormat,
     @Optional() NumberFormat? numberFormat,
-  ) : this._checkInteger = attributeToBool(checkInteger, defaultValue: false),
+  ) : _checkInteger = attributeToBool(checkInteger, defaultValue: false),
       super(
         input as MaterialInputComponent,
         control,

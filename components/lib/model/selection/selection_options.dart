@@ -44,7 +44,7 @@ class OptionGroup<T> extends LabeledList<T> {
   /// Creates a new option group with options from [start] inclusive to [end]
   /// exclusive, other properties stay the same.
   OptionGroup<T> slicedOptionGroup(int start, int end) {
-    List<T> subListItems = this.sublist(start, end);
+    List<T> subListItems = sublist(start, end);
 
     return OptionGroup.withLabelFunction(
       subListItems,

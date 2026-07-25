@@ -54,15 +54,15 @@ class MaterialTreeDropdownComponent<T>
     with DropdownHandle, MaterialTreeRoot<T>, SelectionContainer<T>
     implements OnInit, Focusable {
   // Popup positioning to use when filtering is enabled.
-  static const List<
-    List<RelativePosition> /*RelativePosition | List<RelativePosition>*/
-  >
-  _popupPositionsOffset = [
-    [RelativePosition.AdjacentBottomLeft],
-    RelativePosition.AdjacentBottomEdge,
-    [RelativePosition.AdjacentTopLeft],
-    RelativePosition.AdjacentTopEdge,
-  ];
+  // static const List<
+  //   List<RelativePosition> /*RelativePosition | List<RelativePosition>*/
+  // >
+  // _popupPositionsOffset = [
+  //   [RelativePosition.AdjacentBottomLeft],
+  //   RelativePosition.AdjacentBottomEdge,
+  //   [RelativePosition.AdjacentTopLeft],
+  //   RelativePosition.AdjacentTopEdge,
+  // ];
 
   // Popup positioning to use when filtering is disabled.
   static const List<RelativePosition> _popupPositionsInline =
@@ -111,6 +111,7 @@ class MaterialTreeDropdownComponent<T>
   /// the widget should toggle expansion when a non-leaf node is clicked. When
   /// `true` the widget should select non-leaf nodes when clicked and only
   /// toggle expansion when the expansion icon is clicked.
+  @override
   @Input()
   bool allowParentSingleSelection = false;
 

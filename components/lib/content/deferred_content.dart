@@ -23,9 +23,9 @@ class DeferredContentDirective implements OnDestroy {
   final _disposer = Disposer.oneShot();
   final _placeholder = HTMLDivElement();
 
-  ViewContainerRef _viewContainer;
+  final ViewContainerRef _viewContainer;
   EmbeddedViewRef? _viewRef;
-  TemplateRef _template;
+  final TemplateRef _template;
 
   /// Create a placeholder element to maintain content size when hidden.
   ///
@@ -118,8 +118,8 @@ class DeferredContentDirective implements OnDestroy {
 /// enabled, go for it.
 @Directive(selector: '[cachedDeferredContent]')
 class CachingDeferredContentDirective implements OnDestroy {
-  ViewContainerRef _viewContainer;
-  TemplateRef _template;
+  final ViewContainerRef _viewContainer;
+  final TemplateRef _template;
   final _disposer = Disposer.oneShot();
   ViewRef? _view;
 

@@ -46,9 +46,11 @@ class CalendarMonth {
 
   void update(CalendarState? state) {
     // TODO(google): Disable CSS transitions here somehow
-    this.calendarState = state;
+    calendarState = state;
     if (weeks != null) {
-      weeks!.forEach((w) => w.update(state));
+      for (var w in weeks!) {
+        w.update(state);
+      }
     }
     if (state == null || state.resolution != CalendarResolution.months) {
       _classes = [];

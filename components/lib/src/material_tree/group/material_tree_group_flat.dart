@@ -59,7 +59,7 @@ class MaterialTreeGroupFlatRadioComponent<T> extends MaterialTreeNode<T> {
     super.root,
     super.changeDetector, [
     @Optional() this._dropdownHandle,
-  ]) : this.selectionModel = root.selection;
+  ]) : selectionModel = root.selection;
 
   // This is only used to standardize all the different group components.
   @HostBinding('class.material-tree-group')

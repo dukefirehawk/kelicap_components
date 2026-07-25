@@ -44,6 +44,7 @@ class MaterialToggleComponent
   /// Enables/disables the toggle button.
   ///
   /// `true` is disabled and `false` is enabled.
+  @override
   @Input()
   bool disabled = false;
 

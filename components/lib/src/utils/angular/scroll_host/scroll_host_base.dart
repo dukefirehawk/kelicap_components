@@ -169,12 +169,10 @@ abstract class ScrollHostBase implements ScrollHost {
   /// The stream of ScrollHostEvents before they have been handled to scroll the
   /// content of the ScrollHost.
   Stream<ScrollHostEvent> get nativeOnScroll {
-    if (_nativeOnScrollController == null) {
-      _nativeOnScrollController = StreamController<ScrollHostEvent>.broadcast(
-        onListen: _startElementListeners,
-        onCancel: _stopElementListeners,
-      );
-    }
+    _nativeOnScrollController ??= StreamController<ScrollHostEvent>.broadcast(
+      onListen: _startElementListeners,
+      onCancel: _stopElementListeners,
+    );
 
     return _nativeOnScrollController!.stream;
   }

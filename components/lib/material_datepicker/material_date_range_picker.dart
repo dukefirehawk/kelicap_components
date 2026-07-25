@@ -243,6 +243,7 @@ class MaterialDateRangePickerComponent
   String? dropdownButtonAriaLabel;
 
   /// Whether changing the selected date range should be disabled.
+  @override
   @Input()
   set disabled(bool? value) {
     _disabled = value ?? false;
@@ -252,6 +253,7 @@ class MaterialDateRangePickerComponent
 
   bool _disabled = false;
 
+  @override
   @HostBinding('class.disabled')
   bool get disabled => _disabled;
 
@@ -634,6 +636,7 @@ class MaterialDateRangePickerComponent
     _formattedComparison = _getFormattedComparison(value);
   }
 
+  @override
   void dateRangeEditorCreated(Focusable editor) {
     _dateRangeEditor = editor;
     if (_dateRangeEditor != null && _focusOnDateRangeEditorInit) {

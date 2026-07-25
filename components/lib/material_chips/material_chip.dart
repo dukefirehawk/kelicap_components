@@ -122,9 +122,7 @@ class MaterialChipComponent<T> extends RootFocusable implements HasRenderer<T> {
 
   String? _uuid;
   String? get uuid {
-    if (_uuid == null) {
-      _uuid = _idGenerator.nextId();
-    }
+    _uuid ??= _idGenerator.nextId();
     return _uuid;
   }
 }

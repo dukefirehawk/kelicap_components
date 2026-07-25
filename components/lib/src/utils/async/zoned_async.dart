@@ -11,7 +11,7 @@ typedef RunInZoneFn = Function(Function() fn);
 abstract mixin class _ZoneRunner {
   RunInZoneFn get _runInZoneFn;
 
-  S _runInZone<S>(S fn()) => _runInZoneFn(fn) as S;
+  S _runInZone<S>(S Function() fn) => _runInZoneFn(fn) as S;
 }
 
 /// A wrapper around an existing [Future] that processes all events received
@@ -49,25 +49,30 @@ class ZonedFuture<T> extends _ZoneRunner implements Future<T> {
   }
 
   @override
-  Future<T> catchError(Function onError, {bool test(Object error)?}) {
+  Future<T> catchError(Function onError, {bool Function(Object error)? test}) {
     return _runInZone(() => _innerFuture.catchError(onError, test: test));
   }
 
   @override
-  Future<S> then<S>(FutureOr<S> onValue(T value), {Function? onError}) {
+  Future<S> then<S>(
+    FutureOr<S> Function(T value) onValue, {
+    Function? onError,
+  }) {
     return _runInZone(() => _innerFuture.then<S>(onValue, onError: onError));
   }
 
   @override
-  Future<T> timeout(Duration timeLimit, {onTimeout()?}) {
+  Future<T> timeout(Duration timeLimit, {Function()? onTimeout}) {
     return _runInZone(() {
-      return _innerFuture.timeout(timeLimit,
-          onTimeout: onTimeout as FutureOr<T> Function()?);
+      return _innerFuture.timeout(
+        timeLimit,
+        onTimeout: onTimeout as FutureOr<T> Function()?,
+      );
     });
   }
 
   @override
-  Future<T> whenComplete(action()) {
+  Future<T> whenComplete(Function() action) {
     return _runInZone(() => _innerFuture.whenComplete(action));
   }
 }
@@ -115,11 +120,19 @@ class ZonedStream<T> extends Stream<T> with _ZoneRunner {
   }
 
   @override
-  StreamSubscription<T> listen(void onData(T value)?,
-      {Function? onError, void onDone()?, bool? cancelOnError}) {
+  StreamSubscription<T> listen(
+    void Function(T value)? onData, {
+    Function? onError,
+    void Function()? onDone,
+    bool? cancelOnError,
+  }) {
     return _runInZone(() {
-      return _innerStream.listen(onData,
-          onError: onError, onDone: onDone, cancelOnError: cancelOnError);
+      return _innerStream.listen(
+        onData,
+        onError: onError,
+        onDone: onDone,
+        cancelOnError: cancelOnError,
+      );
     });
   }
 }

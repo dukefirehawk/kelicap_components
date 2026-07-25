@@ -47,11 +47,7 @@ class ScrollObserver implements Disposable {
       if (!_isScrolling) {
         _isScrolling = true;
         _raiseIdleEvent(false);
-        if (_timer == null) {
-          // Since listenOnScroll gets called outside angular zone,
-          // it is safe to start timer here which will also execute outside.
-          _timer = Timer.periodic(_idleCheckDuration, _checkIdle);
-        }
+        _timer ??= Timer.periodic(_idleCheckDuration, _checkIdle);
       }
     });
   }

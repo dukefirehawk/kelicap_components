@@ -36,9 +36,7 @@ class Change<T> {
 
   @override
   bool operator ==(other) =>
-      (other is Change) &&
-      (this.previous == other.previous) &&
-      (this.next == other.next);
+      (other is Change) && (previous == other.previous) && (next == other.next);
 
   @override
   int get hashCode => (next == null) ? 0 : next.hashCode;
@@ -289,12 +287,12 @@ class ObservableReference<T> extends ChangeNotificationProvider<T>
   /// last value will be published (in an async scheduled microtask).
   ObservableReference(
     this._value, {
-    EqualsFn<T?> equalsFn = _defaultEq,
+    this._equalsFn = _defaultEq,
     bool coalesce = false,
-  }) : _equalsFn = equalsFn,
-       super(coalesce);
+  }) : super(coalesce);
 
   /// The currently-set value.
+  @override
   T? get value => _value;
 
   /// Sets the value and publishes an event to the stream.
@@ -348,9 +346,8 @@ class ObservableComposite<T> extends ChangeNotificationProvider<T> {
   ObservableComposite({
     bool coalesce = false,
     List<ObserveAware>? values,
-    bool withStackTrace = false,
-  }) : _withStackTrace = withStackTrace,
-       super(coalesce) {
+    this._withStackTrace = false,
+  }) : super(coalesce) {
     if (values != null) {
       for (var ref in values) {
         register(ref);
@@ -430,7 +427,9 @@ class ObservableComposite<T> extends ChangeNotificationProvider<T> {
   @override
   void dispose() {
     super.dispose();
-    _subscriptions.values.forEach((subscription) => subscription.cancel());
+    for (var subscription in _subscriptions.values) {
+      subscription.cancel();
+    }
     _subscriptions.clear();
     _disposer.dispose();
   }

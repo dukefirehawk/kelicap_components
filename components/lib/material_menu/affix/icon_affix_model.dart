@@ -63,14 +63,13 @@ class IconAffix extends BaseMenuItemAffixModel {
   /// Creates an icon that has a trigger action with a shortcut key.
   const IconAffix.withAction({
     required this.icon,
-    required IconAction action,
+    required IconAction this._action,
     required this.ariaLabel,
     int? keyCode,
     this.shouldCloseMenuOnTrigger = false,
     this.visibility = IconVisibility.visible,
     this.cssClass = '',
-  }) : _action = action,
-       _keyCode = keyCode ?? 0;
+  }) : _keyCode = keyCode ?? 0;
 
   @override
   ComponentFactory<BaseAffixComponent>? get componentFactory =>

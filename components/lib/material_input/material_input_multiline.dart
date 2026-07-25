@@ -119,9 +119,8 @@ class MaterialMultilineInputComponent extends BaseMaterialInput
         _changeDetector.markForCheck();
         // TODO(google): remove after the bug is fixed.
         //..detectChanges();
-      } else if (_subscription == null) {
-        // Listen to dom changes until we can read the line height.
-        _subscription = _domService.onLayoutChanged!.listen((_) {
+      } else {
+        _subscription ??= _domService.onLayoutChanged!.listen((_) {
           lineHeightMeasure = value;
         });
       }

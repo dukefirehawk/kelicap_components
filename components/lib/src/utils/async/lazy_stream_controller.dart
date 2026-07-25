@@ -23,17 +23,33 @@ class LazyStreamController<T> implements StreamController<T> {
 
   /// Creates a new [LazyStreamController] that will be a non-broadcast
   /// controller.
-  factory LazyStreamController(
-      {void onListen()?, void onCancel()?, bool sync = false}) {
-    return LazyStreamController._(() => StreamController<T>(
-        onListen: onListen, onCancel: onCancel, sync: sync));
+  factory LazyStreamController({
+    void Function()? onListen,
+    void Function()? onCancel,
+    bool sync = false,
+  }) {
+    return LazyStreamController._(
+      () => StreamController<T>(
+        onListen: onListen,
+        onCancel: onCancel,
+        sync: sync,
+      ),
+    );
   }
 
   /// Creates a new [LazyStreamController] that will be a broadcast controller.
-  factory LazyStreamController.broadcast(
-      {void onListen()?, void onCancel()?, bool sync = false}) {
-    return LazyStreamController._(() => StreamController<T>.broadcast(
-        onListen: onListen, onCancel: onCancel, sync: sync));
+  factory LazyStreamController.broadcast({
+    void Function()? onListen,
+    void Function()? onCancel,
+    bool sync = false,
+  }) {
+    return LazyStreamController._(
+      () => StreamController<T>.broadcast(
+        onListen: onListen,
+        onCancel: onCancel,
+        sync: sync,
+      ),
+    );
   }
 
   LazyStreamController._(this._streamControllerFactory);
@@ -97,7 +113,7 @@ class LazyStreamController<T> implements StreamController<T> {
   Stream<T> get stream => _initializeLazy()!.stream;
 
   @override
-  set onListen(void onListenHandler()?) {
+  set onListen(void Function()? onListenHandler) {
     _initializeLazy()!.onListen = onListenHandler;
   }
 
@@ -105,7 +121,7 @@ class LazyStreamController<T> implements StreamController<T> {
   ControllerCallback? get onListen => _initializeLazy()!.onListen;
 
   @override
-  set onPause(void onPauseHandler()?) {
+  set onPause(void Function()? onPauseHandler) {
     _initializeLazy()!.onPause = onPauseHandler;
   }
 
@@ -113,7 +129,7 @@ class LazyStreamController<T> implements StreamController<T> {
   ControllerCallback? get onPause => _initializeLazy()!.onPause;
 
   @override
-  set onResume(void onResumeHandler()?) {
+  set onResume(void Function()? onResumeHandler) {
     _initializeLazy()!.onResume = onResumeHandler;
   }
 
@@ -121,7 +137,7 @@ class LazyStreamController<T> implements StreamController<T> {
   ControllerCallback? get onResume => _initializeLazy()!.onResume;
 
   @override
-  set onCancel(void onCancelHandler()?) {
+  set onCancel(void Function()? onCancelHandler) {
     _initializeLazy()!.onCancel = onCancelHandler;
   }
 

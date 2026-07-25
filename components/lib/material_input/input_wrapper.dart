@@ -25,6 +25,7 @@ mixin class MaterialInputWrapper implements HasDisabled {
   ValidityCheck checkValid = (v) => '';
 
   /// Whether this input is disabled.
+  @override
   @Input()
   bool disabled = false;
 

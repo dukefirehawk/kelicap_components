@@ -42,6 +42,8 @@ const scrollHostNewModule = Module(provide: scrollHostProviders);
 class ElementScrollHost implements OnInit, OnDestroy, ElementScrollHostBase {
   final DomService _domService;
   final NgZone _ngZone;
+
+  @override
   final HTMLElement element;
   final GestureListenerFactory _gestureListenerFactory;
 

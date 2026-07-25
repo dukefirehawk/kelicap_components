@@ -20,7 +20,7 @@ Future<void> analyze() async {
 
   final analyze = await Process.start('dart', ['analyze', '--format=machine']);
 
-  var need_migrate = Set<String>();
+  var needMigrate = <String>{};
 
   await analyze.stdout
       .transform(utf8.decoder)
@@ -29,16 +29,16 @@ Future<void> analyze() async {
         final output = element.split('|');
 
         if (output[2].contains('DEPRECATED')) {
-          need_migrate.add(output[3]);
+          needMigrate.add(output[3]);
         }
       });
 
-  log('${((1 - need_migrate.length / count) * 100).round()}% Done!');
+  log('${((1 - needMigrate.length / count) * 100).round()}% Done!');
   log(
-    '${need_migrate.length} out of $count files are still using deprecated API!\n',
+    '${needMigrate.length} out of $count files are still using deprecated API!\n',
   );
 
-  need_migrate.forEach((element) {
+  for (var element in needMigrate) {
     print('- [ ] ${p.relative(element, from: 'lib')}');
-  });
+  }
 }

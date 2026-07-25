@@ -13,27 +13,27 @@ class Alignment implements ElementStyleEnum {
   /// Align content before a container.
   ///
   /// This is *not* equivalent to any CSS positioning model.
-  static const Before = BeforeCustomAlignment();
+  static const before = BeforeCustomAlignment();
 
   /// Align content to the start of a container.
   ///
   /// This is equivalent to 'flex-start'.
-  static const Start = Alignment('Start', 'flex-start');
+  static const start = Alignment('Start', 'flex-start');
 
   /// Align content to the center of a container.
   ///
   /// This is equivalent to 'center'.
-  static const Center = Alignment('Center', 'center');
+  static const center = Alignment('Center', 'center');
 
   /// Align content to the end of a container.
   ///
   /// This is equivalent to 'flex-end'.
-  static const End = Alignment('End', 'flex-end');
+  static const end = Alignment('End', 'flex-end');
 
   /// Align content after a container.
   ///
   /// This is *not* equivalent to any CSS positioning model.
-  static const After = AfterCustomAlignment();
+  static const after = AfterCustomAlignment();
 
   final String _displayName;
   final String? _cssPropertyValue;
@@ -48,15 +48,15 @@ class Alignment implements ElementStyleEnum {
   /// A null value is treated as 'start'. Else throws [ArgumentError].
   factory Alignment.parse(String displayName) {
     if (displayName == 'start') {
-      return Alignment.Start;
+      return Alignment.start;
     } else if (displayName == 'center') {
-      return Alignment.Center;
+      return Alignment.center;
     } else if (displayName == 'end') {
-      return Alignment.End;
+      return Alignment.end;
     } else if (displayName == 'before') {
-      return Alignment.Before;
+      return Alignment.before;
     } else if (displayName == 'after') {
-      return Alignment.After;
+      return Alignment.after;
     } else {
       throw ArgumentError.value(displayName, 'displayName');
     }
@@ -73,7 +73,7 @@ class Alignment implements ElementStyleEnum {
   /// of the content being aligned.
   ///
   /// This is provided to optimize positioning logic.
-  bool get requiresContentSizeToPosition => this != Start;
+  bool get requiresContentSizeToPosition => this != start;
 
   /// Returns the calculated x position from [sourceRect].
   ///
@@ -84,9 +84,9 @@ class Alignment implements ElementStyleEnum {
       throw ArgumentError.notNull('contentRect');
     }
     var left = sourceRect.left;
-    if (this == Center) {
+    if (this == center) {
       left += sourceRect.width / 2 - contentRect!.width / 2;
-    } else if (this == End) {
+    } else if (this == end) {
       left += sourceRect.width - contentRect!.width;
     }
     return left;
@@ -101,9 +101,9 @@ class Alignment implements ElementStyleEnum {
       throw ArgumentError.notNull('contentRect');
     }
     var top = sourceRect.top;
-    if (this == Center) {
+    if (this == center) {
       top += sourceRect.height / 2 - contentRect!.height / 2;
-    } else if (this == End) {
+    } else if (this == end) {
       top += sourceRect.height - contentRect!.height;
     }
     return top;
@@ -174,30 +174,30 @@ class AfterCustomAlignment extends _CustomAlignment {
 class RelativePosition {
   /// A set of [RelativePosition]s that are covering the point.
   static const overlapAlignments = [
-    RelativePosition(originX: Alignment.Start, originY: Alignment.Start),
+    RelativePosition(originX: Alignment.start, originY: Alignment.start),
     RelativePosition(
-      originX: Alignment.End,
-      originY: Alignment.Start,
+      originX: Alignment.end,
+      originY: Alignment.start,
       animationOrigin: _AnimationOrigins.DOWN_LEFT,
     ),
     RelativePosition(
-      originX: Alignment.Start,
-      originY: Alignment.End,
+      originX: Alignment.start,
+      originY: Alignment.end,
       animationOrigin: _AnimationOrigins.UP_RIGHT,
     ),
     RelativePosition(
-      originX: Alignment.End,
-      originY: Alignment.End,
+      originX: Alignment.end,
+      originY: Alignment.end,
       animationOrigin: _AnimationOrigins.UP_LEFT,
     ),
     RelativePosition(
-      originX: Alignment.Center,
-      originY: Alignment.Start,
+      originX: Alignment.center,
+      originY: Alignment.start,
       animationOrigin: _AnimationOrigins.DOWN,
     ),
     RelativePosition(
-      originX: Alignment.Center,
-      originY: Alignment.End,
+      originX: Alignment.center,
+      originY: Alignment.end,
       animationOrigin: _AnimationOrigins.UP,
     ),
   ];
@@ -221,33 +221,33 @@ class RelativePosition {
 
   /// A position that starts at the origin and flows upwards.
   static const InlineTop = RelativePosition(
-    originY: Alignment.End,
+    originY: Alignment.end,
     animationOrigin: _AnimationOrigins.UP,
   );
 
   /// A position that starts at the origin and flows downwards and left
   static const InlineBottomLeft = RelativePosition(
-    originX: Alignment.End,
+    originX: Alignment.end,
     animationOrigin: _AnimationOrigins.DOWN_LEFT,
   );
 
   /// A position that starts at the origin and flows upwards and left
   static const InlineTopLeft = RelativePosition(
-    originX: Alignment.End,
-    originY: Alignment.End,
+    originX: Alignment.end,
+    originY: Alignment.end,
     animationOrigin: _AnimationOrigins.UP_LEFT,
   );
 
   /// A position that starts at the origin and flows downwards and right
   static const InlineBottomRight = RelativePosition(
-    originX: Alignment.Start,
+    originX: Alignment.start,
     animationOrigin: _AnimationOrigins.DOWN_RIGHT,
   );
 
   /// A position that starts at the origin and flows upwards and right
   static const InlineTopRight = RelativePosition(
-    originX: Alignment.Start,
-    originY: Alignment.End,
+    originX: Alignment.start,
+    originY: Alignment.end,
     animationOrigin: _AnimationOrigins.UP_RIGHT,
   );
 
@@ -264,32 +264,32 @@ class RelativePosition {
   /// A position that starts at the origin's bottom right point and flows
   /// downwards and to the right.
   static const OffsetBottomRight = RelativePosition(
-    originX: Alignment.After,
-    originY: Alignment.After,
+    originX: Alignment.after,
+    originY: Alignment.after,
     animationOrigin: _AnimationOrigins.DOWN_RIGHT,
   );
 
   /// A position that starts at the origin's bottom left point and flows
   /// downwards and to the left.
   static const OffsetBottomLeft = RelativePosition(
-    originX: Alignment.Before,
-    originY: Alignment.After,
+    originX: Alignment.before,
+    originY: Alignment.after,
     animationOrigin: _AnimationOrigins.DOWN_LEFT,
   );
 
   /// A position that starts at the origin's top right point and flows upwards
   /// and to the right.
   static const OffsetTopRight = RelativePosition(
-    originX: Alignment.After,
-    originY: Alignment.Before,
+    originX: Alignment.after,
+    originY: Alignment.before,
     animationOrigin: _AnimationOrigins.UP_RIGHT,
   );
 
   /// A position that starts at the origin's top left point and flows upwards
   /// and to the left.
   static const OffsetTopLeft = RelativePosition(
-    originX: Alignment.Before,
-    originY: Alignment.Before,
+    originX: Alignment.before,
+    originY: Alignment.before,
     animationOrigin: _AnimationOrigins.UP_LEFT,
   );
 
@@ -364,18 +364,18 @@ class RelativePosition {
     AdjacentTopRight,
   ];
   static const AdjacentTopLeft = RelativePosition(
-    originX: Alignment.Start,
-    originY: Alignment.Before,
+    originX: Alignment.start,
+    originY: Alignment.before,
     animationOrigin: _AnimationOrigins.UP_RIGHT,
   );
   static const AdjacentTop = RelativePosition(
-    originX: Alignment.Center,
-    originY: Alignment.Before,
+    originX: Alignment.center,
+    originY: Alignment.before,
     animationOrigin: _AnimationOrigins.UP,
   );
   static const AdjacentTopRight = RelativePosition(
-    originX: Alignment.End,
-    originY: Alignment.Before,
+    originX: Alignment.end,
+    originY: Alignment.before,
     animationOrigin: _AnimationOrigins.UP_LEFT,
   );
 
@@ -390,18 +390,18 @@ class RelativePosition {
     AdjacentRightBottom,
   ];
   static const AdjacentRightTop = RelativePosition(
-    originX: Alignment.After,
-    originY: Alignment.Start,
+    originX: Alignment.after,
+    originY: Alignment.start,
     animationOrigin: _AnimationOrigins.DOWN_RIGHT,
   );
   static const AdjacentRight = RelativePosition(
-    originX: Alignment.After,
-    originY: Alignment.Center,
+    originX: Alignment.after,
+    originY: Alignment.center,
     animationOrigin: _AnimationOrigins.RIGHT,
   );
   static const AdjacentRightBottom = RelativePosition(
-    originX: Alignment.After,
-    originY: Alignment.End,
+    originX: Alignment.after,
+    originY: Alignment.end,
     animationOrigin: _AnimationOrigins.UP_RIGHT,
   );
 
@@ -416,18 +416,18 @@ class RelativePosition {
     AdjacentBottomRight,
   ];
   static const AdjacentBottomRight = RelativePosition(
-    originX: Alignment.End,
-    originY: Alignment.After,
+    originX: Alignment.end,
+    originY: Alignment.after,
     animationOrigin: _AnimationOrigins.DOWN_LEFT,
   );
   static const AdjacentBottom = RelativePosition(
-    originX: Alignment.Center,
-    originY: Alignment.After,
+    originX: Alignment.center,
+    originY: Alignment.after,
     animationOrigin: _AnimationOrigins.DOWN,
   );
   static const AdjacentBottomLeft = RelativePosition(
-    originX: Alignment.Start,
-    originY: Alignment.After,
+    originX: Alignment.start,
+    originY: Alignment.after,
     animationOrigin: _AnimationOrigins.DOWN_RIGHT,
   );
 
@@ -442,18 +442,18 @@ class RelativePosition {
     AdjacentLeftBottom,
   ];
   static const AdjacentLeftBottom = RelativePosition(
-    originX: Alignment.Before,
-    originY: Alignment.End,
+    originX: Alignment.before,
+    originY: Alignment.end,
     animationOrigin: _AnimationOrigins.UP_LEFT,
   );
   static const AdjacentLeft = RelativePosition(
-    originX: Alignment.Before,
-    originY: Alignment.Center,
+    originX: Alignment.before,
+    originY: Alignment.center,
     animationOrigin: _AnimationOrigins.LEFT,
   );
   static const AdjacentLeftTop = RelativePosition(
-    originX: Alignment.Before,
-    originY: Alignment.Start,
+    originX: Alignment.before,
+    originY: Alignment.start,
     animationOrigin: _AnimationOrigins.DOWN_LEFT,
   );
 
@@ -462,26 +462,26 @@ class RelativePosition {
   final String? animationOrigin;
 
   const RelativePosition({
-    this.originX = Alignment.Start,
-    this.originY = Alignment.Start,
+    this.originX = Alignment.start,
+    this.originY = Alignment.start,
     this.animationOrigin = _AnimationOrigins.DOWN_RIGHT,
   });
 
   RelativePosition flipRelativePosition() {
     return RelativePosition(
-      originX: _flipAlignment(this.originX),
-      originY: this.originY,
-      animationOrigin: _flipAnimation(this.animationOrigin),
+      originX: _flipAlignment(originX),
+      originY: originY,
+      animationOrigin: _flipAnimation(animationOrigin),
     );
   }
 
   Alignment? _flipAlignment(Alignment? alignment) {
     // Start/End
-    if (alignment == Alignment.Start) return Alignment.End;
-    if (alignment == Alignment.End) return Alignment.Start;
+    if (alignment == Alignment.start) return Alignment.end;
+    if (alignment == Alignment.end) return Alignment.start;
     // Before/After
-    if (alignment == Alignment.Before) return Alignment.After;
-    if (alignment == Alignment.After) return Alignment.Before;
+    if (alignment == Alignment.before) return Alignment.after;
+    if (alignment == Alignment.after) return Alignment.before;
 
     return alignment;
   }
