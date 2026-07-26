@@ -143,8 +143,8 @@ class ScorecardComponent extends KeyboardOnlyFocusIndicatorDirective {
     _selectable = selectable;
 
     // Normally OnPush will markForCheck() automatically when an input changes.
-    // However, that's only if the input changes within the Angular zone.
-    // Scoreboard changes this input outside of the Angular zone, so we
+    // However, that's only if the input changes within the Kelicap zone.
+    // Scoreboard changes this input outside of the Kelicap zone, so we
     // explicitly markForCheck() here to cover that case.
     _changeDetector.markForCheck();
   }

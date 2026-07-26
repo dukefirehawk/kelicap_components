@@ -113,7 +113,7 @@ class MaterialRadioGroupComponent
 
   void _resetTabIndex() {
     // Since this is updating children that were already dirty-checked,
-    // need to delay this change until next angular cycle.
+    // need to delay this change until next kelicap cycle.
     _ngZone.runAfterChangesObserved(() {
       //if (_radioComponents.isEmpty) return; // Component was destroyed.
 
@@ -230,7 +230,7 @@ class MaterialRadioGroupComponent
     _isContentInit = true;
     if (_preselectedValue != null) {
       // Since this is updating children that were already dirty-checked,
-      // need to delay this change until next angular cycle.
+      // need to delay this change until next kelicap cycle.
       _ngZone.runAfterChangesObserved(() {
         if (_preselectedValue == null) return; // Overridden before callback.
         // Initialize preselect now, this will trigger tabIndex reset.

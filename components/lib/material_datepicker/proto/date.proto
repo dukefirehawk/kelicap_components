@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package angular_components.lib.material_datepicker.proto;
+package kelicap_components.lib.material_datepicker.proto;
 
 // Represents a whole or partial calendar date, e.g. a birthday. The time of day
 // and time zone are either specified elsewhere or are not significant. The date

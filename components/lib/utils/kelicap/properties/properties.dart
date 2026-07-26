@@ -40,7 +40,7 @@ bool _parseBool(String strValue) {
 /// error.
 ///
 /// **NOTE**: inputValue must be non-null.
-//@Deprecated('Angular now supports boolean properties natively, for @Attribute'
+//@Deprecated('Kelicap now supports boolean properties natively, for @Attribute'
 //    ' use [attributeToBool].')
 //bool getBool(inputValue) {
 //  if (inputValue == null) throw ArgumentError.notNull('inputValue');

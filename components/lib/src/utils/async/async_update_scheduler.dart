@@ -10,7 +10,7 @@ typedef OnUpdateCallback = void Function();
 /// An utility class for notifying ~once per VM turn to do an update action.
 ///
 /// This is to handle patterns where many properties may be updated,
-/// synchronously, such as through Angular property setters, but the user would
+/// synchronously, such as through Kelicap property setters, but the user would
 /// like to wait and apply an update once after they are all called.
 ///
 /// Example:

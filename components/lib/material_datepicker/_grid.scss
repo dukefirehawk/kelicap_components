@@ -228,7 +228,7 @@
   background-color: $mat-blue-700;
   // Copied from material-shadow -- it doesn't make sense for the calendar
   // dates to have a material-shadow element themselves, since they're created
-  // outside of Angular (and in large numbers -- performance is a concern).
+  // outside of Kelicap (and in large numbers -- performance is a concern).
   box-shadow: 0 2px 5px 0 $cal-shadow-color;
 }
 

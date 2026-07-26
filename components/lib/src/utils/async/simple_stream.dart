@@ -437,10 +437,10 @@ class SimpleStreamSubscription<T> implements StreamSubscription<T> {
 }
 
 /// Provides an interface for both [StreamController] and [Stream] for use with
-/// output events in Angular components.
+/// output events in Kelicap components.
 ///
 /// Reduces the amount of boilerplate needed by removing the need for a getter
-/// that returns the stream for Angular.
+/// that returns the stream for Kelicap.
 class SimpleEmitter<T> extends SimpleStream<T> {
   SimpleEmitter({
     super.isSync = true,

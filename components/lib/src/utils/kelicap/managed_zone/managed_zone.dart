@@ -7,8 +7,8 @@ import 'dart:async';
 import 'package:kelicap_components/utils/disposer/disposer.dart';
 
 /// A generic implementation of managed zone that has no dependencies directly
-/// on a framework like Angular. This makes it more testable than the VmTurnZone
-/// provided by Angular.
+/// on a framework like Kelicap. This makes it more testable than the VmTurnZone
+/// provided by Kelicap.
 @Deprecated('Use NgZone directly instead')
 abstract class ManagedZone implements Disposable {
   /// Whether we are currently executing in the inner zone. This can be used by
@@ -61,7 +61,7 @@ abstract class ManagedZone implements Disposable {
   T runOutside<T>(T Function() fn);
 }
 
-/// A partial implementation of [ManagedZone] without bindings to Angular.
+/// A partial implementation of [ManagedZone] without bindings to Kelicap.
 abstract class ManagedZoneBase extends ManagedZone {
   StreamController? _onTurnDoneController;
   StreamController? _onTurnStartController;

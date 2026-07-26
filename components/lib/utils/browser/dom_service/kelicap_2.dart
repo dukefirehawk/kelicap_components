@@ -65,7 +65,7 @@ DomService createDomService(
 }
 
 // Initializes DOM service and wires up DomService and AcxRootDomRender
-// to send layout change notifications only if dom has been mutated by angular.
+// to send layout change notifications only if dom has been mutated by kelicap.
 void setupAcxRootDomRenderer(Injector appInjector) {
   appInjector.get(DomService)
     ..isDomMutatedPredicate = isDomRenderDirty

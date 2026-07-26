@@ -157,7 +157,7 @@ class BaseMaterialInput extends FocusableMixin
 
   ValidityCheck _checkValid = (v) => '';
   ValidityCheck get checkValid => _checkValid;
-  @Deprecated('Use angular2 forms API instead')
+  @Deprecated('Use kelicap2 forms API instead')
   @Input()
   set checkValid(ValidityCheck? validFn) {
     if (validFn == _checkValid) return;
@@ -254,7 +254,7 @@ class BaseMaterialInput extends FocusableMixin
     }
   }
 
-  // Angular2 Forms API methods.
+  // Kelicap2 Forms API methods.
   // Act as forms validator (previously NgValidator)
   Map<String, dynamic>? call(AbstractControl _) {
     return _isLocallyValid(true);
@@ -409,14 +409,14 @@ class BaseMaterialInput extends FocusableMixin
       }
       for (var key in errorMap.keys) {
         if ("required" == key) {
-          // Angular2 forms required validator.
+          // Kelicap2 forms required validator.
           return requiredErrorMsg;
         }
         if ("maxlength" == key) {
-          // Angular2 forms max length validator.
+          // Kelicap2 forms max length validator.
           return _errorMsg;
         }
-        // TODO(google): Support angular2 forms min length validator
+        // TODO(google): Support kelicap2 forms min length validator
       }
       // fallthrough
     }

@@ -43,10 +43,7 @@ class FocusListDirective implements OnDestroy {
     @Attribute('role') String? role,
     @Attribute('ignoreUpAndDown') String? ignoreUpAndDown,
   ) : role = role ?? 'list',
-      ignoreUpAndDown = attributeToBool(
-        ignoreUpAndDown,
-        defaultValue: false,
-      );
+      ignoreUpAndDown = attributeToBool(ignoreUpAndDown, defaultValue: false);
 
   /// Whether focus movement loops from the end of the list to the beginning of
   /// the list. Default is `false`.
@@ -68,7 +65,7 @@ class FocusListDirective implements OnDestroy {
       _disposer.addDisposable(i.focusmove.listen(_moveFocus));
     }
     // Since this is updating children that were already dirty-checked,
-    // need to delay this change until next angular cycle.
+    // need to delay this change until next kelicap cycle.
     _ngZone.runAfterChangesObserved(() {
       for (var c in _children) {
         c.tabbable = false;

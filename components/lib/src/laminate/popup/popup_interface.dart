@@ -47,7 +47,7 @@ abstract class PopupInterface {
 
   /// Sets what positions should be tried when [enforceSpaceConstraints] is set.
   ///
-  /// Similarly to Angular providers, this supports nested lists of preferred
+  /// Similarly to Kelicap providers, this supports nested lists of preferred
   /// positions. The popup will flatten out the list of positions and choose the
   /// first one that fits on screen.
   @Input()

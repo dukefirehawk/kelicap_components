@@ -19,7 +19,7 @@ abstract mixin class _ZoneRunner {
 /// in the zone that the `then` originated.
 ///
 /// This can be used to retain the [Future] API without causing frameworks like
-/// Angular to capture events.
+/// Kelicap to capture events.
 ///
 /// A simple example:
 ///     void example() {
@@ -82,7 +82,7 @@ class ZonedFuture<T> extends _ZoneRunner implements Future<T> {
 /// in the zone that the `listen` originated.
 ///
 /// This can be used to retain the [Stream] API without causing frameworks like
-/// Angular to capture events.
+/// Kelicap to capture events.
 ///
 /// A simple example:
 ///     void example() {

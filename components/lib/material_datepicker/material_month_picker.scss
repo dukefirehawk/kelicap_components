@@ -42,7 +42,7 @@ $top-layer-index: 0;
   font-size: $mat-font-size-body;
 }
 
-// ::ng-deep is used to selectively disable Angular shimming so that the
+// ::ng-deep is used to selectively disable Kelicap shimming so that the
 // dynamically created elements can be styled.
 .calendar-container ::ng-deep {
   .year {

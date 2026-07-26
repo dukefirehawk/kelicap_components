@@ -10,7 +10,7 @@ import 'dart:math' show max, min;
 import 'package:kelicap/kelicap.dart';
 import 'package:kelicap_components/utils/async/async.dart';
 import 'package:kelicap_components/utils/disposer/disposable_callback.dart';
-// TODO(google): Consolidate this with RenderSync /Angular.
+// TODO(google): Consolidate this with RenderSync /Kelicap.
 
 import 'package:kelicap_components/utils/disposer/disposer.dart';
 import 'package:meta/meta.dart';
@@ -72,7 +72,7 @@ class DomService {
   Timer? _idleTimer;
   bool _inDispatchTurnDoneEvent = false;
 
-  /// Optional callback to check if DOM has been mutated by angular in
+  /// Optional callback to check if DOM has been mutated by kelicap in
   /// a zone turn.
   ///
   /// Can be used to reduce layout checks due to Zone turns that don't detect
@@ -103,7 +103,7 @@ class DomService {
           _inDispatchTurnDoneEvent = true;
           _window.dispatchEvent(Event(_TURN_DONE_EVENT_TYPE));
           _inDispatchTurnDoneEvent = false;
-          // If dom has been mutated by angular, mark [_writeQueueChangedLayout]
+          // If dom has been mutated by kelicap, mark [_writeQueueChangedLayout]
           // to true. So that [_scheduleOnLayoutChanged] will be called normally
           // when there is a request to change layout.
           if (isDomMutatedPredicate != null && isDomMutatedPredicate!()) {
@@ -153,7 +153,7 @@ class DomService {
   /// DO NOT CALL THIS METHOD IN PRODUCTION CODE!
   @visibleForTesting
   void leap({num? highResTimer, steps = 1}) {
-    // Force a angular turn to make sure layout calls are scheduled.
+    // Force a kelicap turn to make sure layout calls are scheduled.
     _ngZone.run(() {});
     while (steps > 0) {
       if (_nextFrameFuture == null) return;
@@ -360,7 +360,7 @@ class DomService {
         _ngZone.runOutsideKelicap,
       );
       _ngZone.runOutsideKelicap(() {
-        // Capture events from Angular
+        // Capture events from Kelicap
         _ngZone.onTurnStart.listen((_) {
           if (_state != DomServiceState.idle) return;
           _insideDigest = true;
@@ -392,7 +392,7 @@ class DomService {
         //_listenOnLayoutEvents(_window.onResize);
         //_listenOnLayoutEvents(_window.onTransitionEnd);
 
-        // Listening Angular turn done events coming from other apps.
+        // Listening Kelicap turn done events coming from other apps.
         _window.addEventListener(
           _TURN_DONE_EVENT_TYPE,
           ((_) {
@@ -424,7 +424,7 @@ class DomService {
   ///
   /// The [callback] is assumed to do lightweight DOM updates only.
   /// If you want to trigger both model changes and async operations, you must
-  /// set the [runInAngularZone] flag.
+  /// set the [runInKelicapZone] flag.
   ///
   /// Returns a subscription that allows pausing, resuming and canceling the
   /// observer.
@@ -432,11 +432,11 @@ class DomService {
     T Function() fn,
     void Function(T) callback, {
     int framesToStabilize = 1,
-    bool runInAngularZone = false,
+    bool runInKelicapZone = false,
   }) {
     // TODO(google): Move layout checking into ruler service when landed.
     var trackerCallback = callback;
-    if (runInAngularZone) {
+    if (runInKelicapZone) {
       trackerCallback = (T value) {
         _ngZone.run(() => callback(value));
       };
@@ -448,10 +448,10 @@ class DomService {
   /// Adds a new callback to the layout observer heartbeat.
   ///
   /// The layout observer heartbeat is a consistency check that is run outside
-  /// of the Angular zone. If a component needs to synchronize its position,
+  /// of the Kelicap zone. If a component needs to synchronize its position,
   /// size or orientation to the ever-changing layout, it can run its
   /// observations in this callback. If there is a need to modify the DOM or
-  /// trigger a new Angular digest, it can do it through the [updateLayout]
+  /// trigger a new Kelicap digest, it can do it through the [updateLayout]
   /// method.
   ///
   /// Returns a subscription that allows pausing, resuming and canceling the

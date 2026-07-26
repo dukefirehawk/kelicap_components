@@ -878,7 +878,7 @@ class MaterialCalendarPickerComponent
   EventListener? _mouseOutListener;
 
   void _initializeEvents() {
-    // Process the events outside of Angular for lower overhead.
+    // Process the events outside of Kelicap for lower overhead.
     _scroller?.addEventListener('scroll', _scrollListener = _onScroll.toJS);
     _container
       ?..addEventListener('click', _clickListener = _onClick.toJS)

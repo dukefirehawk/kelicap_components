@@ -67,7 +67,7 @@ const _externalUriAllowedSchemes = {'http', 'https', 'mailto'};
 ///
 /// If the `(trigger)` output is bound, anchor elements with the sentinel class
 /// "trigger" will send an event to this output. The event is the original
-/// Angular `$event`.
+/// Kelicap `$event`.
 @Component(
   selector: 'simple-html',
   template: '<span></span>',
@@ -258,7 +258,7 @@ abstract class _SimpleHtmlBase implements OnDestroy {
   });
 
   /// Propagates events from internal anchor elements with the class trigger
-  /// sending the original angular event.
+  /// sending the original kelicap event.
   @Output()
   Stream<UIEvent> get trigger => _triggerStreamController.stream;
 }

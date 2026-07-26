@@ -65,7 +65,7 @@
   }
 }
 
-// ::ng-deep is used here to disable Angular shimming (which this component is
+// ::ng-deep is used here to disable Kelicap shimming (which this component is
 // incompatible with since all elements are created manually).
 :host ::ng-deep {
   @include calendar-slot-size($cal-date-size);

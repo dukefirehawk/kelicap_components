@@ -222,7 +222,7 @@ class ModalComponent
   @override
   void ngAfterViewInit() {
     // Propagate CSS classes of the host element to the overview element for
-    // integration with Angular CSS shimming.
+    // integration with Kelicap CSS shimming.
     var hostClassName = _element.className;
     resolvedOverlayRef.overlayElement.className += ' $hostClassName';
   }

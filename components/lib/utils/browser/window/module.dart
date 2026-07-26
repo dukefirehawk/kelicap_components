@@ -21,10 +21,10 @@ Document getDocument() => document;
 Window getWindow() => window;
 
 /// Provides [Document], [HtmlDocument], and [Window] bound for use
-/// within Angular.
+/// within Kelicap.
 ///
 /// Ideally, an application would limit direct use of these to maintain
-/// compatibility with web workers, but there is no Angular sanitized version
+/// compatibility with web workers, but there is no Kelicap sanitized version
 /// yet available.
 const windowBindings = [
   // This strange syntax is required because we need windowBindings to be a
@@ -50,5 +50,5 @@ const windowModule = Module(
 @Injectable()
 Location getLocation(Window window) => window.location;
 
-/// Provides [Location] bound for use within Angular.
+/// Provides [Location] bound for use within Kelicap.
 const locationBindings = [FactoryProvider(Location, getLocation)];

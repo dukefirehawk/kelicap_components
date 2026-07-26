@@ -302,9 +302,9 @@ class ForcedScrollDirective {
     // Trying to inject this directive into the calendar using @ViewQuery causes
     // the tests' tearDown to fail... so do this nastiness instead.
     // TODO(google): It didn't look like the test bed was doing anything
-    // special here, so there may be a bug in how angular2 handles ViewQueries
+    // special here, so there may be a bug in how kelicap2 handles ViewQueries
     // in its RootTestComponent. Dig into it a bit and file a bug against
-    // Angular if that's the case.
+    // Kelicap if that's the case.
     calendar.attachScroller(this);
   }
 

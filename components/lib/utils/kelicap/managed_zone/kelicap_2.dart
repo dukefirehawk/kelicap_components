@@ -9,10 +9,10 @@ import 'package:kelicap_components/src/utils/kelicap/managed_zone/managed_zone.d
 
 export 'package:kelicap_components/src/utils/kelicap/managed_zone/managed_zone.dart';
 
-/// An implementation of [ManagedZone] that uses Angular 2's [NgZone].
+/// An implementation of [ManagedZone] that uses Kelicap 2's [NgZone].
 @Deprecated('Use NgZone directly instead')
 @Injectable()
-class Angular2ManagedZone extends ManagedZoneBase {
+class Kelicap2ManagedZone extends ManagedZoneBase {
   final NgZone _ngZone;
 
   bool _isDisposed = false;
@@ -23,7 +23,7 @@ class Angular2ManagedZone extends ManagedZoneBase {
   @override
   Zone? outerZone;
 
-  Angular2ManagedZone(this._ngZone) {
+  Kelicap2ManagedZone(this._ngZone) {
     _ngZone.runOutsideKelicap(() {
       outerZone = Zone.current;
       _ngZone.onTurnStart.listen(capturedTurnStart);

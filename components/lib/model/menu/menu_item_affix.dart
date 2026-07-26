@@ -16,7 +16,7 @@ abstract class MenuItemAffix<FactoryType /* =ComponentFactory */> {
   bool get isVisibleOnHover => visibility == IconVisibility.hover;
   bool get isVisible => visibility != IconVisibility.hidden;
 
-  // Due to VM tests not supporting Angular, we cannot directly specify
+  // Due to VM tests not supporting Kelicap, we cannot directly specify
   // ComponentFactory here.
   FactoryType get componentFactory;
 

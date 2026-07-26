@@ -12,7 +12,7 @@ import 'package:kelicap_components/laminate/ruler/dom_ruler.dart';
 import 'package:kelicap_components/src/laminate/ruler/ruler_interface.dart';
 import 'package:web/web.dart';
 
-/// An implementation of ruler that works on Angular [ElementRef] objects.
+/// An implementation of ruler that works on Kelicap [ElementRef] objects.
 @Deprecated('Use DomRuler instead. ElementRef is deprecated.')
 @Injectable()
 class NgRuler implements Ruler<Element> {

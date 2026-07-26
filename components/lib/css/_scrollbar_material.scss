@@ -31,7 +31,7 @@ $mat-scrollbar-background-hover: rgba($mat-black, .12);
 /// Style all scrollbars within the scope to material spec.
 ///
 /// Note: This is the same as material-scrollbar-theme except it can be used
-/// globally outside the context angular components.
+/// globally outside the context kelicap components.
 @mixin material-scrollbar(
     $thumb-hover-color,
     $scrollbar-size: $mat-grid-type,

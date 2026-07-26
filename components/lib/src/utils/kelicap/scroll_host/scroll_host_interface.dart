@@ -24,7 +24,7 @@ abstract class ScrollHostEvent {
 ///
 /// Interacting with the scroll container, or reading values from it may cause
 /// reflows, and should be done only in batched read and write cycles (e.g.
-/// Angular's domRead, or DomService's layout check and update callbacks.
+/// Kelicap's domRead, or DomService's layout check and update callbacks.
 abstract class ScrollHost implements Disposable {
   /// The total scrollable length.
   ///
@@ -40,7 +40,7 @@ abstract class ScrollHost implements Disposable {
 
   /// The stream of scroll events.
   ///
-  /// The event stream is running outside of the Angular zone, making it cheap
+  /// The event stream is running outside of the Kelicap zone, making it cheap
   /// to consume. If you need to trigger change detection, inject
   /// [ChangeDetectorRef] and [NgZone] and call
   /// [ChangeDetectorRef.markForCheck()] inside [NgZone.run()].

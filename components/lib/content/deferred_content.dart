@@ -113,7 +113,7 @@ class DeferredContentDirective implements OnDestroy {
 /// Nested inside a [DeferredContentAware] container, this directive creates
 /// its content the first time the parent container becomes visible.
 ///
-/// This directive is not recommended as it will cause Angular to change-detect
+/// This directive is not recommended as it will cause Kelicap to change-detect
 /// the contents even when hidden. If your hidden content has push-detection
 /// enabled, go for it.
 @Directive(selector: '[cachedDeferredContent]')

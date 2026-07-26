@@ -316,14 +316,14 @@ class MaterialAutoSuggestInputComponent<T> extends MaterialSelectBase<T>
   // The fields below are deprecated.
 
   // Override renderer here to just add the @Input annotation and keep the
-  // angular dependency out of models.
+  // kelicap dependency out of models.
   /// A simple function to render the an item to string.
   @override
   @Input()
   set itemRenderer(ItemRenderer<T>? value) => super.itemRenderer = value;
 
   // Override renderer here to just add the @Input annotation and keep the
-  // angular dependency out of models.
+  // kelicap dependency out of models.
 
   /// [FactoryRenderer] used to display the item.
   @override

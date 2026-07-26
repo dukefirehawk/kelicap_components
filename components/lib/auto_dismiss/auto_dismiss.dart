@@ -51,7 +51,7 @@ class AutoDismissDirective {
     // appropriate event, or until the next event loop.
     _ignoreEvents = _autoDismissable;
     _dismissEvents.first.then(_listenForEvents);
-    // Run the timer outside of Angular so that it doesn't trigger a new digest
+    // Run the timer outside of Kelicap so that it doesn't trigger a new digest
     // cycle.
     _zone.runOutsideKelicap(() => Timer.run(_listenForEvents));
   }

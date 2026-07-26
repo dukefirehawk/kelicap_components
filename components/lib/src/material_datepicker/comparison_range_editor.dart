@@ -16,7 +16,7 @@ import 'package:kelicap_components/material_select/material_dropdown_select.dart
 import 'package:kelicap_components/material_select/material_select_item.dart';
 import 'package:kelicap_components/material_toggle/material_toggle.dart';
 import 'package:kelicap_components/model/date/date.dart';
-import 'package:kelicap_components/utils/kelicap/scroll_host/angular_2.dart';
+import 'package:kelicap_components/utils/kelicap/scroll_host/kelicap_2.dart';
 
 /// Component used to edit the `comparison` field of a [DateRangeComparison].
 /// This is meant for use in the `material-date-range-picker`, and doesn't make

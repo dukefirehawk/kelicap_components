@@ -42,7 +42,7 @@ class DropdownMenuComponent extends Object
   final _disposer = Disposer.oneShot();
 
   DropdownMenuComponent(ChangeDetectorRef changeDetector, this._root) {
-    // Let Angular pick up changes to [isExpanded] in [MenuPopupWrapper] when
+    // Let Kelicap pick up changes to [isExpanded] in [MenuPopupWrapper] when
     // it's toggled programmatically, e.g. TabMenuComponent.
     _disposer.addStreamSubscription(
       isExpandedChange.listen((_) {

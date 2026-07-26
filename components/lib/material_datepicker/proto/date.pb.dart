@@ -17,7 +17,7 @@ class Date extends $pb.GeneratedMessage {
       package: const $pb.PackageName(
           const $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
-              : 'angular_components.lib.material_datepicker.proto'),
+              : 'kelicap_components.lib.material_datepicker.proto'),
       createEmptyInstance: create)
     ..a<$core.int>(
         1,

@@ -58,7 +58,7 @@ class _SingleFunctionDisposable implements Disposable {
 /// Example usage of 'oneShot' mode.  Please use this for cases where there
 /// is a single call to dispose as it will help detect potential memory leaks
 /// where a disposable is being added after the disposer has been disposed.
-/// This is very typical for Angular components where disposer.dispose() is
+/// This is very typical for Kelicap components where disposer.dispose() is
 /// called in ngOnDestroy.
 ///
 ///     final disposer = new Disposer.oneShot()

@@ -308,7 +308,7 @@ class MaterialPopupComponent extends Object
 
   void _updateOverlayCssClass() {
     if (_overlayRef == null) return;
-    // Copy host CSS classes for integration with Angular CSS shimming.
+    // Copy host CSS classes for integration with Kelicap CSS shimming.
     var hostClassName = elementRef.className;
     _overlayRef!.overlayElement.className += ' $hostClassName';
   }
@@ -360,7 +360,7 @@ class MaterialPopupComponent extends Object
   set visible(bool visible) {
     if (visible) {
       // If visibility is immediately true, we need to create the view and wait
-      // for other Angular @Inputs to be processed before opening the popup.
+      // for other Kelicap @Inputs to be processed before opening the popup.
       if (!_viewInitialized) {
         _initView();
         scheduleMicrotask(_open);

@@ -2,7 +2,7 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-// This file is separate from has_renderer.dart so it doesn't add the angular
+// This file is separate from has_renderer.dart so it doesn't add the kelicap
 // dependency and transitively 'dart:html', which doesn't work in a simple
 // dart_test.
 import 'package:kelicap/kelicap.dart' show ComponentFactory;

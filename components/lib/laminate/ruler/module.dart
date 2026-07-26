@@ -19,6 +19,6 @@ const rulerModule = Module(
 
 const _rulerProviders = [
   ClassProvider(DomRuler),
-  ClassProvider(ManagedZone, useClass: Angular2ManagedZone),
+  ClassProvider(ManagedZone, useClass: Kelicap2ManagedZone),
   //ClassProvider(NgRuler),
 ];

@@ -12,7 +12,7 @@ documentation][docs]. Examples can be found [here][demo].
 
 The styles are provided by
 `package:kelicap_components/css/mdc_web/card/mdc-card.scss.css`. To use
-these styles in an Angular component simply add it as a `styleUrls` value in
+these styles in an Kelicap component simply add it as a `styleUrls` value in
 your `Component` annotation. We suggest that the style be added before any
 component specific styling so you can easily override style values as needed.
 

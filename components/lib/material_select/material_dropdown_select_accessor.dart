@@ -12,7 +12,7 @@ import 'package:kelicap_components/model/selection/selection_model.dart';
 import 'material_dropdown_select.dart';
 
 /// [ControlValueAccessor] for material dropdown select which only allows a
-/// single selection allowing integration with the angular forms API.
+/// single selection allowing integration with the kelicap forms API.
 @Directive(
   selector:
       'material-dropdown-select[ngModel]:not([multi]),'
@@ -61,7 +61,7 @@ class DropdownSelectValueAccessor<T> extends BaseDropdownSelectValueAccessor<T>
 }
 
 /// [ControlValueAccessor] for material dropdown select which only allows
-/// multi-selection allowing integration with the angular forms API.
+/// multi-selection allowing integration with the kelicap forms API.
 @Directive(
   selector:
       'material-dropdown-select[multi][ngModel],'

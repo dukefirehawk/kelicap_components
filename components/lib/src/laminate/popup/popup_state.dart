@@ -121,7 +121,7 @@ class PopupState extends Observable {
 
   /// What positions should be tried when [enforceSpaceConstraints] is enabled.
   ///
-  /// Similarly to Angular providers, this supports nested lists of
+  /// Similarly to Kelicap providers, this supports nested lists of
   /// [RelativePosition]s. Under the hood, we'll flatten out the list and pick
   /// the first position that fits onscreen.
   Iterable<RelativePosition /* RelativePosition | Iterable */>

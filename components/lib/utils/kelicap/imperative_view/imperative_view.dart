@@ -37,7 +37,7 @@ import 'package:kelicap_components/utils/disposer/disposer.dart';
 ///         _listElement.children.clear();
 ///         items.forEach((item) {
 ///           final itemElement = new Element.li();
-///           _imperativeViewUtils.insertAngularComponent(
+///           _imperativeViewUtils.insertKelicapComponent(
 ///               ItemComponent,
 ///               _elementRef,
 ///               itemElement).then((ComponentRef componentRef) =>
@@ -90,7 +90,7 @@ class AcxImperativeViewUtils {
   /// The returned instance can be destroyed by disposing it.
   ///
   /// **WARNING**: This code is experimental.
-  Future<ImperativeViewRef> insertAngularView(
+  Future<ImperativeViewRef> insertKelicapView(
     HTMLElement intoDomElement,
     TemplateRef templateRef,
     ViewContainerRef viewContainer,
@@ -108,7 +108,7 @@ class AcxImperativeViewUtils {
   }
 }
 
-/// A handle to an imperatively created Angular view.
+/// A handle to an imperatively created Kelicap view.
 class ImperativeViewRef implements Disposable {
   final DisposeFunction _disposeFn;
   final EmbeddedViewRef viewRef;

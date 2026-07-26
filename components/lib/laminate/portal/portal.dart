@@ -239,7 +239,7 @@ class DelegatingPortalHost implements PortalHost {
   }
 }
 
-/// An implementation of [PortalHost] as an Angular 2 template directive.
+/// An implementation of [PortalHost] as an Kelicap 2 template directive.
 ///
 /// For example:
 ///     <template portalHost="portal"></template>
@@ -310,7 +310,7 @@ class DomPortalHost extends BasePortalHost {
       throw StateError(
         'A component hosted in a DomPortalHost must '
         'have an `origin` set, since the DOM element itself '
-        'is not an Angular component.',
+        'is not an Kelicap component.',
       );
     }
     return _imperativeViewUtils
@@ -324,7 +324,7 @@ class DomPortalHost extends BasePortalHost {
   @override
   Future<Map<String, dynamic>> attachTemplatePortal(TemplatePortal portal) {
     return _imperativeViewUtils
-        .insertAngularView(_hostElement, portal.template, portal.viewContainer)
+        .insertKelicapView(_hostElement, portal.template, portal.viewContainer)
         .then((ref) {
           portal.locals.forEach(ref.viewRef.setLocal);
           setPortalDisposer(ref.dispose);
@@ -335,7 +335,7 @@ class DomPortalHost extends BasePortalHost {
 
 typedef OnTemplatePortalReady = void Function(TemplatePortal portal);
 
-/// An implementation of [TemplatePortal] as an Angular directive.
+/// An implementation of [TemplatePortal] as an Kelicap directive.
 ///
 /// Example:
 ///     <template portal (ready)="onReady($event)">

@@ -14,7 +14,7 @@ import 'package:kelicap_components/material_stepper/common.dart';
 import 'package:kelicap_components/material_stepper/material_step.dart';
 import 'package:kelicap_components/material_yes_no_buttons/material_yes_no_buttons.dart';
 import 'package:kelicap_components/model/action/async_action.dart';
-import 'package:kelicap_components/utils/kelicap/scroll_host/angular_2.dart';
+import 'package:kelicap_components/utils/kelicap/scroll_host/kelicap_2.dart';
 import 'package:kelicap_components/utils/browser/events/events.dart';
 
 /// A material-design-styled stepper.

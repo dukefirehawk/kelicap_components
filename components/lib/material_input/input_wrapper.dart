@@ -121,7 +121,7 @@ mixin class MaterialInputWrapper implements HasDisabled {
   // Set is added to allow the base classes to override this functionality.
   /// The text the input should have.
   ///
-  /// Consider using the angular_forms [NgModel] instead.
+  /// Consider using the kelicap_forms [NgModel] instead.
   @Input()
   set inputText(String? value) {
     _inputText = value ?? '';

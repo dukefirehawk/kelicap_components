@@ -9,7 +9,7 @@ the material spec.
 
 The styles are provided by
 `package:kelicap_components/app_layout/layout.scss.css`. To use these styles in
-an angular component simply add it as a `styleUrls` value in your `Component`
+an kelicap component simply add it as a `styleUrls` value in your `Component`
 annotation. It is suggested that the style is added before any component
 specific styling so you can easily override style values as needed.
 
@@ -102,7 +102,7 @@ to the parent's directives list.
 
 Lastly, connect the open/close drawer action to the drawer. This is most easily
 done using the [reference
-variable](https://webdev.dartlang.org/angular/guide/template-syntax#!#ref-vars)
+variable](https://webdev.dartlang.org/kelicap/guide/template-syntax#!#ref-vars)
 syntax. The persistent drawer directive exports itself as `drawer` this allows
 it to be used easily by other actions. `toggle()` can be used to open/close the
 drawer. The drawer supports the `deferredContent` directive allowing a developer

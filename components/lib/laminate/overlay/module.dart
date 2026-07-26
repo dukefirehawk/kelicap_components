@@ -112,7 +112,7 @@ const _overlayProviders = <Provider>[
   ClassProvider(AcxImperativeViewUtils),
   ClassProvider(DomRuler),
   domServiceBinding,
-  ClassProvider(ManagedZone, useClass: Angular2ManagedZone),
+  ClassProvider(ManagedZone, useClass: Kelicap2ManagedZone),
   FactoryProvider.forToken(overlayContainerName, getDefaultContainerName),
   FactoryProvider.forToken(overlayContainerToken, getDefaultContainer),
   FactoryProvider.forToken(overlayContainerParent, getOverlayContainerParent),

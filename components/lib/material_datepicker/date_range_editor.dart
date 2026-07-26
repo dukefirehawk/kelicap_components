@@ -40,7 +40,7 @@ import 'package:kelicap_components/model/selection/select.dart';
 import 'package:kelicap_components/model/selection/selection_model.dart';
 import 'package:kelicap_components/src/material_datepicker/comparison_range_editor.dart';
 import 'package:kelicap_components/src/material_datepicker/date_range_editor_model.dart';
-import 'package:kelicap_components/utils/kelicap/scroll_host/angular_2.dart';
+import 'package:kelicap_components/utils/kelicap/scroll_host/kelicap_2.dart';
 import 'package:kelicap_components/utils/browser/dom_service/dom_service.dart';
 import 'package:kelicap_components/utils/showhide/showhide.dart';
 import 'package:intl/intl.dart';

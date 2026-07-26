@@ -47,7 +47,7 @@ class DatepickerDateRange extends $pb.GeneratedMessage {
       package: const $pb.PackageName(
           const $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
-              : 'angular_components.lib.material_datepicker.proto'),
+              : 'kelicap_components.lib.material_datepicker.proto'),
       createEmptyInstance: create)
     ..oo(0, [2, 3, 4, 5, 6, 7, 8, 9, 10, 12])
     ..aOM<DateRange>(
@@ -363,7 +363,7 @@ class DateRange extends $pb.GeneratedMessage {
       package: const $pb.PackageName(
           const $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
-              : 'angular_components.lib.material_datepicker.proto'),
+              : 'kelicap_components.lib.material_datepicker.proto'),
       createEmptyInstance: create)
     ..aOM<$0.Date>(
         1,

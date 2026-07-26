@@ -13,7 +13,7 @@ HTML in the following use cases:
 Mixing these features with text that cannot appear verbatim in the template (due
 to, for example, use of the `Intl` library for localization) is otherwise
 difficult. This component is the recommended alternative to calling methods like
-[`bypassSecurityTrustHtml()`](https://pub.dev/documentation/angular/latest/angular.security/DomSanitizationService/bypassSecurityTrustHtml.html)
+[`bypassSecurityTrustHtml()`](https://pub.dev/documentation/kelicap/latest/kelicap.security/DomSanitizationService/bypassSecurityTrustHtml.html)
 when inserting HTML into the DOM.
 
 ## Usage
@@ -31,7 +31,7 @@ recommended in the following cases:
 
 The alternatives include:
 
-* Standard Angular interpolation with `{{` ... `}}`.
+* Standard Kelicap interpolation with `{{` ... `}}`.
   * This is the fastest and safest option and should always be preferred if
         you do not need any sort of mark-up inside the string.
 * Using the `[innerHtml]` directive with a string argument.
@@ -107,9 +107,9 @@ You have a few options:
     If `seeHelpCenterMessage` is a plain string, it will be strictly sanitized
     and disallowed elements silently removed. To work around this,
     `seeHelpCenterMessage` may instead return a
-    [`SafeHtml`](https://pub.dev/documentation/angular/latest/angular.security/SafeHtml-class.html)
+    [`SafeHtml`](https://pub.dev/documentation/kelicap/latest/kelicap.security/SafeHtml-class.html)
     object. This object can be constructed by calling
-    [`bypassSecurityTrustHtml()`](https://pub.dev/documentation/angular/latest/angular.security/DomSanitizationService/bypassSecurityTrustHtml.html)
+    [`bypassSecurityTrustHtml()`](https://pub.dev/documentation/kelicap/latest/kelicap.security/DomSanitizationService/bypassSecurityTrustHtml.html)
     on the string. However, this is very dangerous because it disables _all_
     sanitization and allows all tags (even `<script>`). If the string
     accidentally contains user-controlled data, or the translator made a mistake
@@ -196,7 +196,7 @@ By default, only links with the
 [same origin](https://en.wikipedia.org/wiki/Same-origin_policy) as the host page
 as permitted.
 
-Additional paths can be permitted through an optional Angular dependency. See
+Additional paths can be permitted through an optional Kelicap dependency. See
 the
 [simpleHtmlUriWhitelist](https://github.com/dukefirehawk/kelicap_components/blob/master/components/lib/simple_html/simple_html.dart)
 token for details.
@@ -252,8 +252,8 @@ Click <a href="//example.com" class="trigger" (trigger)="myTrigger()">here</a>
 
 then they will navigate to example.com _and_ `myTrigger` will be executed.
 
-The trigger definition can also refer to the original Angular
-[`$event`](https://webdev.dartlang.org/angular/guide/template-syntax#event-and-event-handling-statements).
+The trigger definition can also refer to the original Kelicap
+[`$event`](https://webdev.dartlang.org/kelicap/guide/template-syntax#event-and-event-handling-statements).
 This can be useful for more advanced features such as:
 
 * Selectively preventing the default behaviour (such as navigation) by calling
@@ -281,7 +281,7 @@ straightforward. Basic steps:
     `package:kelicap_components/simple_html/simple_html.dart` in your component
     file.
 1. Add the `SimpleHtmlComponent` to your
-    [@Component](https://pub.dev/documentation/angular_compiler/latest/v1_src_metadata_directives/Component-class.html)'s
+    [@Component](https://pub.dev/documentation/kelicap_compiler/latest/v1_src_metadata_directives/Component-class.html)'s
     directive list.
 1. For each message that previously used `bypassSecurityTrustHtml()`, remove
     that call and use the string directly.

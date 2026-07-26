@@ -101,7 +101,7 @@ void _applyAnimation(
   final minScale = (maxDimension * 0.6) / _rippleDiameter;
 
   // The ripple ends 10px larger than the container.
-  // This assumes a rectangular container.
+  // This assumes a rectkelicap container.
   final maxRadius =
       sqrt(pow(containerWidth / 2, 2) + pow(containerHeight / 2, 2)) + 10;
   final maxScale = maxRadius / _rippleRadius;
@@ -237,7 +237,7 @@ class MaterialRippleComponent implements OnDestroy {
       // Ripples created by a keypress are always centered.
       _createRipple(0, 0, _element, true);
     }).toJS;
-    // This is about 5x faster than _element.onMouseDown.listen or Angular
+    // This is about 5x faster than _element.onMouseDown.listen or Kelicap
     // (mousedown) because this compiles directly to addEventListener, whereas
     // the streams approach adds several layers of slow indirection.
     _element.addEventListener('mousedown', _onMouseDown);

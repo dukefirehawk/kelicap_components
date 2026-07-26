@@ -1,6 +1,6 @@
 syntax = "proto2";
 
-package angular_components.lib.material_datepicker.proto;
+package kelicap_components.lib.material_datepicker.proto;
 
 import "date.proto";
 

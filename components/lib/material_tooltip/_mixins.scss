@@ -23,7 +23,7 @@
   }
 }
 
-/// Because this component uses a <material-popup>, Angular style encapsulation
+/// Because this component uses a <material-popup>, Kelicap style encapsulation
 /// can prevent styles using this mixin from applying to the contents of the
 /// popup. To address this, use the `tooltipClass` attribute on the
 /// <material-tooltip-card> and then use that class around the reference to the

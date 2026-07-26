@@ -380,7 +380,7 @@ class MaterialMonthPickerComponent
   EventListener? _mouseLeaveListener;
 
   void _addEventListeners() {
-    // Process the events outside of Angular for lower overhead.
+    // Process the events outside of Kelicap for lower overhead.
     _container
       ?..addEventListener('click', _clickListener = _onClick.toJS)
       ..addEventListener('mousedown', _mouseDownListener = _onMouseDown.toJS)

@@ -61,7 +61,7 @@ class ScorecardBarDirective implements OnInit, OnDestroy, AfterViewChecked {
           _readElement(windowResize: true);
           _refreshController.add(true);
         },
-        runInAngularZone: true,
+        runInKelicapZone: true,
       ),
     );
   }

@@ -17,9 +17,9 @@ void main() {
   test('ensure proto gen succeeds with no changes', () {
     var pkgRoot = _runProc('git', ['rev-parse', '--show-toplevel']);
     var currentDir = Directory.current.resolveSymbolicLinksSync();
-    if (!p.equals(p.join(pkgRoot, 'angular_components'), currentDir)) {
+    if (!p.equals(p.join(pkgRoot, 'kelicap_components'), currentDir)) {
       throw StateError(
-        'Expected the git root ($pkgRoot/angular_components) '
+        'Expected the git root ($pkgRoot/kelicap_components) '
         'to match the current directory ($currentDir).',
       );
     }

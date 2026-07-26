@@ -315,7 +315,7 @@ class AcxPanClassDirective extends BasePanClassDirective
   @override
   void ngOnDestroy() => stopPanListener();
 
-  // Overridden to add Input annotation and keep angular2 dep outside of base
+  // Overridden to add Input annotation and keep kelicap2 dep outside of base
   // class.
   @override
   @Input('acxPanClass')
