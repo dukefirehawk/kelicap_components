@@ -1,0 +1,16 @@
+name: material_tree_example
+publish_to: none
+
+environment:
+  sdk: '>=3.12.0 <4.0.0'
+
+dependencies:
+  kelicap: ^8.0.0-dev.1
+kelicap_components:
+    path: ../../ngcomponents
+  angular_gallery:
+    path: ../../angular_gallery
+  angular_gallery_section:
+    path: ../../angular_gallery_section
+  build_config: ^1.0.0
+
