@@ -1,0 +1,31 @@
+targets:
+  $default:
+    builders:
+      ngdart|ngdart:
+        generate_for:
+          exclude: [
+            "lib/*.dart",
+            "lib/annotation/**",
+            "lib/builder/**",
+            "lib/src/**",
+            "lib/visitors/**",
+            ]
+      ngcomponents|scss_builder:
+        enabled: True
+      angular_gallery|angular_gallery:
+        enabled: False
+
+builders:
+  angular_gallery_section:
+    target: ':angular_gallery_section'
+    import: 'package:angular_gallery_section/builder.dart'
+    builder_factories: [
+      'galleryInfoBuilder',
+      'componentApiBuilder',
+      'gallerySectionBuilder'
+    ]
+    build_extensions: {
+      ".dart": [".gallery_info.json", ".api.dart"],
+      "$lib$": ["gallery_section.dart", "gallery_section_summary.json"]}
+    auto_apply: dependents
+    runs_before: ["ngdart|ngdart", "ngcomponents|scss_builder"]

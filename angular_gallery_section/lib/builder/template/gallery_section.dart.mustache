@@ -1,0 +1,75 @@
+import 'package:ngdart/angular.dart';
+import 'package:ngcomponents/laminate/popup/module.dart';
+import 'package:ngcomponents/model/a11y/focus_indicator_controller.dart';
+
+// Import each demo.
+{{#imports}}
+import '{{{dartImport}}}';
+{{/imports}}
+
+// Import each API page.
+{{#apis}}
+import '{{{apiImport}}}';
+{{/apis}}
+
+final _showDocs = Uri.base.queryParameters['showDocs'];
+
+@Component(
+  selector: 'gallery-section',
+  providers: [focusIndicatorProviders, popupBindings],
+  template: r'''
+  <a class="focus-indicator-toggle"
+      tabindex="0"
+      (click)="focusIndicatorController.enabled = !focusIndicatorController.enabled">
+    <template [ngIf]="!focusIndicatorController.enabled">
+      Enable focus indicator
+    </template>
+    <template [ngIf]="focusIndicatorController.enabled">
+      Disable focus indicator
+    </template>
+  </a>
+  <div *ngIf="!showDocsPage">
+    <a class="docs-toggle" tabindex="0"
+        (click)="toggleDocsPage()">Show Gallery Page</a>
+      {{#demos}}
+      <{{selector}}></{{selector}}>
+      {{/demos}}
+  </div>
+  <div *ngIf="showDocsPage">
+    <a class="docs-toggle" tabindex="0" *ngIf="!paramShowDocs"
+        (click)="toggleDocsPage()">Show Demo Only</a>
+      {{#apis}}
+      {{#docs}}
+      <{{selector}}></{{selector}}>
+      {{/docs}}
+      {{/apis}}
+  </div>''',
+  directives: [
+    NgIf,
+    {{#demos}}
+    {{className}},
+    {{/demos}}
+    {{#apis}}
+    {{#docs}}
+    {{className}},
+    {{/docs}}
+    {{/apis}}
+  ],
+  styles: ['''
+    .focus-indicator-toggle,
+    .docs-toggle {
+      color: #4285f4;
+      cursor: pointer;
+    }
+  '''],
+)
+class GallerySection {
+  final FocusIndicatorController focusIndicatorController;
+
+  bool get paramShowDocs => _showDocs != null;
+  bool _showDocsPage = _showDocs != null;
+  bool get showDocsPage => _showDocsPage;
+  void toggleDocsPage() => _showDocsPage = !showDocsPage;
+
+  GallerySection(this.focusIndicatorController);
+}

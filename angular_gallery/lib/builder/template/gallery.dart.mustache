@@ -1,0 +1,147 @@
+import 'package:web/web.dart';
+
+import 'package:ngdart/angular.dart';
+import 'package:ngrouter/ngrouter.dart';
+import 'package:ngforms/ngforms.dart';
+import 'package:quiver/collection.dart';
+import 'package:ngcomponents/app_layout/material_persistent_drawer.dart';
+import 'package:ngcomponents/content/deferred_content.dart';
+import 'package:ngcomponents/focus/focus.dart';
+import 'package:ngcomponents/focus/focus_item.dart';
+import 'package:ngcomponents/focus/focus_list.dart';
+import 'package:ngcomponents/highlighted_text/highlighted_value.dart';
+import 'package:ngcomponents/material_button/material_button.dart';
+import 'package:ngcomponents/material_checkbox/material_checkbox.dart';
+import 'package:ngcomponents/material_icon/material_icon.dart';
+import 'package:ngcomponents/material_list/material_list.dart';
+import 'package:ngcomponents/material_list/material_list_item.dart';
+import 'package:ngcomponents/material_select/material_select_searchbox.dart';
+import 'package:ngcomponents/model/selection/selection_options.dart';
+import 'package:ngcomponents/model/selection/string_selection_options.dart';
+import 'package:ngcomponents/model/a11y/focus_indicator_controller.dart';
+import 'package:ngcomponents/model/ui/has_renderer.dart';
+import 'package:ngcomponents/model/ui/highlight_assistant.dart';
+import 'package:ngcomponents/model/ui/highlight_provider.dart';
+import 'package:ngcomponents/model/ui/highlighted_text_model.dart';
+
+import 'gallery_route_library.dart';
+
+/// Gallery component with routing and breadcrumbs for all examples.
+@Component(
+    selector: 'root',
+    directives: [
+      AutoFocusDirective,
+      DeferredContentDirective,
+      FocusItemDirective,
+      FocusListDirective,
+      HighlightedValueComponent,
+      MaterialButtonComponent,
+      MaterialCheckboxComponent,
+      MaterialIconComponent,
+      MaterialListComponent,
+      MaterialListItemComponent,
+      MaterialPersistentDrawerDirective,
+      MaterialSelectSearchboxComponent,
+      NgIf,
+      NgFor,
+      NgModel,
+      routerDirectives,
+    ],
+    providers: [focusIndicatorProviders],
+    viewProviders: [
+      Provider(HighlightProvider, useExisting: GalleryComponent)
+    ],
+    templateUrl: 'gallery.html',
+    styleUrls: [
+      'package:ngcomponents/app_layout/layout.scss.css',
+{{#styleUrls}}
+  '{{{.}}}',
+{{/styleUrls}}
+])
+class GalleryComponent implements HighlightProvider {
+  final HighlightAssistant _highlightAssistant = HighlightAssistant();
+  //final ItemRenderer<dynamic> _highlightRenderer =
+  //    (item) => item is _Example ? item.displayName : item?.toString();
+  String? _highlightRenderer(item) {
+    return item is _Example ? item.displayName : item?.toString();
+  }
+
+  final List<RouteDefinition> routes = galleryRoutes;
+  final FocusIndicatorController focusIndicatorController;
+  late StringSelectionOptions<_Example> exampleOptions;
+  String _breadcrumb = '';
+
+  GalleryComponent(this.focusIndicatorController, Router router) {
+    router.stream.listen((newRoute) {
+        var example = newRoute.path;
+        if (example.startsWith('/')) example = example.substring(1);
+        _breadcrumb = breadcrumbs[example] ?? '';
+        querySelector('material-content')?.scrollTop = 0;
+      });
+    final groups = Multimap<String, _Example>.fromIterable(allExamples,
+        key: (e) => e.group);
+    exampleOptions = StringSelectionOptions<_Example>.withOptionGroups(
+        (groups.keys.toList()..sort())
+            .map((g) => OptionGroup.withLabel(groups[g].toList(), g))
+            .toList(),
+        toFilterableString: _toFilterableString);
+  }
+
+  String _toFilterableString(_Example example) => <String>[
+        example.displayName,
+        example.group,
+        ...example.relatedComponents,
+      ].join('\n');
+
+  String get breadcrumb => _breadcrumb;
+
+  bool get hasBreadcrumb => _breadcrumb.isNotEmpty; // ?? false;
+
+  @override
+  List<HighlightedTextSegment> highlightOption(Object? item) {
+    if (item is _Example) {
+      return _highlightAssistant.highlightOption(
+          exampleOptions.currentQuery as String? ?? '', item, _highlightRenderer);
+    } else {
+      return [HighlightedTextSegment(item.toString(), false)];
+    }
+  }
+}
+
+final breadcrumbs = {
+{{# examples }}
+  '{{ name }}': '{{#group}}{{{ group }}} > {{/group}}{{{displayName}}}',
+{{/ examples }}
+};
+
+/// The list of examples found by the gallery generator.
+/// This list is available in the GalleryComponent as well as a global const
+/// for applications that do not want the GalleryComponent's routing config.
+List<_Example> allExamples = const <_Example>[
+{{# examples }}
+    _Example(
+        '/{{{ name }}}',
+        '{{ displayName }}',
+        '{{ group }}',
+        <String>[{{# relatedComponents }}'{{.}}',{{/ relatedComponents }}]
+    ),
+{{/ examples }}
+];
+
+class _Example {
+  /// The name used in headers and navigation panels.
+  final String displayName;
+  /// The navigation panel group.
+  final String group;
+  /// The router link for this example.
+  final String link;
+  /// A list of component names related to this example.
+  final List<String> relatedComponents;
+
+  String get uiDisplayName => displayName;
+
+  bool get hasDisplayName => displayName.isNotEmpty;
+
+  const _Example(
+      this.link, this.displayName, this.group, this.relatedComponents);
+}

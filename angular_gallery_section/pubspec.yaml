@@ -1,0 +1,24 @@
+name: angular_gallery_section
+publish_to: none
+
+environment:
+  sdk: '>=3.12.0 <4.0.0'
+
+dependencies:
+  analyzer: ^13.0.0
+  ngdart: ^9.0.0-dev.1
+  ngcomponents: 
+    path: ../ngcomponents
+  angular_gallery:
+    path: ../angular_gallery
+  build: ^4.0.0
+  build_config: ^1.0.0
+  glob: ^2.0.2
+  markdown: ^7.0.2
+  web: ^1.0.0
+  mustache_template: ^2.0.0
+  collection: ^1.18.0
+  path: ^1.6.1
+  sass: ^1.100.0
+  sanitize_html: ^2.2.0
+  lints: ^6.0.0

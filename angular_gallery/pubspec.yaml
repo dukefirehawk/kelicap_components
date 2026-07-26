@@ -1,0 +1,16 @@
+name: angular_gallery
+publish_to: none
+environment:
+  sdk: '>=3.12.0 <4.0.0'
+
+dependencies:
+  ngdart: ^9.0.0-dev.1
+  ngcomponents: 
+    path: ../ngcomponents
+  ngforms: ^6.0.0-dev.1
+  ngrouter: ^5.0.0-dev.1
+  build: ^4.0.0
+  build_config: ^1.0.0
+  #mustache: ^1.0.0
+  mustache_template: ^2.0.0
+  lints: ^6.0.0

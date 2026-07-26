@@ -1,0 +1,16 @@
+# See https://github.com/google/mono_repo.dart for details
+stages:
+  - analyze_and_format_core:
+    - group:
+        - format
+        - analyze: --fatal-infos .
+      sdk:
+        - dev
+    - group:
+        - analyze: .
+      sdk:
+        - 2.14.2
+
+cache:
+  directories:
+  - .dart_tool

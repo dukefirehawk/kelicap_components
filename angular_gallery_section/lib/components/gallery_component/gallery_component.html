@@ -1,0 +1,88 @@
+<!--
+ Copyright (c) 2016, the Dart project authors.  Please see the AUTHORS file
+ for details. All rights reserved. Use of this source code is governed by a
+ BSD-style license that can be found in the LICENSE file.
+-->
+<section class="metadata">
+  <div class="references" *ngIf="model.relatedUrls.isNotEmpty">
+    <span>References:</span>
+    <ng-container *ngFor="let name of model.relatedUrls.keys; let last = last">
+      <a class="related-url" [href]="model.relatedUrls[name]" target="_blank">
+        {{name}}
+      </a>
+      <span *ngIf="!last">&#8226;&nbsp;</span>
+    </ng-container>
+  </div>
+
+  <div *ngIf="model.owners.isNotEmpty">
+    <span>Owners:</span>
+    <ng-container *ngFor="let ldap of model.owners; let last = last">
+      <a class="owner" [href]="getTeamsLink(ldap)" target="_blank">
+        {{ldap}}@
+      </a>
+      <span *ngIf="!last">&#8226;&nbsp;</span>
+    </ng-container>
+  </div>
+
+  <div *ngIf="model.uxOwners.isNotEmpty">
+    <span>UX:</span>
+    <ng-container *ngFor="let ldap of model.uxOwners; let last = last">
+      <a class="ux-owner" [href]="getTeamsLink(ldap)" target="_blank">
+        {{ldap}}@
+      </a>
+      <span *ngIf="!last">&#8226;&nbsp;</span>
+    </ng-container>
+  </div>
+</section>
+
+<section *ngIf="model.mainDemo != null" class="demo">
+  <dynamic-component [componentFactory]="model.mainDemo!.demoFactory"></dynamic-component>
+</section>
+
+<section class="toc" *ngIf="showToc">
+  <ng-container *ngIf="model.docs.isNotEmpty">
+    <label>Docs</label>
+    <a *ngFor="let doc of model.docs" buttonDecorator (trigger)="scroll('#' + getDocId(doc))">
+      {{doc.name}}
+    </a>
+  </ng-container>
+
+  <ng-container *ngIf="model.demos.isNotEmpty">
+    <label>Demos</label>
+    <a *ngFor="let demo of model.demos" buttonDecorator (trigger)="scroll('#' + getDemoId(demo))">
+      {{demo.name}}
+    </a>
+  </ng-container>
+</section>
+
+<section *ngFor="let doc of model.docs" class="doc">
+  <h2 [id]="getDocId(doc)">
+    {{doc.name}}
+    <a [href]="getCodeSearchLink(doc.path)" target="_blank">Source Code</a>
+  </h2>
+  <documentation-component *ngIf="doc.docType == DocType.dartDocInfo"
+                           dart
+                           [doc]="doc"
+                           [showGeneratedDocs]="model.showGeneratedDocs">
+  </documentation-component>
+  <documentation-component *ngIf="doc.docType == DocType.markdownDocInfo"
+                           markdown
+                           [doc]="doc"
+                           [showGeneratedDocs]="model.showGeneratedDocs">
+  </documentation-component>
+  <documentation-component *ngIf="doc.docType == DocType.sassDocInfo"
+                           sass
+                           [doc]="doc"
+                           [showGeneratedDocs]="model.showGeneratedDocs">
+  </documentation-component>
+</section>
+
+<section *ngFor="let demo of model.demos" class="demo">
+  <h2 [id]="getDemoId(demo)">
+    {{demo.name}}
+    <a [href]="getCodeSearchLink(demo.path)" target="_blank">Source Code</a>
+  </h2>
+  <ng-container *ngIf="demo != null">
+    <dynamic-component [componentFactory]="demo.demoFactory"></dynamic-component>
+  </ng-container>
+</section>

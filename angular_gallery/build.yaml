@@ -1,0 +1,23 @@
+targets:
+  $default:
+    builders:
+      ngcomponents|scss_builder:
+        enabled: True
+      ngdart|ngdart:
+        generate_for:
+          exclude: ["lib/**"]
+
+builders:
+  angular_gallery:
+    target: ":angular_gallery"
+    import: "package:angular_gallery/builders.dart"
+    builder_factories: [
+      galleryAppBuilder,
+      galleryLibBuilder,
+      syntaxHighlightBuilder,
+    ]
+    build_extensions: {
+      ".html": [".dart"],
+      "$web$": ["index.html", "main.dart", "style.scss"]}
+    auto_apply: dependents
+    runs_before: ["ngdart|ngdart", "ngcomponents|scss_builder"]
