@@ -9,9 +9,9 @@ import 'package:kelicap/kelicap.dart';
 import 'package:kelicap_components/utils/browser/dom_service/dom_service.dart';
 import 'package:kelicap_components/utils/disposer/disposer.dart';
 
-/// A single entrypoint library for working with highly dynamic views in Angular
-/// 2 code. This allows easier refactoring and migration of approaches as the
-/// Angular team iterates and a standard API for AngularDart components to use.
+/// A single entrypoint library for working with highly dynamic views in Kelicap
+/// code. This allows easier refactoring and migration of approaches as the
+/// Kelicap team iterates and a standard API for Kelicap components to use.
 ///
 /// Example use (see imperative_view_test as well):
 ///     @Component(

@@ -1,7 +1,7 @@
 # Material Card
 
 Material Card is card styling provided by the Google material team also known as
-mdc-web. This is a wrapper to allow the style to be used in AngularDart
+mdc-web. This is a wrapper to allow the style to be used in Kelicap
 applications. For documentation on how to use these styling please see the [mdc
 documentation][docs]. Examples can be found [here][demo].
 

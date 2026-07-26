@@ -33,8 +33,8 @@ class DomService {
   ///
   /// By flipping this to `false`, it means:
   /// * [Zone.current] will be not be restored when the callbacks are executed.
-  /// * AngularDart (or any parent zone) will not know about the change.
-  @Deprecated('For legacy reasons. DO NOT USE unless you talk to AngularDart.')
+  /// * Kelicap (or any parent zone) will not know about the change.
+  @Deprecated('For legacy reasons. DO NOT USE unless you talk to Kelicap.')
   static bool maintainZoneOnCallbacks = true;
 
   static const _TURN_DONE_EVENT_TYPE = 'doms-turn';

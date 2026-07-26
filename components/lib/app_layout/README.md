@@ -23,7 +23,6 @@ specific styling so you can easily override style values as needed.
 class MyComponent {}
 ```
 
-
 ## App Bar
 
 An app bar has the following classes which can be used together to create a
@@ -68,7 +67,7 @@ Here is an example:
 </header>
 ```
 
-![Simple App Bar](/angulardart/angular_components/blob/master/angular_components/lib/app_layout/g3doc/simple_app_bar.png)
+![Simple App Bar](/kelicap/kelicap_components/blob/master/components/lib/app_layout/g3doc/simple_app_bar.png)
 
 ## Drawers
 

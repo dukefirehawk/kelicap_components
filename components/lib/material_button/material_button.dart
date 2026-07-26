@@ -67,7 +67,7 @@ import 'material_button_base.dart';
 /// * [dart-lang/io_2017_components_codelab repo](https://github.com/dart-lang/io_2017_components_codelab/tree/master)
 ///
 /// Other resources:
-/// * [Material design codelab](https://codelabs.developers.google.com/codelabs/your-first-angulardart-web-app/)
+/// * [Material design codelab](https://codelabs.developers.google.com/codelabs/your-first-kelicap-web-app/)
 ///
 // NOTE: CSS code above doesn't use ```css due to
 // https://github.com/dart-lang/dartdoc/issues/1484.
