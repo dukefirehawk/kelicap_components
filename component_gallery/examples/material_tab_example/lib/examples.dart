@@ -8,7 +8,7 @@ import 'package:kelicap_components/material_tab/material_tab_panel.dart';
 import 'material_tab_panel_example.dart';
 import 'material_tab_strip_example.dart';
 import 'material_tab_strip_mixin_example.dart';
-import 'package:angular_gallery_section/annotation/gallery_section_config.dart';
+import 'package:kelicap_gallery_section/annotation/gallery_section_config.dart';
 
 @GallerySectionConfig(
   displayName: 'Material Tab',

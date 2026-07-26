@@ -19,7 +19,7 @@ import 'package:kelicap_components/material_icon/material_icon.dart';
 import 'package:kelicap_components/material_input/material_input.dart';
 import 'package:kelicap_components/material_yes_no_buttons/material_yes_no_buttons.dart';
 import 'package:kelicap_components/model/action/async_action.dart';
-import 'package:angular_gallery_section/annotation/gallery_section_config.dart';
+import 'package:kelicap_gallery_section/annotation/gallery_section_config.dart';
 
 @GallerySectionConfig(
   displayName: 'Material ExpansionPanel',

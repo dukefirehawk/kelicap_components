@@ -4,7 +4,7 @@
 
 import 'package:kelicap_components/material_menu/material_fab_menu.dart';
 import 'package:kelicap_components/material_menu/material_menu.dart';
-import 'package:angular_gallery_section/annotation/gallery_section_config.dart';
+import 'package:kelicap_gallery_section/annotation/gallery_section_config.dart';
 
 import 'material_fab_menu_demo.dart';
 import 'material_menu_demo.dart';

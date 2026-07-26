@@ -9,7 +9,7 @@ import 'package:kelicap_components/material_button/material_button.dart';
 import 'package:kelicap_components/material_stepper/material_step.dart';
 import 'package:kelicap_components/material_stepper/material_stepper.dart';
 import 'package:kelicap_components/model/action/async_action.dart';
-import 'package:angular_gallery_section/annotation/gallery_section_config.dart';
+import 'package:kelicap_gallery_section/annotation/gallery_section_config.dart';
 import 'package:kelicap_components/utils/angular/scroll_host/angular_2.dart';
 import 'package:kelicap_components/button_decorator/button_decorator.dart';
 

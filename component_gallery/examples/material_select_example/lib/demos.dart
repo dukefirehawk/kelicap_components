@@ -11,14 +11,14 @@ import 'material_dropdown_select_full_demo.dart'
     show MaterialDropdownSelectFullDemoComponent;
 import 'material_dropdown_select_simple_demo.dart';
 import 'material_select_demo.dart' show MaterialSelectDemoComponent;
-import 'package:angular_gallery_section/annotation/gallery_section_config.dart';
+import 'package:kelicap_gallery_section/annotation/gallery_section_config.dart';
 
 @GallerySectionConfig(
   displayName: 'Material Select',
   docs: [
     MaterialSelectComponent,
     MaterialSelectItemComponent,
-    'package:ngcomponents/material_select/material_dropdown_select.md',
+    'package:kelicap_components/material_select/material_dropdown_select.md',
     MaterialDropdownSelectComponent,
     DropdownButtonComponent,
     DisplayNameRendererDirective,
@@ -34,7 +34,7 @@ class MaterialSelectExamples {}
 @GallerySectionConfig(
   displayName: 'Material Dropdown Select',
   docs: [
-    'package:ngcomponents/material_select/material_dropdown_select.md',
+    'package:kelicap_components/material_select/material_dropdown_select.md',
     MaterialDropdownSelectComponent,
   ],
   demos: [

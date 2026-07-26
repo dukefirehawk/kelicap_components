@@ -3,11 +3,11 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:build/build.dart';
-import 'package:angular_gallery_section/builder/component_api_builder.dart';
-import 'package:angular_gallery_section/builder/example_app_builder.dart';
-import 'package:angular_gallery_section/builder/gallery_info_builder.dart';
-import 'package:angular_gallery_section/builder/gallery_section_builder.dart';
-import 'package:angular_gallery_section/builder/gallery_section_summary_builder.dart';
+import 'package:kelicap_gallery_section/builder/component_api_builder.dart';
+import 'package:kelicap_gallery_section/builder/example_app_builder.dart';
+import 'package:kelicap_gallery_section/builder/gallery_info_builder.dart';
+import 'package:kelicap_gallery_section/builder/gallery_section_builder.dart';
+import 'package:kelicap_gallery_section/builder/gallery_section_summary_builder.dart';
 
 /// Builder used to generate the json summary files about classes annotated with
 /// @GallerySectionConfig to be read by the other builders that might not

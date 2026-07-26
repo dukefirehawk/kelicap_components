@@ -2,7 +2,7 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:angular_gallery_section/annotation/gallery_section_config.dart'
+import 'package:kelicap_gallery_section/annotation/gallery_section_config.dart'
     show GallerySectionConfig;
 import 'package:kelicap_components/simple_html/simple_html.dart'
     show SimpleHtmlComponent;
@@ -12,7 +12,10 @@ import 'custom_whitelist_example/simple_html_custom_whitelist_example.dart';
 
 @GallerySectionConfig(
   displayName: 'Simple HTML',
-  docs: ["package:ngcomponents/simple_html/README.md", SimpleHtmlComponent],
+  docs: [
+    "package:kelicap_components/simple_html/README.md",
+    SimpleHtmlComponent,
+  ],
   demos: [
     SimpleHtmlExampleComponent,
     SimpleHtmlCustomWhitelistExampleComponent,

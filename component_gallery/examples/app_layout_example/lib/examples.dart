@@ -6,7 +6,7 @@ import 'package:kelicap_components/app_layout/material_persistent_drawer.dart';
 import 'package:kelicap_components/app_layout/material_stackable_drawer.dart';
 import 'package:kelicap_components/app_layout/material_temporary_drawer.dart';
 import 'stacking_drawer_example.dart';
-import 'package:angular_gallery_section/annotation/gallery_section_config.dart';
+import 'package:kelicap_gallery_section/annotation/gallery_section_config.dart';
 
 import 'app_layout_example.dart';
 import 'mobile_app_layout_example.dart';
@@ -14,8 +14,8 @@ import 'mobile_app_layout_example.dart';
 @GallerySectionConfig(
   displayName: 'App Layout',
   docs: [
-    'package:ngcomponents/app_layout/README.md',
-    'package:ngcomponents/app_layout/_mixins.scss',
+    'package:kelicap_components/app_layout/README.md',
+    'package:kelicap_components/app_layout/_mixins.scss',
     MaterialPersistentDrawerDirective,
     MaterialTemporaryDrawerComponent,
     MaterialStackableDrawerComponent,

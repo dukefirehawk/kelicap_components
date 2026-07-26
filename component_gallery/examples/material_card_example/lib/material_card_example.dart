@@ -5,11 +5,11 @@
 import 'package:kelicap/kelicap.dart';
 import 'package:kelicap_components/material_button/material_button.dart';
 import 'package:kelicap_components/material_icon/material_icon.dart';
-import 'package:angular_gallery_section/annotation/gallery_section_config.dart';
+import 'package:kelicap_gallery_section/annotation/gallery_section_config.dart';
 
 @GallerySectionConfig(
   displayName: 'Material Card',
-  docs: ['package:ngcomponents/material_card/README.md'],
+  docs: ['package:kelicap_components/material_card/README.md'],
   demos: [MaterialCardExample],
   showGeneratedDocs: true,
   relatedUrls: {
@@ -25,7 +25,7 @@ class MaterialButtonGalleryConfig {}
   styleUrls: [
     // This is a wrapper around mdc-card styling to allow it to be imported
     // in dart.
-    'package:ngcomponents/css/mdc_web/card/mdc-card.scss.css',
+    'package:kelicap_components/css/mdc_web/card/mdc-card.scss.css',
     'material_card_example.scss.css',
   ],
 )

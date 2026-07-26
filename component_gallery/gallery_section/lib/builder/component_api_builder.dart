@@ -8,8 +8,8 @@ import 'dart:convert';
 import 'package:build/build.dart';
 import 'package:mustache_template/mustache.dart' show Template;
 import 'package:path/path.dart' as p;
-import 'package:angular_gallery_section/resolved_config.dart';
-import 'package:angular_gallery_section/components/gallery_component/documentation_info.dart';
+import 'package:kelicap_gallery_section/resolved_config.dart';
+import 'package:kelicap_gallery_section/components/gallery_component/documentation_info.dart';
 
 /// A builder for generating an API page for an Angular component.
 ///
@@ -26,13 +26,19 @@ class ComponentApiBuilder extends Builder {
         .map((info) => ResolvedConfig.fromJson(info));
 
     final mustacheContext = await _mustacheContext(infoList);
-    final templateId = AssetId('angular_gallery_section',
-        'lib/builder/template/component.api.dart.mustache');
-    final mustacheTemplate = Template(await buildStep.readAsString(templateId),
-        htmlEscapeValues: false);
+    final templateId = AssetId(
+      'angular_gallery_section',
+      'lib/builder/template/component.api.dart.mustache',
+    );
+    final mustacheTemplate = Template(
+      await buildStep.readAsString(templateId),
+      htmlEscapeValues: false,
+    );
 
-    final newAssetId = AssetId(inputId.package,
-        inputId.path.replaceFirst('.gallery_info.json', '.api.dart'));
+    final newAssetId = AssetId(
+      inputId.package,
+      inputId.path.replaceFirst('.gallery_info.json', '.api.dart'),
+    );
 
     var renderedData = mustacheTemplate.renderString(mustacheContext);
     //print("=== Start(examples.api.dart) ===");
@@ -44,12 +50,13 @@ class ComponentApiBuilder extends Builder {
 
   @override
   Map<String, List<String>> get buildExtensions => const {
-        '.gallery_info.json': ['.api.dart']
-      };
+    '.gallery_info.json': ['.api.dart'],
+  };
 
   /// Returns a context with the useful values from the [configs].
   Future<Map<String, dynamic>> _mustacheContext(
-      Iterable<ResolvedConfig> configs) async {
+    Iterable<ResolvedConfig> configs,
+  ) async {
     final dedupedImports = <String>{};
     final context = <String, dynamic>{'apiComponents': []};
     for (final config in configs) {
@@ -65,11 +72,13 @@ class ComponentApiBuilder extends Builder {
       context['apiComponents'].add({
         'component': config.classSafeName,
         'selector': config.selectorSafeName,
-        'demos': config.demos.map((demo) => {
-              'className': demo.name,
-              'dartImport': demo.import,
-              'examplePath': demo.path,
-            }),
+        'demos': config.demos.map(
+          (demo) => {
+            'className': demo.name,
+            'dartImport': demo.import,
+            'examplePath': demo.path,
+          },
+        ),
         'hasMainDemo': config.mainDemo != null,
         'mainDemo': {
           'className': config.mainDemo?.name,
@@ -86,14 +95,17 @@ class ComponentApiBuilder extends Builder {
         }).toList(),
         'owners': config.owners,
         'uxOwners': config.uxOwners,
-        'relatedUrls': config.relatedUrls.entries
-            .map((entry) => {'key': entry.key, 'value': entry.value}),
+        'relatedUrls': config.relatedUrls.entries.map(
+          (entry) => {'key': entry.key, 'value': entry.value},
+        ),
         'showGeneratedDocs': config.showGeneratedDocs,
       });
     }
     context['demoImports'] = dedupedImports.map<Map<String, String>>(
-        (dartImport) =>
-            {'dartImport': p.url.setExtension(dartImport, '.template.dart')});
+      (dartImport) => {
+        'dartImport': p.url.setExtension(dartImport, '.template.dart'),
+      },
+    );
     return context;
   }
 }

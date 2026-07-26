@@ -2,12 +2,12 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:ngdart/angular.dart';
-import 'package:angular_gallery_section/components/gallery_component/documentation_info.dart';
+import 'package:kelicap/kelicap.dart';
+import 'package:kelicap_gallery_section/components/gallery_component/documentation_info.dart';
 
 // This needs to be a seperate build target for the builders but all runtime
 // uses can access it via this export.
-export 'package:angular_gallery_section/components/gallery_component/documentation_info.dart';
+export 'package:kelicap_gallery_section/components/gallery_component/documentation_info.dart';
 
 /// The model that keeps the details for all of the gallery information
 class GalleryInfo {
@@ -35,14 +35,15 @@ class GalleryInfo {
   /// should be displayed.
   final bool showGeneratedDocs;
 
-  const GalleryInfo(
-      {this.docs = const [],
-      this.demos = const [],
-      this.mainDemo,
-      this.owners = const [],
-      this.uxOwners = const [],
-      this.relatedUrls = const {},
-      this.showGeneratedDocs = true});
+  const GalleryInfo({
+    this.docs = const [],
+    this.demos = const [],
+    this.mainDemo,
+    this.owners = const [],
+    this.uxOwners = const [],
+    this.relatedUrls = const {},
+    this.showGeneratedDocs = true,
+  });
 }
 
 class Demo {

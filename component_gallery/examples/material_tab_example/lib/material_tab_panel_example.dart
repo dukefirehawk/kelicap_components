@@ -7,8 +7,8 @@ import 'package:kelicap_components/annotations/rtl_annotation.dart';
 import 'package:kelicap_components/content/deferred_content.dart';
 import 'package:kelicap_components/material_tab/material_tab.dart';
 import 'package:kelicap_components/material_tab/material_tab_panel.dart';
-import 'package:angular_gallery_section/components/content/delayed_content.dart';
-import 'package:angular_gallery_section/components/content/named_content.dart';
+import 'package:kelicap_gallery_section/components/content/delayed_content.dart';
+import 'package:kelicap_gallery_section/components/content/named_content.dart';
 
 @Component(
   selector: 'material-tab-panel-example',

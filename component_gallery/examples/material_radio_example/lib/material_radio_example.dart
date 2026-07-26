@@ -8,7 +8,7 @@ import 'package:kelicap_components/material_icon/material_icon.dart';
 import 'package:kelicap_components/material_radio/material_radio.dart';
 import 'package:kelicap_components/material_radio/material_radio_group.dart';
 import 'package:kelicap_components/model/selection/selection_model.dart';
-import 'package:angular_gallery_section/annotation/gallery_section_config.dart';
+import 'package:kelicap_gallery_section/annotation/gallery_section_config.dart';
 
 @GallerySectionConfig(
   displayName: 'Material Radio',

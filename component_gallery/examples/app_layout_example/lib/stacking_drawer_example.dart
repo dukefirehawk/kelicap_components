@@ -21,7 +21,7 @@ import 'package:kelicap_components/material_toggle/material_toggle.dart';
   templateUrl: 'stacking_drawer_example.html',
   styleUrls: [
     'app_layout_example.scss.css',
-    'package:ngcomponents/app_layout/layout.scss.css',
+    'package:kelicap_components/app_layout/layout.scss.css',
     'stacking_drawer_example.scss.css',
   ],
 )

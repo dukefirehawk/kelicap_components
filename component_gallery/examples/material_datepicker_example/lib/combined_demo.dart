@@ -18,7 +18,7 @@ import 'material_date_time_picker_demo.dart';
 import 'material_datepicker_demo.dart';
 import 'material_month_picker_demo.dart';
 import 'material_time_picker_demo.dart';
-import 'package:angular_gallery_section/annotation/gallery_section_config.dart';
+import 'package:kelicap_gallery_section/annotation/gallery_section_config.dart';
 
 @GallerySectionConfig(
   displayName: 'Material Datepicker',

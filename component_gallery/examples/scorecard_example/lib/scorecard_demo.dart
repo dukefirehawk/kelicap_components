@@ -6,7 +6,7 @@ import 'package:kelicap/kelicap.dart';
 import 'package:ngforms/ngforms.dart';
 import 'package:kelicap_components/annotations/rtl_annotation.dart';
 import 'package:kelicap_components/material_input/material_number_accessor.dart';
-import 'package:angular_gallery_section/annotation/gallery_section_config.dart';
+import 'package:kelicap_gallery_section/annotation/gallery_section_config.dart';
 import 'package:kelicap_components/scorecard/scoreboard.dart';
 import 'package:kelicap_components/scorecard/scorecard.dart';
 import 'package:kelicap_components/utils/color/material.dart';

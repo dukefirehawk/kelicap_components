@@ -8,8 +8,8 @@ import 'dart:convert';
 import 'package:build/build.dart';
 import 'package:glob/glob.dart';
 import 'package:mustache_template/mustache.dart' show Template;
-import 'package:angular_gallery_section/resolved_config.dart';
-import 'package:angular_gallery_section/visitors/path_utils.dart';
+import 'package:kelicap_gallery_section/resolved_config.dart';
+import 'package:kelicap_gallery_section/visitors/path_utils.dart';
 
 /// A builder for generating a "gallery section" (Dart source code) from a
 /// @GallerySectionConfig construction.
@@ -20,8 +20,9 @@ class GallerySectionBuilder extends Builder {
   @override
   Future build(BuildStep buildStep) async {
     final inputId = buildStep.inputId;
-    final infoAssets =
-        await buildStep.findAssets(Glob('**/*.gallery_info.json')).toList();
+    final infoAssets = await buildStep
+        .findAssets(Glob('**/*.gallery_info.json'))
+        .toList();
     if (infoAssets.isEmpty) return;
 
     final mergedImports = <String>{};
@@ -31,13 +32,15 @@ class GallerySectionBuilder extends Builder {
 
     for (final assetId in infoAssets) {
       final infoList =
-          (jsonDecode(await buildStep.readAsString(assetId)) as List)
-              .map((info) => ResolvedConfig.fromJson(info));
+          (jsonDecode(await buildStep.readAsString(assetId)) as List).map(
+            (info) => ResolvedConfig.fromJson(info),
+          );
 
       // There is an API page generated for every .gallery_info.json file.
       final api = <String, dynamic>{
-        'apiImport': assetToImport(assetId.toString())
-            .replaceFirst('.gallery_info.json', '.api.dart'),
+        'apiImport': assetToImport(
+          assetId.toString(),
+        ).replaceFirst('.gallery_info.json', '.api.dart'),
       };
 
       var docs = [];
@@ -50,7 +53,7 @@ class GallerySectionBuilder extends Builder {
 
         docs.add({
           'className': '${info.classSafeName}Api',
-          'selector': '${info.selectorSafeName}-api'
+          'selector': '${info.selectorSafeName}-api',
         });
         var mainDemo = info.mainDemo;
         if (mainDemo != null) {
@@ -63,16 +66,21 @@ class GallerySectionBuilder extends Builder {
 
     final mustacheContext = {
       'imports': mergedImports.map((import) => {'dartImport': import}),
-      'demos': mergedDemos.entries
-          .map((entry) => {'className': entry.key, 'selector': entry.value}),
+      'demos': mergedDemos.entries.map(
+        (entry) => {'className': entry.key, 'selector': entry.value},
+      ),
       'mainDemo': mergedMainDemo,
       'apis': apis,
     };
 
-    final templateId = AssetId('angular_gallery_section',
-        'lib/builder/template/gallery_section.dart.mustache');
-    final mustacheTemplate = Template(await buildStep.readAsString(templateId),
-        htmlEscapeValues: false);
+    final templateId = AssetId(
+      'angular_gallery_section',
+      'lib/builder/template/gallery_section.dart.mustache',
+    );
+    final mustacheTemplate = Template(
+      await buildStep.readAsString(templateId),
+      htmlEscapeValues: false,
+    );
 
     final newAssetId = AssetId(inputId.package, 'lib/gallery_section.dart');
 
@@ -87,6 +95,6 @@ class GallerySectionBuilder extends Builder {
 
   @override
   Map<String, List<String>> get buildExtensions => {
-        r'$lib$': const ['gallery_section.dart'],
-      };
+    r'$lib$': const ['gallery_section.dart'],
+  };
 }

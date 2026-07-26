@@ -13,8 +13,8 @@ import 'package:kelicap_components/material_input/material_input.dart';
 import 'package:kelicap_components/material_popup/material_popup.dart';
 import 'package:kelicap_components/material_tooltip/material_tooltip.dart';
 import 'package:kelicap_components/material_tooltip/module.dart' as tooltip;
-import 'package:angular_gallery_section/annotation/gallery_section_config.dart';
-import 'package:angular_gallery_section/components/content/delayed_content.dart';
+import 'package:kelicap_gallery_section/annotation/gallery_section_config.dart';
+import 'package:kelicap_gallery_section/components/content/delayed_content.dart';
 import 'package:kelicap_components/theme/dark_theme.dart';
 
 @GallerySectionConfig(

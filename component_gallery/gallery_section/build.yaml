@@ -1,7 +1,7 @@
 targets:
   $default:
     builders:
-      ngdart|ngdart:
+      kelicap|kelicap:
         generate_for:
           exclude: [
             "lib/*.dart",
@@ -10,15 +10,15 @@ targets:
             "lib/src/**",
             "lib/visitors/**",
             ]
-      ngcomponents|scss_builder:
+      kelicap_components|scss_builder:
         enabled: True
-      angular_gallery|angular_gallery:
+      kelicap_gallery|kelicap_gallery:
         enabled: False
 
 builders:
-  angular_gallery_section:
-    target: ':angular_gallery_section'
-    import: 'package:angular_gallery_section/builder.dart'
+  kelicap_gallery_section:
+    target: ':kelicap_gallery_section'
+    import: 'package:kelicap_gallery_section/builder.dart'
     builder_factories: [
       'galleryInfoBuilder',
       'componentApiBuilder',
@@ -28,4 +28,4 @@ builders:
       ".dart": [".gallery_info.json", ".api.dart"],
       "$lib$": ["gallery_section.dart", "gallery_section_summary.json"]}
     auto_apply: dependents
-    runs_before: ["ngdart|ngdart", "ngcomponents|scss_builder"]
+    runs_before: ["kelicap|kelicap", "kelicap_components|scss_builder"]

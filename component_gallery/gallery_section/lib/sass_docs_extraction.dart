@@ -5,9 +5,9 @@
 import 'package:build/build.dart';
 import 'package:collection/collection.dart' show IterableExtension;
 import 'package:sass/src/ast/sass.dart';
-import 'package:angular_gallery_section/g3doc_markdown.dart';
-import 'package:angular_gallery_section/components/gallery_component/documentation_info.dart';
-import 'package:angular_gallery_section/visitors/path_utils.dart' as path_utils;
+import 'package:kelicap_gallery_section/g3doc_markdown.dart';
+import 'package:kelicap_gallery_section/components/gallery_component/documentation_info.dart';
+import 'package:kelicap_gallery_section/visitors/path_utils.dart' as path_utils;
 
 /// Collects documentation information from a Sass file identified by [assetId].
 ///

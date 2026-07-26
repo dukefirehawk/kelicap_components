@@ -7,13 +7,13 @@ library;
 
 import 'dart:js_interop';
 
-import 'package:ngdart/angular.dart';
-import 'package:ngcomponents/button_decorator/button_decorator.dart';
-import 'package:ngcomponents/dynamic_component/dynamic_component.dart';
-import 'package:ngcomponents/laminate/popup/module.dart';
-import 'package:angular_gallery/gallery/gallery_tokens.dart';
-import 'package:angular_gallery_section/components/gallery_component/documentation_component.dart';
-import 'package:angular_gallery_section/components/gallery_component/gallery_info.dart';
+import 'package:kelicap/kelicap.dart';
+import 'package:kelicap_components/button_decorator/button_decorator.dart';
+import 'package:kelicap_components/dynamic_component/dynamic_component.dart';
+import 'package:kelicap_components/laminate/popup/module.dart';
+import 'package:kelicap_gallery/gallery/gallery_tokens.dart';
+import 'package:kelicap_gallery_section/components/gallery_component/documentation_component.dart';
+import 'package:kelicap_gallery_section/components/gallery_component/gallery_info.dart';
 import 'package:web/web.dart';
 
 /// The gallery component details page that encompass the component's dart docs,

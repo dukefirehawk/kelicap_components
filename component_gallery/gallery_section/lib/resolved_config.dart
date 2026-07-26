@@ -2,9 +2,9 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:angular_gallery_section/components/gallery_component/documentation_info.dart';
-import 'package:angular_gallery_section/visitors/path_utils.dart' as path_utils;
-import 'package:ngcomponents/utils/strings/string_utils.dart' as string;
+import 'package:kelicap_gallery_section/components/gallery_component/documentation_info.dart';
+import 'package:kelicap_gallery_section/visitors/path_utils.dart' as path_utils;
+import 'package:kelicap_components/utils/strings/string_utils.dart' as string;
 
 final _invalidCharacters = RegExp(r'[^a-zA-Z0-9 ]');
 

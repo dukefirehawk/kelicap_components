@@ -7,7 +7,7 @@ import 'package:kelicap_components/material_button/material_button.dart';
 import 'package:kelicap_components/material_icon/material_icon.dart';
 import 'package:kelicap_components/material_input/material_input.dart';
 import 'package:kelicap_components/model/ui/icon.dart';
-import 'package:angular_gallery_section/annotation/gallery_section_config.dart';
+import 'package:kelicap_gallery_section/annotation/gallery_section_config.dart';
 
 @GallerySectionConfig(
   displayName: 'Material Icon',

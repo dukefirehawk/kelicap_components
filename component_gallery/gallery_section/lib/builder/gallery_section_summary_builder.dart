@@ -7,7 +7,7 @@ import 'dart:convert';
 
 import 'package:build/build.dart';
 import 'package:glob/glob.dart';
-import 'package:angular_gallery_section/resolved_config.dart';
+import 'package:kelicap_gallery_section/resolved_config.dart';
 
 /// A builder for generating a summary of the API page for an Angular component.
 ///
@@ -22,25 +22,33 @@ class GallerySectionSummaryBuilder extends Builder {
     final summaries = <Map<String, dynamic>>[];
 
     // Extract details from @GallerySectionConfig annotations.
-    await for (var assetId
-        in buildStep.findAssets(Glob('**/*.gallery_info.json'))) {
+    await for (var assetId in buildStep.findAssets(
+      Glob('**/*.gallery_info.json'),
+    )) {
       final infoList =
-          (jsonDecode(await buildStep.readAsString(assetId)) as List)
-              .map((info) => ResolvedConfig.fromJson(info));
+          (jsonDecode(await buildStep.readAsString(assetId)) as List).map(
+            (info) => ResolvedConfig.fromJson(info),
+          );
 
       if (infoList.isEmpty) continue;
 
-      summaries.addAll(infoList.map((info) => {
+      summaries.addAll(
+        infoList.map(
+          (info) => {
             'displayName': info.displayName,
             'group': info.group,
             'dartImport': _toApiTemplatePath(assetId.uri.toString()),
             'componentClass': '${info.classSafeName}Api',
             'docs': info.docs.map((doc) => doc.name).toList(),
-          }));
+          },
+        ),
+      );
     }
 
-    final newAssetId =
-        AssetId(inputId.package, 'lib/gallery_section_summary.json');
+    final newAssetId = AssetId(
+      inputId.package,
+      'lib/gallery_section_summary.json',
+    );
 
     var jsonData = jsonEncode(summaries);
     //  print("=== Start (lib/gallery_section_summary.json) ===");
@@ -52,8 +60,8 @@ class GallerySectionSummaryBuilder extends Builder {
 
   @override
   Map<String, List<String>> get buildExtensions => {
-        r'$lib$': const ['gallery_section_summary.json'],
-      };
+    r'$lib$': const ['gallery_section_summary.json'],
+  };
 
   String _toApiTemplatePath(String path) =>
       '${path.substring(0, path.lastIndexOf('.gallery_info.json'))}'

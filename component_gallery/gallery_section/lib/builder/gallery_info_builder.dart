@@ -6,13 +6,13 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:analyzer/dart/element/element.dart';
-import 'package:angular_gallery_section/components/gallery_component/documentation_info.dart';
-import 'package:angular_gallery_section/g3doc_markdown.dart';
-import 'package:angular_gallery_section/gallery_docs_extraction.dart';
-import 'package:angular_gallery_section/gallery_section_config_extraction.dart';
-import 'package:angular_gallery_section/resolved_config.dart';
-import 'package:angular_gallery_section/sass_docs_extraction.dart';
-import 'package:angular_gallery_section/visitors/path_utils.dart' as path_utils;
+import 'package:kelicap_gallery_section/components/gallery_component/documentation_info.dart';
+import 'package:kelicap_gallery_section/g3doc_markdown.dart';
+import 'package:kelicap_gallery_section/gallery_docs_extraction.dart';
+import 'package:kelicap_gallery_section/gallery_section_config_extraction.dart';
+import 'package:kelicap_gallery_section/resolved_config.dart';
+import 'package:kelicap_gallery_section/sass_docs_extraction.dart';
+import 'package:kelicap_gallery_section/visitors/path_utils.dart' as path_utils;
 import 'package:build/build.dart';
 import 'package:path/path.dart';
 

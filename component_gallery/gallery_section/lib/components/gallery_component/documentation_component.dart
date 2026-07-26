@@ -2,9 +2,9 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:ngdart/angular.dart';
-import 'package:ngdart/security.dart';
-import 'package:angular_gallery_section/components/gallery_component/gallery_info.dart';
+import 'package:kelicap/kelicap.dart';
+import 'package:kelicap/security.dart';
+import 'package:kelicap_gallery_section/components/gallery_component/gallery_info.dart';
 import 'package:sanitize_html/sanitize_html.dart' show sanitizeHtml;
 
 /// A list of all documentation directives.
@@ -28,11 +28,7 @@ class DocumentationComponent {
 /// Docs are expected to be generated for Angular @Components and @Directives.
 @Component(
   selector: 'documentation-component[dart]',
-  directives: [
-    NgFor,
-    NgIf,
-    SafeInnerHtmlDirective,
-  ],
+  directives: [NgFor, NgIf, SafeInnerHtmlDirective],
   templateUrl: 'dart_doc_component.html',
   styleUrls: ['documentation_component.scss.css'],
 )
@@ -54,9 +50,10 @@ class DartDocComponent extends DocumentationComponent {
 ///
 /// Typically used for the generated HTML from a markdown README.
 @Component(
-    selector: 'documentation-component[markdown]',
-    template: '<div [innerHtml]="doc.contents"></div>',
-    styleUrls: ['documentation_component.scss.css'])
+  selector: 'documentation-component[markdown]',
+  template: '<div [innerHtml]="doc.contents"></div>',
+  styleUrls: ['documentation_component.scss.css'],
+)
 class MarkdownDocComponent extends DocumentationComponent {
   /// The documentation to display.
   @Input()
@@ -77,11 +74,7 @@ class MarkdownDocComponent extends DocumentationComponent {
 /// by importing the Sass file.
 @Component(
   selector: 'documentation-component[sass]',
-  directives: [
-    NgFor,
-    NgIf,
-    SafeInnerHtmlDirective,
-  ],
+  directives: [NgFor, NgIf, SafeInnerHtmlDirective],
   templateUrl: 'sass_doc_component.html',
   styleUrls: ['documentation_component.scss.css'],
 )

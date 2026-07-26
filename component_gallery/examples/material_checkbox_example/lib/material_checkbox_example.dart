@@ -9,7 +9,7 @@ import 'package:kelicap_components/material_checkbox/material_checkbox.dart';
 import 'package:kelicap_components/material_icon/material_icon.dart';
 import 'package:kelicap_components/material_input/material_input.dart';
 import 'package:kelicap_components/material_toggle/material_toggle.dart';
-import 'package:angular_gallery_section/annotation/gallery_section_config.dart';
+import 'package:kelicap_gallery_section/annotation/gallery_section_config.dart';
 
 @GallerySectionConfig(
   displayName: 'Material Checkbox',

@@ -4,8 +4,8 @@
 
 import 'dart:async';
 
-import 'package:ngdart/angular.dart';
-import 'package:ngcomponents/material_progress/material_progress.dart';
+import 'package:kelicap/kelicap.dart';
+import 'package:kelicap_components/material_progress/material_progress.dart';
 
 /// `delayed-content` is a simple pass-thru content container which, when
 /// initialized, delays the revealing of its content.

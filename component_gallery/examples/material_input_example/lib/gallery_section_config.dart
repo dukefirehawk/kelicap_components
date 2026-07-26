@@ -6,7 +6,7 @@ import 'package:kelicap_components/material_input/material_auto_suggest_input.da
 import 'package:kelicap_components/material_input/material_input.dart';
 import 'package:kelicap_components/material_input/material_number_accessor.dart';
 import 'package:kelicap_components/material_input/material_percent_directive.dart';
-import 'package:angular_gallery_section/annotation/gallery_section_config.dart';
+import 'package:kelicap_gallery_section/annotation/gallery_section_config.dart';
 
 import 'material_auto_suggest_input_full_demo.dart';
 import 'material_auto_suggest_input_simple_demo.dart';
@@ -20,7 +20,7 @@ import 'material_percent_input_demo.dart';
   docs: [
     MaterialInputComponent,
     MaterialMultilineInputComponent,
-    'package:ngcomponents/material_input/material_auto_suggest_input.md',
+    'package:kelicap_components/material_input/material_auto_suggest_input.md',
     MaterialAutoSuggestInputComponent,
     MaterialNumberValueAccessor,
     MaterialPercentInputDirective,
@@ -39,7 +39,7 @@ class MaterialInputGallerySection {}
 @GallerySectionConfig(
   displayName: 'Material Auto Suggest Input',
   docs: [
-    'package:ngcomponents/material_input/material_auto_suggest_input.md',
+    'package:kelicap_components/material_input/material_auto_suggest_input.md',
     MaterialAutoSuggestInputComponent,
   ],
   demos: [
