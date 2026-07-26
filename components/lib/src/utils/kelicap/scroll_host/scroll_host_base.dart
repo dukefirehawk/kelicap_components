@@ -9,12 +9,12 @@ import 'dart:math' show max, Rectangle;
 
 import 'package:kelicap/kelicap.dart';
 import 'package:logging/logging.dart' show Logger;
-import 'package:kelicap_components/src/utils/angular/scroll_host/gestures.dart';
-import 'package:kelicap_components/src/utils/angular/scroll_host/pan_controller_impl.dart';
-import 'package:kelicap_components/src/utils/angular/scroll_host/position_sticky_controller.dart';
-import 'package:kelicap_components/src/utils/angular/scroll_host/scroll_host_event_impl.dart';
-import 'package:kelicap_components/src/utils/angular/scroll_host/scroll_host_interface.dart';
-import 'package:kelicap_components/src/utils/angular/scroll_host/sticky_controller_impl.dart';
+import 'package:kelicap_components/src/utils/kelicap/scroll_host/gestures.dart';
+import 'package:kelicap_components/src/utils/kelicap/scroll_host/pan_controller_impl.dart';
+import 'package:kelicap_components/src/utils/kelicap/scroll_host/position_sticky_controller.dart';
+import 'package:kelicap_components/src/utils/kelicap/scroll_host/scroll_host_event_impl.dart';
+import 'package:kelicap_components/src/utils/kelicap/scroll_host/scroll_host_interface.dart';
+import 'package:kelicap_components/src/utils/kelicap/scroll_host/sticky_controller_impl.dart';
 import 'package:kelicap_components/utils/async/async.dart';
 import 'package:kelicap_components/utils/browser/dom_service/dom_service.dart';
 import 'package:kelicap_components/utils/browser/feature_detector/feature_detector.dart'

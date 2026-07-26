@@ -7,7 +7,7 @@ import 'package:web/web.dart';
 
 import 'package:kelicap/kelicap.dart';
 import 'package:kelicap_components/annotations/rtl_annotation.dart';
-import 'package:kelicap_components/utils/browser/dom_service/angular_2.dart';
+import 'package:kelicap_components/utils/browser/dom_service/kelicap_2.dart';
 import 'package:kelicap_components/utils/disposer/disposer.dart';
 
 /// Private directive that catches the scorecard bar element of the scoreboard.

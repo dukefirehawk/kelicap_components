@@ -16,7 +16,7 @@ import 'package:kelicap_components/laminate/ruler/dom_ruler.dart';
 import 'package:kelicap_components/model/math/box.dart';
 import 'package:kelicap_components/utils/kelicap/imperative_view/imperative_view.dart';
 import 'package:kelicap_components/utils/kelicap/managed_zone/kelicap_2.dart';
-import 'package:kelicap_components/utils/browser/dom_service/angular_2.dart';
+import 'package:kelicap_components/utils/browser/dom_service/kelicap_2.dart';
 import 'package:kelicap_components/utils/browser/window/module.dart';
 
 export 'package:kelicap_components/src/laminate/overlay/render/overlay_dom_render_service.dart'

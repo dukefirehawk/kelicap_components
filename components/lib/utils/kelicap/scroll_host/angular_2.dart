@@ -7,12 +7,12 @@ import 'dart:math';
 import 'package:web/web.dart' hide Module;
 
 import 'package:kelicap/kelicap.dart';
-import 'package:kelicap_components/src/utils/angular/scroll_host/scroll_host_base.dart';
+import 'package:kelicap_components/src/utils/kelicap/scroll_host/scroll_host_base.dart';
 import 'package:kelicap_components/utils/kelicap/scroll_host/interface.dart';
-import 'package:kelicap_components/utils/browser/dom_service/angular_2.dart';
+import 'package:kelicap_components/utils/browser/dom_service/kelicap_2.dart';
 import 'package:quiver/time.dart';
 
-export 'package:kelicap_components/src/utils/angular/scroll_host/scroll_host_interface.dart'
+export 'package:kelicap_components/src/utils/kelicap/scroll_host/scroll_host_interface.dart'
     show ScrollHost;
 
 const clockValue = Clock();

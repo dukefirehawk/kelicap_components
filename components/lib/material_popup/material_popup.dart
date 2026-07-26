@@ -23,7 +23,7 @@ import 'package:kelicap_components/mixins/material_dropdown_base.dart';
 import 'package:kelicap_components/model/math/box.dart';
 import 'package:kelicap_components/model/ui/toggle.dart';
 import 'package:kelicap_components/utils/async/async.dart';
-import 'package:kelicap_components/utils/browser/dom_service/angular_2.dart';
+import 'package:kelicap_components/utils/browser/dom_service/kelicap_2.dart';
 import 'package:kelicap_components/utils/disposer/disposer.dart';
 import 'package:kelicap_components/utils/id_generator/id_generator.dart';
 

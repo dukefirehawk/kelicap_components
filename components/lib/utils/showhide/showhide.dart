@@ -7,7 +7,7 @@ import 'package:web/web.dart';
 
 import 'package:kelicap/kelicap.dart';
 import 'package:async/async.dart' show StreamQueue;
-import 'package:kelicap_components/utils/browser/dom_service/angular_2.dart';
+import 'package:kelicap_components/utils/browser/dom_service/kelicap_2.dart';
 
 /// Shows or hides the given HTML element based on an expression.
 ///

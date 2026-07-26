@@ -10,7 +10,7 @@ import 'package:intl/intl.dart';
 import 'package:kelicap_components/material_button/material_button.dart';
 import 'package:kelicap_components/material_icon/material_icon.dart';
 import 'package:kelicap_components/model/selection/selection_model.dart';
-import 'package:kelicap_components/utils/browser/dom_service/angular_2.dart';
+import 'package:kelicap_components/utils/browser/dom_service/kelicap_2.dart';
 import 'package:kelicap_components/utils/color/material_chart_colors.dart';
 import 'package:kelicap_components/utils/disposer/disposer.dart';
 

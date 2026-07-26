@@ -10,7 +10,7 @@ import 'package:kelicap_components/focus/focus.dart';
 import 'package:kelicap_components/interfaces/has_disabled.dart';
 import 'package:kelicap_components/utils/kelicap/properties/properties.dart';
 import 'package:kelicap_components/utils/kelicap/reference/reference.dart';
-import 'package:kelicap_components/utils/browser/dom_service/angular_2.dart';
+import 'package:kelicap_components/utils/browser/dom_service/kelicap_2.dart';
 import 'package:kelicap_forms/kelicap_forms.dart';
 
 import 'base_material_input.dart';

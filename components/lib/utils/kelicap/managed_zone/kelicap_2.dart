@@ -5,9 +5,9 @@
 import 'dart:async';
 
 import 'package:kelicap/kelicap.dart';
-import 'package:kelicap_components/src/utils/angular/managed_zone/managed_zone.dart';
+import 'package:kelicap_components/src/utils/kelicap/managed_zone/managed_zone.dart';
 
-export 'package:kelicap_components/src/utils/angular/managed_zone/managed_zone.dart';
+export 'package:kelicap_components/src/utils/kelicap/managed_zone/managed_zone.dart';
 
 /// An implementation of [ManagedZone] that uses Angular 2's [NgZone].
 @Deprecated('Use NgZone directly instead')

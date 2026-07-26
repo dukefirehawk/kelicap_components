@@ -10,8 +10,8 @@ import 'dart:math' as math;
 
 import 'package:kelicap/kelicap.dart';
 import 'package:quiver/time.dart';
-import 'package:kelicap_components/src/utils/angular/scroll_host/scroll_host_event_impl.dart';
-import 'package:kelicap_components/src/utils/angular/scroll_host/scroll_host_interface.dart';
+import 'package:kelicap_components/src/utils/kelicap/scroll_host/scroll_host_event_impl.dart';
+import 'package:kelicap_components/src/utils/kelicap/scroll_host/scroll_host_interface.dart';
 import 'package:kelicap_components/utils/disposer/disposer.dart';
 
 enum GestureDirection { up, down, left, right }
@@ -115,9 +115,9 @@ class GestureListener implements Disposable {
 
   Stream<GestureEvent> get scrollStream {
     _scrollController ??= StreamController<GestureEvent>.broadcast(
-        onListen: _startListeners,
-        onCancel: _onCancel,
-      );
+      onListen: _startListeners,
+      onCancel: _onCancel,
+    );
 
     return _scrollController!.stream;
   }
