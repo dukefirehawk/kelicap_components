@@ -7,7 +7,7 @@ import 'package:kelicap_components/annotations/rtl_annotation.dart';
 import 'package:kelicap_components/material_tab/fixed_material_tab_strip.dart';
 import 'package:kelicap_components/material_tab/tab_change_event.dart';
 import 'package:kelicap_components/material_toggle/material_toggle.dart';
-import 'package:kelicap_components/utils/browser/dom_service/angular_2.dart';
+import 'package:kelicap_components/utils/browser/dom_service/kelicap_2.dart';
 import 'package:kelicap_components/utils/browser/window/module.dart';
 
 @Component(

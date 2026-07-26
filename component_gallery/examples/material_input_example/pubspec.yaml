@@ -11,4 +11,4 @@ dependencies:
   kelicap_gallery: ^1.0.0
   kelicap_gallery_section: ^1.0.0
   build_config: ^1.0.0
-  intl: ^0.18.0
+  intl: ^0.20.0

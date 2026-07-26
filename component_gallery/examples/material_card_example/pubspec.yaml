@@ -6,8 +6,7 @@ environment:
 
 dependencies:
   kelicap: ^1.0.0
-kelicap_components: 
-    path: ../../ngcomponents
+  kelicap_components: ^1.0.0  
   kelicap_gallery: ^1.0.0
   kelicap_gallery_section: ^1.0.0
   build_config: ^1.0.0
