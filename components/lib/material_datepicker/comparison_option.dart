@@ -84,10 +84,10 @@ class ComparisonOption {
   );
 
   @override
-  bool operator ==(o) =>
-      o is ComparisonOption &&
-      displayName == o.displayName &&
-      computeComparisonRange == o.computeComparisonRange;
+  bool operator ==(other) =>
+      other is ComparisonOption &&
+      displayName == other.displayName &&
+      computeComparisonRange == other.computeComparisonRange;
 
   @override
   int get hashCode => displayName.hashCode ^ computeComparisonRange.hashCode;

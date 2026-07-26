@@ -190,7 +190,8 @@ class DateRange {
   }
 
   @override
-  bool operator ==(o) => o is DateRange && start == o.start && end == o.end;
+  bool operator ==(other) =>
+      other is DateRange && start == other.start && end == other.end;
 
   @override
   int get hashCode => hash2(start, end);

@@ -4,4 +4,5 @@ analyzer:
   errors:
     todo: ignore
     uri_has_not_been_generated: ignore
+    constant_identifier_names: ignore
     

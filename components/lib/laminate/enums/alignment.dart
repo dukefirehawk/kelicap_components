@@ -503,7 +503,7 @@ class _AnimationOrigins {
   static const UP_RIGHT = 'bottom left';
 
   static const LEFT = 'center right';
-  static const OUTWARD = 'center left';
+  static const OUTWARD = 'center center';
   static const RIGHT = 'center left';
 
   static const DOWN_LEFT = 'top right';
@@ -517,5 +517,6 @@ class _AnimationOrigins {
     _AnimationOrigins.RIGHT: _AnimationOrigins.LEFT,
     _AnimationOrigins.DOWN_LEFT: _AnimationOrigins.DOWN_RIGHT,
     _AnimationOrigins.DOWN_RIGHT: _AnimationOrigins.DOWN_LEFT,
+    _AnimationOrigins.OUTWARD: _AnimationOrigins.OUTWARD,
   };
 }

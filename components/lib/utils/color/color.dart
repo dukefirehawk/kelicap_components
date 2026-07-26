@@ -220,13 +220,13 @@ class Color {
   String toString() => rgbString;
 
   @override
-  bool operator ==(o) =>
-      identical(this, o) ||
-      o is Color &&
-          red == o.red &&
-          green == o.green &&
-          blue == o.blue &&
-          (alpha - o.alpha).abs() < _alphaThreshold;
+  bool operator ==(other) =>
+      identical(this, other) ||
+      other is Color &&
+          red == other.red &&
+          green == other.green &&
+          blue == other.blue &&
+          (alpha - other.alpha).abs() < _alphaThreshold;
 
   @override
   int get hashCode => hash4(red, green, blue, alpha);

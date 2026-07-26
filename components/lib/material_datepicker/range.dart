@@ -375,7 +375,7 @@ class SingleDayRange implements DatepickerDateRange {
   proto.DatepickerDateRange toProtoBuf() => _makeProtoBuf(this)..daysAgo = _ago;
 
   @override
-  bool operator ==(o) => rangeEqual(this, o);
+  bool operator ==(other) => rangeEqual(this, other);
   @override
   int get hashCode => rangeHash(this);
   @override
@@ -447,7 +447,7 @@ abstract class MultipleDaysRange implements DatepickerDateRange {
   proto.DatepickerDateRange toProtoBuf();
 
   @override
-  bool operator ==(o) => rangeEqual(this, o);
+  bool operator ==(other) => rangeEqual(this, other);
   @override
   int get hashCode => rangeHash(this);
   @override
@@ -634,7 +634,7 @@ class WeekRange implements DatepickerDateRange {
   }
 
   @override
-  bool operator ==(o) => rangeEqual(this, o);
+  bool operator ==(other) => rangeEqual(this, other);
   @override
   int get hashCode => rangeHash(this);
   @override
@@ -727,7 +727,7 @@ class MonthRange implements DatepickerDateRange {
       _makeProtoBuf(this)..monthsAgo = _ago;
 
   @override
-  bool operator ==(o) => rangeEqual(this, o);
+  bool operator ==(other) => rangeEqual(this, other);
   @override
   int get hashCode => rangeHash(this);
   @override
@@ -853,7 +853,7 @@ class BroadcastMonthRange implements DatepickerDateRange {
       _makeProtoBuf(this)..broadcastMonthsAgo = _ago;
 
   @override
-  bool operator ==(o) => rangeEqual(this, o);
+  bool operator ==(other) => rangeEqual(this, other);
   @override
   int get hashCode => rangeHash(this);
   @override
@@ -932,7 +932,7 @@ class YearRange implements DatepickerDateRange {
       _makeProtoBuf(this)..yearsAgo = _ago;
 
   @override
-  bool operator ==(o) => rangeEqual(this, o);
+  bool operator ==(other) => rangeEqual(this, other);
   @override
   int get hashCode => rangeHash(this);
   @override
@@ -1026,7 +1026,7 @@ class QuarterRange implements DatepickerDateRange {
       _makeProtoBuf(this)..quartersAgo = _ago;
 
   @override
-  bool operator ==(o) => rangeEqual(this, o);
+  bool operator ==(other) => rangeEqual(this, other);
   @override
   int get hashCode => rangeHash(this);
   @override

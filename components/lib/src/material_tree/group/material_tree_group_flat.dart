@@ -102,4 +102,8 @@ class MaterialTreeGroupFlatCheckComponent<T> extends MaterialTreeNode<T> {
   // This is only used to standardize all the different group components.
   @HostBinding('class.material-tree-group')
   final bool isMaterialTreeGroup = true;
+
+  void showDebugInfo(String option) {
+    print(_dropdownHandle.toString());
+  }
 }

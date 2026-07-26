@@ -51,10 +51,10 @@ class DatepickerComparison implements DateRangeComparison {
           option.computeComparisonRange(range!.unclamped());
 
   @override
-  bool operator ==(o) =>
-      o is DatepickerComparison &&
-      rangeEqual(range, o.range) &&
-      rangeEqual(comparison, o.comparison);
+  bool operator ==(other) =>
+      other is DatepickerComparison &&
+      rangeEqual(range, other.range) &&
+      rangeEqual(comparison, other.comparison);
   @override
   int get hashCode => isComparisonEnabled
       ? rangeHash(range!) ^ rangeHash(comparison!)

@@ -163,13 +163,13 @@ class MaterialTooltipDirective extends TooltipTarget
   }
 
   @override
-  void setTooltip(Tooltip tooltip) {
+  void setTooltip(Tooltip component) {
     // If this is the first time that the tooltip is being set, activate it.
     // We could have activated in the [onMouseOver] method when the DCL
     // resolves, however, we want to call activate/deactivate on the [Tooltip]
     // handle that the component presents (as it might be a proxy).
     if (_tooltip == null) _delayedActivate.start();
-    _tooltip = tooltip;
+    _tooltip = component;
   }
 
   void _activate() {

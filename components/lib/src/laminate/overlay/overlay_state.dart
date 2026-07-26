@@ -243,7 +243,7 @@ class MutableOverlayState implements OverlayState {
   }
 
   @override
-  bool operator ==(o) => o is OverlayState && _stateEquals(this, o);
+  bool operator ==(other) => other is OverlayState && _stateEquals(this, other);
 
   @override
   int get hashCode => _stateHashCode(this);

@@ -61,14 +61,18 @@ class MaterialTreeGroupComponent<T> extends MaterialTreeNode<T?>
   final DropdownHandle? _dropdownHandle;
   @Input()
   int level = 0;
+
   @Input()
   bool parentHasCheckbox = false;
+
   @Input()
   @override
   bool allowParentSingleSelection = false;
+
   @Input()
   @override
   bool allowParentMultiSelection = true;
+
   @Input()
   bool deselectOnTrigger = true;
   final MaterialTreeRoot _root;

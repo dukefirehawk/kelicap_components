@@ -93,8 +93,11 @@ class CalendarSelection {
   int get hashCode => id.hashCode ^ start.hashCode ^ end.hashCode;
 
   @override
-  bool operator ==(o) =>
-      o is CalendarSelection && o.id == id && o.start == start && o.end == end;
+  bool operator ==(other) =>
+      other is CalendarSelection &&
+      other.id == id &&
+      other.start == start &&
+      other.end == end;
 }
 
 Date? firstDayOfMonth(Date? date) =>
@@ -386,14 +389,14 @@ class CalendarState {
       'preview ${previewAnchoredAtStart ? "start" : "end"} - $preview';
 
   @override
-  bool operator ==(o) =>
-      o is CalendarState &&
-      currentSelection == o.currentSelection &&
-      cause == o.cause &&
-      preview == o.preview &&
-      previewAnchoredAtStart == o.previewAnchoredAtStart &&
-      resolution == o.resolution &&
-      _setEq(selections, o.selections);
+  bool operator ==(other) =>
+      other is CalendarState &&
+      currentSelection == other.currentSelection &&
+      cause == other.cause &&
+      preview == other.preview &&
+      previewAnchoredAtStart == other.previewAnchoredAtStart &&
+      resolution == other.resolution &&
+      _setEq(selections, other.selections);
 
   @override
   int get hashCode =>

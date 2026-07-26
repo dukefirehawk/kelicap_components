@@ -63,8 +63,8 @@ class TreeSelectionOptions<T> extends SelectionOptions<T>
   Map<T, List<OptionGroup<T>>> getHierarchyMap() => _parentToChildrenMap;
 
   @override
-  T? getParent(T? child) {
-    return _itemsOptions[child!]?.parent;
+  T? getParent(T? value) {
+    return _itemsOptions[value!]?.parent;
   }
 
   Map<T, List<OptionGroup>> _generateParentToChildrenMap(

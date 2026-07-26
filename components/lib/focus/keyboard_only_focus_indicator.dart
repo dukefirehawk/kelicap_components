@@ -7,7 +7,6 @@ import 'dart:js_interop';
 import 'package:web/web.dart';
 
 import 'package:kelicap/kelicap.dart';
-import 'package:kelicap/src/meta.dart';
 import 'package:kelicap_components/utils/browser/dom_service/dom_service.dart';
 import 'package:meta/meta.dart';
 
