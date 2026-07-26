@@ -12,9 +12,13 @@ import 'package:mustache_template/mustache.dart';
 /// The contents of the asset is the result of rendering a mustache template
 /// with [mustacheContext]. The provided [templatePath] is assumed to be rooted
 /// in this library.
-Future<void> writeAsset(BuildStep buildStep, String templatePath,
-    Map<String, dynamic> mustacheContext, AssetId newAssetId) async {
-  final templateId = AssetId('angular_gallery', templatePath);
+Future<void> writeAsset(
+  BuildStep buildStep,
+  String templatePath,
+  Map<String, dynamic> mustacheContext,
+  AssetId newAssetId,
+) async {
+  final templateId = AssetId('kelicap_gallery', templatePath);
   final String template = await buildStep.readAsString(templateId);
   final mustacheTemplate = Template(template, lenient: true);
 

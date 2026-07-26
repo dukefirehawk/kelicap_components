@@ -1,27 +1,34 @@
 dependency_overrides:
-  kelicap:
-    git:
-      url: https://github.com/dukefirehawk/angular.git
-      path: kelicap
-      ref: refactor/dart3.12
-  ngast:
-    git:
-      url: https://github.com/dukefirehawk/angular.git
-      path: ngast
-      ref: refactor/dart3.12
-  ngcompiler:
-    git:
-      url: https://github.com/dukefirehawk/angular.git
-      path: ngcompiler
-      ref: refactor/dart3.12
-  ngforms:
-    git:
-      url: https://github.com/dukefirehawk/angular.git
-      path: ngforms
-      ref: refactor/dart3.12
-  ngrouter:
-    git:
-      url: https://github.com/dukefirehawk/angular.git
-      path: ngrouter
-      ref: refactor/dart3.12
+  kelicap_components:
+    path: ../../../components
+  kelicap_gallery:
+    path: ../../gallery
+  kelicap_gallery_section:
+    path: ../../gallery_section 
+
+  # kelicap:
+  #   git:
+  #     url: https://github.com/dukefirehawk/kelicap.git
+  #     path: kelicap
+  #     ref: main
+  # kelicap_ast:
+  #   git:
+  #     url: https://github.com/dukefirehawk/kelicap.git
+  #     path: ast
+  #     ref: main
+  # kelicap_compiler:
+  #   git:
+  #     url: https://github.com/dukefirehawk/kelicap.git
+  #     path: compiler
+  #     ref: main
+  # kelicap_forms:
+  #   git:
+  #     url: https://github.com/dukefirehawk/kelicap.git
+  #     path: forms
+  #     ref: main
+  # kelicap_router:
+  #   git:
+  #     url: https://github.com/dukefirehawk/kelicap.git
+  #     path: router
+  #     ref: main
   

@@ -3,5 +3,5 @@ targets:
     builders:
     kelicap_components|scss_builder:
         enabled: True
-      angular_gallery|angular_gallery:
+    kelicap_gallery|kelicap_gallery:
         enabled: False

@@ -27,7 +27,7 @@ class ComponentApiBuilder extends Builder {
 
     final mustacheContext = await _mustacheContext(infoList);
     final templateId = AssetId(
-      'angular_gallery_section',
+      'kelicap_gallery_section',
       'lib/builder/template/component.api.dart.mustache',
     );
     final mustacheTemplate = Template(

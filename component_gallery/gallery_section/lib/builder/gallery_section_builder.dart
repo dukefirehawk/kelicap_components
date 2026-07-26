@@ -74,7 +74,7 @@ class GallerySectionBuilder extends Builder {
     };
 
     final templateId = AssetId(
-      'angular_gallery_section',
+      'kelicap_gallery_section',
       'lib/builder/template/gallery_section.dart.mustache',
     );
     final mustacheTemplate = Template(

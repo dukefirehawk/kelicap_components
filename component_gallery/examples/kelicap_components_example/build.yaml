@@ -7,7 +7,7 @@ targets:
     builders:
       kelicap|kelicap:
         enabled: true
-      angular_gallery|angular_gallery:
+    kelicap_gallery|kelicap_gallery:
         options:
           styleUrls: ["gallery.scss.css"]
           galleryTitle: "AngularDart Gallery"
@@ -15,7 +15,7 @@ targets:
           sourcecodeUrl: "https://github.com/angulardart-community/angular_components/tree/new-dev"
     kelicap_components|scss_builder:
         enabled: true
-      angular_gallery_section:
+      kelicap_gallery_section:
         enabled: false
       build_web_compilers|dart2js_archive_extractor:
         release_options:

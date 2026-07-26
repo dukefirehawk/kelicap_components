@@ -3,8 +3,8 @@ targets:
     builders:
     kelicap_components|scss_builder:
         enabled: True
-      angular_gallery|angular_gallery:
+    kelicap_gallery|kelicap_gallery:
         enabled: False
-      angular_gallery_section|angular_gallery_section:
+      kelicap_gallery_section|kelicap_gallery_section:
         options:
           staticImageServer: "https://raw.githubusercontent.com"

@@ -26,7 +26,9 @@ class ExampleAppBuilder extends Builder {
     final mustacheContext = {'direction': _direction};
     final newAssetId = AssetId(buildStep.inputId.package, 'web/index.html');
     final templateId = AssetId(
-        'angular_gallery_section', 'lib/builder/template/index.html.mustache');
+      'kelicap_gallery_section',
+      'lib/builder/template/index.html.mustache',
+    );
     final mustacheTemplate = Template(await buildStep.readAsString(templateId));
 
     var renderedData = mustacheTemplate.renderString(mustacheContext);
@@ -45,24 +47,32 @@ class ExampleAppBuilder extends Builder {
     };
     final newAssetId = AssetId(buildStep.inputId.package, 'web/main.dart');
     final templateId = AssetId(
-        'angular_gallery_section', 'lib/builder/template/main.dart.mustache');
+      'kelicap_gallery_section',
+      'lib/builder/template/main.dart.mustache',
+    );
     final mustacheTemplate = Template(await buildStep.readAsString(templateId));
     await buildStep.writeAsString(
-        newAssetId, mustacheTemplate.renderString(mustacheContext));
+      newAssetId,
+      mustacheTemplate.renderString(mustacheContext),
+    );
   }
 
   Future _generateStyleCss(BuildStep buildStep) async {
     final mustacheContext = {'direction': _direction};
     final newAssetId = AssetId(buildStep.inputId.package, 'web/style.css');
     final templateId = AssetId(
-        'angular_gallery_section', 'lib/builder/template/style.css.mustache');
+      'kelicap_gallery_section',
+      'lib/builder/template/style.css.mustache',
+    );
     final mustacheTemplate = Template(await buildStep.readAsString(templateId));
     await buildStep.writeAsString(
-        newAssetId, mustacheTemplate.renderString(mustacheContext));
+      newAssetId,
+      mustacheTemplate.renderString(mustacheContext),
+    );
   }
 
   @override
   Map<String, List<String>> get buildExtensions => {
-        r'$web$': ['index.html', 'main.dart', 'style.css']
-      };
+    r'$web$': ['index.html', 'main.dart', 'style.css'],
+  };
 }

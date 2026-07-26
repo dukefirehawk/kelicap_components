@@ -5,11 +5,9 @@ environment:
   sdk: '>=3.12.0 <4.0.0'
 
 dependencies:
-  kelicap: ^8.0.0-dev.1
-kelicap_components:
-    path: ../../ngcomponents
-  angular_gallery:
-    path: ../../angular_gallery
+  kelicap: ^1.0.0
+  kelicap_components: ^1.0.0
+  kelicap_gallery: ^1.0.0
   app_layout_example:
     path: ../app_layout_example
   build_config: ^1.0.0

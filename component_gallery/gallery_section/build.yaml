@@ -12,7 +12,7 @@ targets:
             ]
       kelicap_components|scss_builder:
         enabled: True
-      kelicap_gallery|kelicap_gallery:
+    kelicap_gallery|kelicap_gallery:
         enabled: False
 
 builders:

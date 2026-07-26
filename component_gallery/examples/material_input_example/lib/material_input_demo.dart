@@ -3,7 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:kelicap/kelicap.dart';
-import 'package:ngforms/ngforms.dart';
+import 'package:kelicap_forms/kelicap_forms.dart';
 import 'package:kelicap_components/focus/focus.dart';
 import 'package:kelicap_components/material_button/material_button.dart';
 import 'package:kelicap_components/material_icon/material_icon.dart';
