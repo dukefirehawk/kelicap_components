@@ -1,11 +1,11 @@
 targets:
-  ngcomponents:
+  kelicap_components:
     sources:
       exclude: ["lib/builder.dart"]
     builders:
       sass_builder|sass_builder:
         enabled: False
-      ngcomponents|scss_builder:
+      kelicap_components|scss_builder:
         enabled: True
   scss_builder:
     sources: ["lib/builder.dart"]
