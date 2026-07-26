@@ -3,6 +3,9 @@ repository: https://github.com/dukefirehawk/kelicap_components
 
 packages:
   - components
+  # - component_gallery/gallery
+  # - component_gallery/gallery_section
+  # - component_gallery/examples/**
 
 ignore:
 #   - compiler

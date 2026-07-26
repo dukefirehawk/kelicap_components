@@ -4,6 +4,8 @@ publish_to: none
 environment:
   sdk: '>=3.12.0 <4.0.0'
 
+resolution: workspace
+
 dependencies:
   kelicap: ^1.0.0
   kelicap_components: ^1.0.0  

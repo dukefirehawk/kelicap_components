@@ -1,6 +1,6 @@
 dependency_overrides:
-  kelicap_components:
-    path: ../../../components
+  # kelicap_components:
+  #  path: ../../../components
   kelicap_gallery:
     path: ../../gallery
   kelicap_gallery_section:

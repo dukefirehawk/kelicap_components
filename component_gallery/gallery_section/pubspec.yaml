@@ -1,8 +1,11 @@
 name: kelicap_gallery_section
+version: 1.0.0
 publish_to: none
 
 environment:
   sdk: '>=3.12.0 <4.0.0'
+
+resolution: workspace
 
 dependencies:
   analyzer: ^13.0.0
