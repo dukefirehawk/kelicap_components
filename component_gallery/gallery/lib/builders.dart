@@ -3,9 +3,9 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:build/build.dart';
-import 'package:angular_gallery/builder/gallery_app_builder.dart';
-import 'package:angular_gallery/builder/gallery_lib_builder.dart';
-import 'package:angular_gallery/builder/syntax_highlight_builder.dart';
+import 'package:kelicap_gallery/builder/gallery_app_builder.dart';
+import 'package:kelicap_gallery/builder/gallery_lib_builder.dart';
+import 'package:kelicap_gallery/builder/syntax_highlight_builder.dart';
 
 /// Builders used to generate files in the gallery app target.
 Builder galleryAppBuilder(BuilderOptions options) => MergedBuilder([

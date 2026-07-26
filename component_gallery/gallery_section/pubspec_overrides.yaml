@@ -1,0 +1,31 @@
+dependency_overrides:
+  kelicap_components:
+    path: ../../components
+  kelicap_gallery:
+    path: ../gallery    
+  # kelicap:
+  #   git:
+  #     url: https://github.com/dukefirehawk/kelicap.git
+  #     path: kelicap
+  #     ref: main
+  # kelicap_ast:
+  #   git:
+  #     url: https://github.com/dukefirehawk/kelicap.git
+  #     path: ast
+  #     ref: main
+  # kelicap_compiler:
+  #   git:
+  #     url: https://github.com/dukefirehawk/kelicap.git
+  #     path: compiler
+  #     ref: main
+  # kelicap_forms:
+  #   git:
+  #     url: https://github.com/dukefirehawk/kelicap.git
+  #     path: forms
+  #     ref: main
+  # kelicap_router:
+  #   git:
+  #     url: https://github.com/dukefirehawk/kelicap.git
+  #     path: router
+  #     ref: main
+  

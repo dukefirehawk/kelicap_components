@@ -1,14 +1,13 @@
-name: angular_gallery
+name: kelicap_gallery
 publish_to: none
 environment:
   sdk: '>=3.12.0 <4.0.0'
 
 dependencies:
-  ngdart: ^9.0.0-dev.1
-  ngcomponents: 
-    path: ../ngcomponents
-  ngforms: ^6.0.0-dev.1
-  ngrouter: ^5.0.0-dev.1
+  kelicap: ^1.0.0
+  kelicap_components: ^1.0.0 
+  kelicap_forms: ^1.0.0
+  kelicap_router: ^1.0.0
   build: ^4.0.0
   build_config: ^1.0.0
   #mustache: ^1.0.0

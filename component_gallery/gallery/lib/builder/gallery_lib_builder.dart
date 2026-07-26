@@ -6,7 +6,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:build/build.dart';
-import 'package:ngcomponents/utils/strings/string_utils.dart' as strings;
+import 'package:kelicap_components/utils/strings/string_utils.dart' as strings;
 
 import '../src/template_util.dart';
 
@@ -31,44 +31,66 @@ class GalleryLibBuilder extends Builder {
 
   @override
   Map<String, List<String>> get buildExtensions => {
-        r'$lib$': [
-          'gallery/gallery.dart',
-          'gallery/gallery.html',
-          'gallery/gallery.scss',
-          'gallery/gallery_route_library.dart'
-        ]
-      };
+    r'$lib$': [
+      'gallery/gallery.dart',
+      'gallery/gallery.html',
+      'gallery/gallery.scss',
+      'gallery/gallery_route_library.dart',
+    ],
+  };
 
   Future<void> _generateGalleryHtml(BuildStep buildStep) async {
     final mustacheContext = {'galleryTitle': _galleryTitle};
-    final newAssetId =
-        AssetId(buildStep.inputId.package, 'lib/gallery/gallery.html');
-    await writeAsset(buildStep, 'lib/builder/template/gallery.html.mustache',
-        mustacheContext, newAssetId);
+    final newAssetId = AssetId(
+      buildStep.inputId.package,
+      'lib/gallery/gallery.html',
+    );
+    await writeAsset(
+      buildStep,
+      'lib/builder/template/gallery.html.mustache',
+      mustacheContext,
+      newAssetId,
+    );
   }
 
   Future<void> _generateGalleryDart(
-      BuildStep buildStep, List<Example> examples) async {
+    BuildStep buildStep,
+    List<Example> examples,
+  ) async {
     final Map<String, List<Object>> mustacheContext = {
       'styleUrls': _styleUrls,
       'examples': examples.map((e) => e.toJson()).toList(),
     };
 
-    final newAssetId =
-        AssetId(buildStep.inputId.package, 'lib/gallery/gallery.dart');
-    await writeAsset(buildStep, 'lib/builder/template/gallery.dart.mustache',
-        mustacheContext, newAssetId);
+    final newAssetId = AssetId(
+      buildStep.inputId.package,
+      'lib/gallery/gallery.dart',
+    );
+    await writeAsset(
+      buildStep,
+      'lib/builder/template/gallery.dart.mustache',
+      mustacheContext,
+      newAssetId,
+    );
   }
 
   Future<void> _generateGalleryScss(BuildStep buildStep) async {
-    final newAssetId =
-        AssetId(buildStep.inputId.package, 'lib/gallery/gallery.scss');
-    await writeAsset(buildStep, 'lib/builder/template/gallery.scss.mustache',
-        {}, newAssetId);
+    final newAssetId = AssetId(
+      buildStep.inputId.package,
+      'lib/gallery/gallery.scss',
+    );
+    await writeAsset(
+      buildStep,
+      'lib/builder/template/gallery.scss.mustache',
+      {},
+      newAssetId,
+    );
   }
 
   Future<void> _generateGalleryRouteLibraryDart(
-      BuildStep buildStep, List<Example> examples) async {
+    BuildStep buildStep,
+    List<Example> examples,
+  ) async {
     final Map<String, List<Map<String, String>>> mustacheContext = {
       'examples': examples.map((e) => e.toJson()).toList(),
     };
@@ -78,12 +100,15 @@ class GalleryLibBuilder extends Builder {
     //});
 
     final newAssetId = AssetId(
-        buildStep.inputId.package, 'lib/gallery/gallery_route_library.dart');
+      buildStep.inputId.package,
+      'lib/gallery/gallery_route_library.dart',
+    );
     await writeAsset(
-        buildStep,
-        'lib/builder/template/gallery_route_library.dart.mustache',
-        mustacheContext,
-        newAssetId);
+      buildStep,
+      'lib/builder/template/gallery_route_library.dart.mustache',
+      mustacheContext,
+      newAssetId,
+    );
   }
 
   /// Reads gallery_section_summary.json files from all `_examplePackages`.
@@ -91,24 +116,34 @@ class GalleryLibBuilder extends Builder {
     final examples = <Example>[];
 
     for (var package in _examplePackages) {
-      final gallerySectionSummaryId =
-          AssetId(package, 'lib/gallery_section_summary.json');
+      final gallerySectionSummaryId = AssetId(
+        package,
+        'lib/gallery_section_summary.json',
+      );
       if (!await buildStep.canRead(gallerySectionSummaryId)) continue;
 
-      final summaryContents =
-          await buildStep.readAsString(gallerySectionSummaryId);
-      final summaries = (jsonDecode(summaryContents) as Iterable)
-          .map((m) => (m as Map).cast<String, dynamic>());
-      examples.addAll(summaries.map((summary) => Example(
-          summary['displayName'] ?? '',
-          summary['group'] ?? '',
-          summary['dartImport'] ?? '',
-          summary['componentClass'] ?? '',
-          List<String>.from(summary['docs'] ?? {}))));
+      final summaryContents = await buildStep.readAsString(
+        gallerySectionSummaryId,
+      );
+      final summaries = (jsonDecode(summaryContents) as Iterable).map(
+        (m) => (m as Map).cast<String, dynamic>(),
+      );
+      examples.addAll(
+        summaries.map(
+          (summary) => Example(
+            summary['displayName'] ?? '',
+            summary['group'] ?? '',
+            summary['dartImport'] ?? '',
+            summary['componentClass'] ?? '',
+            List<String>.from(summary['docs'] ?? {}),
+          ),
+        ),
+      );
     }
 
-    examples
-        .sort((Example a, Example b) => a.displayName.compareTo(b.displayName));
+    examples.sort(
+      (Example a, Example b) => a.displayName.compareTo(b.displayName),
+    );
     return examples;
   }
 }
@@ -120,11 +155,17 @@ class Example {
   String component;
   List<String> relatedComponents = [];
 
-  Example(this.displayName, this.group, this.dartImport, this.component,
-      this.relatedComponents);
+  Example(
+    this.displayName,
+    this.group,
+    this.dartImport,
+    this.component,
+    this.relatedComponents,
+  );
 
-  String get name => strings
-      .underscore(displayName.replaceAll(RegExp(r'[^a-zA-Z0-9 _-]'), ''));
+  String get name => strings.underscore(
+    displayName.replaceAll(RegExp(r'[^a-zA-Z0-9 _-]'), ''),
+  );
 
   String get linkName => strings.capitalizeFirstLetter(name) ?? '';
 

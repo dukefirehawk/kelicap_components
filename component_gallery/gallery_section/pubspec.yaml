@@ -1,4 +1,4 @@
-name: angular_gallery_section
+name: kelicap_gallery_section
 publish_to: none
 
 environment:
@@ -6,11 +6,9 @@ environment:
 
 dependencies:
   analyzer: ^13.0.0
-  ngdart: ^9.0.0-dev.1
-  ngcomponents: 
-    path: ../ngcomponents
-  angular_gallery:
-    path: ../angular_gallery
+  kelicap: ^1.0.0
+  kelicap_components: ^1.0.0
+  kelicap_gallery: ^1.0.0
   build: ^4.0.0
   build_config: ^1.0.0
   glob: ^2.0.2
