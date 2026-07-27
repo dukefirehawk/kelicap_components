@@ -31,8 +31,9 @@ abstract class DocInfo {
     }
 
     throw FormatException(
-        'Unexpected docType found when constructing a DocInfo from JSON: '
-        '$docType.');
+      'Unexpected docType found when constructing a DocInfo from JSON: '
+      '$docType.',
+    );
   }
 
   Map<String, dynamic> toJson();
@@ -58,16 +59,17 @@ class DartDocInfo implements DocInfo {
   @override
   DocType get docType => DocType.dartDocInfo;
 
-  DartDocInfo(
-      [this.name = '',
-      this.deprecated = false,
-      this.deprecatedMessage = '',
-      this.selector = '',
-      this.exportAs = '',
-      this.path = '',
-      this.comment = '',
-      this.inputs = const [],
-      this.outputs = const []]);
+  DartDocInfo([
+    this.name = '',
+    this.deprecated = false,
+    this.deprecatedMessage = '',
+    this.selector = '',
+    this.exportAs = '',
+    this.path = '',
+    this.comment = '',
+    this.inputs = const [],
+    this.outputs = const [],
+  ]);
 
   /// Constructs a new [DartDocInfo] from a decoded json map.
   DartDocInfo.fromJson(Map<String, dynamic> jsonMap) {
@@ -78,28 +80,32 @@ class DartDocInfo implements DocInfo {
     exportAs = jsonMap['exportAs'] as String? ?? '';
     path = jsonMap['path'] as String? ?? '';
     comment = jsonMap['comment'] as String? ?? '';
-    inputs = (jsonMap['inputs'] as Iterable?)
-            ?.map((element) => DartPropertyInfo.fromJson(element)) ??
+    inputs =
+        (jsonMap['inputs'] as Iterable?)?.map(
+          (element) => DartPropertyInfo.fromJson(element),
+        ) ??
         [];
-    outputs = (jsonMap['outputs'] as Iterable?)
-            ?.map((element) => DartPropertyInfo.fromJson(element)) ??
+    outputs =
+        (jsonMap['outputs'] as Iterable?)?.map(
+          (element) => DartPropertyInfo.fromJson(element),
+        ) ??
         [];
   }
 
   /// Returns a json encodeable representation of this [DartDocInfo].
   @override
   Map<String, dynamic> toJson() => {
-        'docType': docType.toString(),
-        'name': name,
-        'deprecated': deprecated,
-        'deprecatedMessage': deprecatedMessage,
-        'selector': selector,
-        'exportAs': exportAs,
-        'path': path,
-        'comment': comment,
-        'inputs': inputs.map((p) => p.toJson()).toList(),
-        'outputs': outputs.map((p) => p.toJson()).toList(),
-      };
+    'docType': docType.toString(),
+    'name': name,
+    'deprecated': deprecated,
+    'deprecatedMessage': deprecatedMessage,
+    'selector': selector,
+    'exportAs': exportAs,
+    'path': path,
+    'comment': comment,
+    'inputs': inputs.map((p) => p.toJson()).toList(),
+    'outputs': outputs.map((p) => p.toJson()).toList(),
+  };
 }
 
 /// Documentation information for an @Input or @Output property of an Angular
@@ -114,15 +120,16 @@ class DartPropertyInfo {
   bool deprecated = false;
   String deprecatedMessage = '';
 
-  DartPropertyInfo(
-      [this.annotation = '',
-      this.name = '',
-      this.bindingAlias = '',
-      this.type = '',
-      this.comment = '',
-      this.classPath = '',
-      this.deprecated = false,
-      this.deprecatedMessage = '']);
+  DartPropertyInfo([
+    this.annotation = '',
+    this.name = '',
+    this.bindingAlias = '',
+    this.type = '',
+    this.comment = '',
+    this.classPath = '',
+    this.deprecated = false,
+    this.deprecatedMessage = '',
+  ]);
 
   /// Constructs a new [DartPropertyInfo] from a decoded json map.
   DartPropertyInfo.fromJson(Map<String, dynamic> jsonMap) {
@@ -138,15 +145,15 @@ class DartPropertyInfo {
 
   /// Returns a json encodeable representation of this [DartPropertyInfo].
   Map<String, dynamic> toJson() => {
-        'annotation': annotation,
-        'name': name,
-        'bindingAlias': bindingAlias,
-        'type': type,
-        'comment': comment,
-        'classPath': classPath,
-        'deprecated': deprecated,
-        'deprecatedMessage': deprecatedMessage,
-      };
+    'annotation': annotation,
+    'name': name,
+    'bindingAlias': bindingAlias,
+    'type': type,
+    'comment': comment,
+    'classPath': classPath,
+    'deprecated': deprecated,
+    'deprecatedMessage': deprecatedMessage,
+  };
 }
 
 /// Documentation information for a single document, typically a markdown file.
@@ -172,11 +179,11 @@ class MarkdownDocInfo implements DocInfo {
   /// Returns a json encodeable representation of this [MarkdownDocInfo].
   @override
   Map<String, dynamic> toJson() => {
-        'docType': docType.toString(),
-        'name': name,
-        'path': path,
-        'contents': contents,
-      };
+    'docType': docType.toString(),
+    'name': name,
+    'path': path,
+    'contents': contents,
+  };
 }
 
 /// Documentation information for a Sass file listed in an @GallerySectionConfig
@@ -194,35 +201,47 @@ class SassDocInfo implements DocInfo {
   @override
   DocType get docType => DocType.sassDocInfo;
 
-  SassDocInfo(this.name, this.path, this.libraryDoc, this.variables,
-      this.functions, this.mixins);
+  SassDocInfo(
+    this.name,
+    this.path,
+    this.libraryDoc,
+    this.variables,
+    this.functions,
+    this.mixins,
+  );
 
   /// Constructs a new [SassDocInfo] from a decoded json map.
   SassDocInfo.fromJson(Map<String, dynamic> jsonMap)
-      : name = jsonMap['name'] as String? ?? '',
-        path = jsonMap['path'] as String? ?? '',
-        libraryDoc = jsonMap['libraryDoc'] as String? ?? '',
-        variables = (jsonMap['variables'] as Iterable?)
-                ?.map((element) => SassVariableInfo.fromJson(element)) ??
-            [],
-        functions = (jsonMap['functions'] as Iterable?)
-                ?.map((element) => SassCallableInfo.fromJson(element)) ??
-            [],
-        mixins = (jsonMap['mixins'] as Iterable?)
-                ?.map((element) => SassCallableInfo.fromJson(element)) ??
-            [];
+    : name = jsonMap['name'] as String? ?? '',
+      path = jsonMap['path'] as String? ?? '',
+      libraryDoc = jsonMap['libraryDoc'] as String? ?? '',
+      variables =
+          (jsonMap['variables'] as Iterable?)?.map(
+            (element) => SassVariableInfo.fromJson(element),
+          ) ??
+          [],
+      functions =
+          (jsonMap['functions'] as Iterable?)?.map(
+            (element) => SassCallableInfo.fromJson(element),
+          ) ??
+          [],
+      mixins =
+          (jsonMap['mixins'] as Iterable?)?.map(
+            (element) => SassCallableInfo.fromJson(element),
+          ) ??
+          [];
 
   /// Returns a json encodeable representation of this [SassDocInfo].
   @override
   Map<String, dynamic> toJson() => {
-        'docType': docType.toString(),
-        'name': name,
-        'path': path,
-        'libraryDoc': libraryDoc,
-        'variables': variables.map((v) => v.toJson()).toList(),
-        'functions': functions.map((f) => f.toJson()).toList(),
-        'mixins': mixins.map((m) => m.toJson()).toList(),
-      };
+    'docType': docType.toString(),
+    'name': name,
+    'path': path,
+    'libraryDoc': libraryDoc,
+    'variables': variables.map((v) => v.toJson()).toList(),
+    'functions': functions.map((f) => f.toJson()).toList(),
+    'mixins': mixins.map((m) => m.toJson()).toList(),
+  };
 }
 
 /// Documentation information for a Sass variable.
@@ -235,16 +254,16 @@ class SassVariableInfo {
 
   /// Constructs a new [SassVariableInfo] from a decoded json map.
   SassVariableInfo.fromJson(Map<String, dynamic> jsonMap)
-      : name = jsonMap['name'] as String? ?? '',
-        expression = jsonMap['expression'] as String? ?? '',
-        comment = jsonMap['comment'] as String? ?? '';
+    : name = jsonMap['name'] as String? ?? '',
+      expression = jsonMap['expression'] as String? ?? '',
+      comment = jsonMap['comment'] as String? ?? '';
 
   /// Returns a json encodeable representation of this [SassVariableInfo].
   Map<String, dynamic> toJson() => {
-        'name': name,
-        'expression': expression,
-        'comment': comment,
-      };
+    'name': name,
+    'expression': expression,
+    'comment': comment,
+  };
 }
 
 /// Documentation information for a Sass callable (function or mixin).
@@ -258,20 +277,22 @@ class SassCallableInfo {
 
   /// Constructs a new [SassCallableInfo] from a decoded json map.
   SassCallableInfo.fromJson(Map<String, dynamic> jsonMap)
-      : name = jsonMap['name'] as String? ?? '',
-        arguments = (jsonMap['arguments'] as Iterable?)
-                ?.map((element) => SassArgumentInfo.fromJson(element)) ??
-            [],
-        restArgument = jsonMap['restArgument'],
-        comment = jsonMap['comment'] as String? ?? '';
+    : name = jsonMap['name'] as String? ?? '',
+      arguments =
+          (jsonMap['arguments'] as Iterable?)?.map(
+            (element) => SassArgumentInfo.fromJson(element),
+          ) ??
+          [],
+      restArgument = jsonMap['restArgument'],
+      comment = jsonMap['comment'] as String? ?? '';
 
   /// Returns a json encodeable representation of this [SassCallableInfo].
   Map<String, dynamic> toJson() => {
-        'name': name,
-        'arguments': arguments.map((arg) => arg.toJson()).toList(),
-        'restArgument': restArgument,
-        'comment': comment,
-      };
+    'name': name,
+    'arguments': arguments.map((arg) => arg.toJson()).toList(),
+    'restArgument': restArgument,
+    'comment': comment,
+  };
 
   /// A simple signature represtation of this callable.
   ///
@@ -279,9 +300,11 @@ class SassCallableInfo {
   String? get signature {
     if (arguments.isEmpty) return name;
     var args = arguments
-        .map((a) => a.defaultValue.isEmpty
-            ? '\$${a.name}'
-            : '\$${a.name}: ${a.defaultValue}')
+        .map(
+          (a) => a.defaultValue.isEmpty
+              ? '\$${a.name}'
+              : '\$${a.name}: ${a.defaultValue}',
+        )
         .join(', ');
     if (restArgument.isNotEmpty) {
       args = '$args, \$$restArgument...';
@@ -299,12 +322,9 @@ class SassArgumentInfo {
 
   /// Constructs a new [SassArgumentInfo] from a decoded json map.
   SassArgumentInfo.fromJson(Map<String, dynamic> jsonMap)
-      : name = jsonMap['name'] as String? ?? '',
-        defaultValue = jsonMap['defaultValue'] as String? ?? '';
+    : name = jsonMap['name'] as String? ?? '',
+      defaultValue = jsonMap['defaultValue'] as String? ?? '';
 
   /// Returns a json encodeable representation of this [SassArgumentInfo].
-  Map<String, dynamic> toJson() => {
-        'name': name,
-        'defaultValue': defaultValue,
-      };
+  Map<String, dynamic> toJson() => {'name': name, 'defaultValue': defaultValue};
 }

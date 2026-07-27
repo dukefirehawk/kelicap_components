@@ -17,10 +17,14 @@ String g3docMarkdownToHtml(String markdown) {
     G3docLinkSyntax(r'\b(?:b/|bug(?:\s+|/))(\d+)\b', 'http://b/$_sub'),
     // TODO(google) hotlist links.
     G3docLinkSyntax(
-        r'\b(?:changelist\s+|cr/|cl(?:\s+|/))(\d+)\b', 'http://cl/$_sub'),
+      r'\b(?:changelist\s+|cr/|cl(?:\s+|/))(\d+)\b',
+      'http://cl/$_sub',
+    ),
     // TODO(google): o/ links.
     G3docLinkSyntax(
-        '\\b(?:teams|who)/($afterHostName)\\b', 'http://teams/$_sub'),
+      '\\b(?:teams|who)/($afterHostName)\\b',
+      'http://teams/$_sub',
+    ),
     G3docLinkSyntax('\\bg/($afterHostName)\\b', 'http://g/$_sub'),
     // TODO(google): plzr/ links.
     // TODO(google): g3doc/, mdb/ links.
@@ -29,16 +33,20 @@ String g3docMarkdownToHtml(String markdown) {
     WrappedG3docLinkSyntax(r'\b(TODO\()(b/(\d+))(\))', 'http://b/$_sub'),
     WrappedG3docLinkSyntax(r'\b(TODO\()((\d+))(\))', 'http://b/$_sub'),
     WrappedG3docLinkSyntax(
-        '\\b(TODO\\()(($afterHostName))(\\))', 'http://teams/$_sub'),
+      '\\b(TODO\\()(($afterHostName))(\\))',
+      'http://teams/$_sub',
+    ),
     // TODO(google): launch/, ariane/ links.
     // TODO(google): google3/, depot/, java/com/google, javatests/com/google,
     //                 j/c/g, jt/c/g links.
   ];
 
-  return markdownToHtml(markdown,
-      extensionSet: ExtensionSet.gitHubFlavored,
-      inlineSyntaxes: inlineSyntaxes,
-      linkResolver: dartDocLinkResolver);
+  return markdownToHtml(
+    markdown,
+    extensionSet: ExtensionSet.gitHubFlavored,
+    inlineSyntaxes: inlineSyntaxes,
+    linkResolver: dartDocLinkResolver,
+  );
 }
 
 // A substitution string for simple substitution.

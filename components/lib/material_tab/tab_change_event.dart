@@ -20,9 +20,12 @@ class TabChangeEvent {
   final int newSubIndex;
   bool defaultPrevented = false;
 
-  TabChangeEvent(this.oldIndex, this.newIndex,
-      {this.oldSubIndex = noSelectionIndex,
-      this.newSubIndex = noSelectionIndex});
+  TabChangeEvent(
+    this.oldIndex,
+    this.newIndex, {
+    this.oldSubIndex = noSelectionIndex,
+    this.newSubIndex = noSelectionIndex,
+  });
 
   void preventDefault() {
     defaultPrevented = true;

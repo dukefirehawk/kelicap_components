@@ -7,7 +7,7 @@ part of '../../../model/selection/selection_options.dart';
 class _StreamSelectionOptions<T> extends SelectionOptions<T> {
   StreamSubscription? _streamSub;
   _StreamSelectionOptions(Stream<List<OptionGroup<T>>> optionGroupListStream)
-      : super([]) {
+    : super([]) {
     _streamSub = optionGroupListStream.listen(_setOptions);
   }
 

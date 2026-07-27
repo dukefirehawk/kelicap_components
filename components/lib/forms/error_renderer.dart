@@ -12,7 +12,9 @@ ErrorFn replaceErrors(Map<String, String> overrides) =>
     (errors) => _replaceErrorsImpl(overrides, errors!);
 
 Map<String, dynamic> _replaceErrorsImpl(
-    Map<String, String> overrides, Map<String, dynamic> errors) {
+  Map<String, String> overrides,
+  Map<String, dynamic> errors,
+) {
   final result = Map<String, dynamic>.from(errors);
   for (var error in errors.keys) {
     if (overrides.containsKey(error)) result[error] = overrides[error];

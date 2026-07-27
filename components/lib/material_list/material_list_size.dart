@@ -11,6 +11,12 @@ class MaterialListSize {
   static const String medium = 'medium';
   static const String large = 'large';
   static const String xLarge = 'x-large';
-  static List<String> get values =>
-      const <String>[auto, xSmall, small, medium, large, xLarge];
+  static List<String> get values => const <String>[
+    auto,
+    xSmall,
+    small,
+    medium,
+    large,
+    xLarge,
+  ];
 }

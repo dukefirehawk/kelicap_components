@@ -14,8 +14,9 @@ export 'framework_stabilizers.dart' show FrameworkStabilizer, IsStableCallback;
 
 /// Check if the enableTestabilities URL parameter is set to true.
 // We are getting the URL from JS land because Dart's URI.base is more expensive
-final bool testabilitiesEnabled =
-    window.location.href.contains('enableTestabilities');
+final bool testabilitiesEnabled = window.location.href.contains(
+  'enableTestabilities',
+);
 
 /// Interface for Testabilities that frameworks can provide for tests to wait
 /// on the framework to be stable.

@@ -130,7 +130,7 @@ class ReorderListComponent implements OnDestroy {
 
   @ContentChildren(ReorderItemDirective)
   set items(List<ReorderItemDirective> value) {
-    _items = { for (var e in value) e.handleElement : e.element };
+    _items = {for (var e in value) e.handleElement: e.element};
     _refreshItems();
   }
 

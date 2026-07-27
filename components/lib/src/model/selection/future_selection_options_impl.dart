@@ -6,7 +6,7 @@ part of '../../../model/selection/selection_options.dart';
 
 class _FutureSelectionOptions<T> extends SelectionOptions<T> {
   _FutureSelectionOptions(Future<List<OptionGroup<T>>> optionGroupListFuture)
-      : super([]) {
+    : super([]) {
     optionGroupListFuture.then(_setOptions);
   }
 }

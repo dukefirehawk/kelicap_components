@@ -30,6 +30,7 @@ ItemRenderer<T> newCachingItemRenderer<T>(ItemRenderer<T> itemRenderer) {
     }
     return value;
   }
+
   _rendererMarker[cachingItemRenderer] = cachingItemRenderer;
 
   return cachingItemRenderer;

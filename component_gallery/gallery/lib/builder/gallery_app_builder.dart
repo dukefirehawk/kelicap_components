@@ -19,12 +19,13 @@ class GalleryWebBuilder extends Builder {
   final String _sourcecodeUrl;
 
   GalleryWebBuilder(
-      this._direction,
-      this._galleryTitle,
-      this._galleryBindingName,
-      this._galleryBindingImport,
-      this._bugUrl,
-      this._sourcecodeUrl);
+    this._direction,
+    this._galleryTitle,
+    this._galleryBindingName,
+    this._galleryBindingImport,
+    this._bugUrl,
+    this._sourcecodeUrl,
+  );
 
   @override
   Future<void> build(BuildStep buildStep) async {
@@ -36,11 +37,15 @@ class GalleryWebBuilder extends Builder {
   Future<void> _generateIndexHtml(BuildStep buildStep) async {
     final Map<String, String?> mustacheContext = {
       'direction': _direction,
-      'galleryTitle': _galleryTitle
+      'galleryTitle': _galleryTitle,
     };
     final newAssetId = AssetId(buildStep.inputId.package, 'web/index.html');
-    await writeAsset(buildStep, 'lib/builder/template/index.html.mustache',
-        mustacheContext, newAssetId);
+    await writeAsset(
+      buildStep,
+      'lib/builder/template/index.html.mustache',
+      mustacheContext,
+      newAssetId,
+    );
   }
 
   Future<void> _generateMainDart(BuildStep buildStep) async {
@@ -58,20 +63,28 @@ class GalleryWebBuilder extends Builder {
     };
 
     final newAssetId = AssetId(buildStep.inputId.package, 'web/main.dart');
-    await writeAsset(buildStep, 'lib/builder/template/main.dart.mustache',
-        mustacheContext, newAssetId);
+    await writeAsset(
+      buildStep,
+      'lib/builder/template/main.dart.mustache',
+      mustacheContext,
+      newAssetId,
+    );
   }
 
   Future<void> _generateStyleScss(BuildStep buildStep) async {
     final newAssetId = AssetId(buildStep.inputId.package, 'web/style.scss');
     await writeAsset(
-        buildStep, 'lib/builder/template/style.scss.mustache', {}, newAssetId);
+      buildStep,
+      'lib/builder/template/style.scss.mustache',
+      {},
+      newAssetId,
+    );
   }
 
   @override
   Map<String, List<String>> get buildExtensions => {
-        r'$web$': ['index.html', 'main.dart', 'style.scss']
-      };
+    r'$web$': ['index.html', 'main.dart', 'style.scss'],
+  };
 }
 
 /// Generates a home.dart component for the html template.
@@ -81,14 +94,18 @@ class HomeDartBuilder extends Builder {
     final inputId = buildStep.inputId;
     final Map<String, String> mustacheContext = {
       'htmlTemplateUrl':
-          'package:${inputId.package}${inputId.path.replaceFirst('lib', '')}'
+          'package:${inputId.package}${inputId.path.replaceFirst('lib', '')}',
     };
-    await writeAsset(buildStep, 'lib/builder/template/home.dart.mustache',
-        mustacheContext, inputId.changeExtension('.dart'));
+    await writeAsset(
+      buildStep,
+      'lib/builder/template/home.dart.mustache',
+      mustacheContext,
+      inputId.changeExtension('.dart'),
+    );
   }
 
   @override
   Map<String, List<String>> get buildExtensions => {
-        '.html': ['.dart']
-      };
+    '.html': ['.dart'],
+  };
 }

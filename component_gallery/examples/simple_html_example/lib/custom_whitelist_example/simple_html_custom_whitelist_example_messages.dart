@@ -7,19 +7,17 @@ import 'package:intl/intl.dart' show Intl;
 class SimpleHtmlCustomWhitelistExampleMessages {
   const SimpleHtmlCustomWhitelistExampleMessages();
 
-  String _linkTo(link, endLink) =>
-      Intl.message('Visit ${link}this site${link}!',
-          name: 'SimpleHtmlCustomWhitelistExampleMessages_linkTo',
-          desc: 'Example message containing a link to a URI.',
-          args: [
-            link,
-            endLink,
-          ],
-          examples: const {
-            'link': '<a href="https://example.com">',
-            'endLink': '</a>',
-          },
-          skip: true /* Demo code only; remove this line from real usage. */);
+  String _linkTo(link, endLink) => Intl.message(
+    'Visit ${link}this site${link}!',
+    name: 'SimpleHtmlCustomWhitelistExampleMessages_linkTo',
+    desc: 'Example message containing a link to a URI.',
+    args: [link, endLink],
+    examples: const {
+      'link': '<a href="https://example.com">',
+      'endLink': '</a>',
+    },
+    skip: true /* Demo code only; remove this line from real usage. */,
+  );
 
   // If messages involve non-trivial parameter construction, it can be useful
   // to put this method in the messages class itself and keep the message

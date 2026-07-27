@@ -13,14 +13,20 @@ import '../src/template_util.dart';
 class SyntaxHighlightBuilder extends Builder {
   @override
   Future<void> build(BuildStep buildStep) async {
-    final newAssetId =
-        AssetId(buildStep.inputId.package, 'web/syntax_highlight.scss');
-    await writeAsset(buildStep,
-        'lib/builder/template/syntax_highlight.scss.mustache', {}, newAssetId);
+    final newAssetId = AssetId(
+      buildStep.inputId.package,
+      'web/syntax_highlight.scss',
+    );
+    await writeAsset(
+      buildStep,
+      'lib/builder/template/syntax_highlight.scss.mustache',
+      {},
+      newAssetId,
+    );
   }
 
   @override
   Map<String, List<String>> get buildExtensions => {
-        r'$web$': ['syntax_highlight.scss']
-      };
+    r'$web$': ['syntax_highlight.scss'],
+  };
 }

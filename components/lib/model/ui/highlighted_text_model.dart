@@ -9,8 +9,8 @@ import 'package:quiver/core.dart' show hash2;
 
 /// Produces a list of [HighlightedTextSegment] instances for the given [query]
 /// and [value].
-typedef Highlighter<T> = List<HighlightedTextSegment> Function(
-    String query, T? value);
+typedef Highlighter<T> =
+    List<HighlightedTextSegment> Function(String query, T? value);
 
 /// Represents a sub-sequence of a search suggestion, highlighted based on
 /// whether it matches the query string.
@@ -40,8 +40,10 @@ class TextHighlighter {
   final bool caseSensitive;
   final bool matchFromStartOfWord;
 
-  const TextHighlighter(
-      {this.caseSensitive = false, this.matchFromStartOfWord = true});
+  const TextHighlighter({
+    this.caseSensitive = false,
+    this.matchFromStartOfWord = true,
+  });
 
   List<HighlightedTextSegment> highlight(String text, List<String?> tokens) =>
       _applyMarkers(text, getMarkers(text, tokens));
@@ -104,8 +106,9 @@ class TextHighlighter {
 
     void commitSegment({required bool highlight}) {
       if (currentSegment.isEmpty) return;
-      segments
-          .add(HighlightedTextSegment(currentSegment.toString(), highlight));
+      segments.add(
+        HighlightedTextSegment(currentSegment.toString(), highlight),
+      );
       currentSegment.clear();
     }
 

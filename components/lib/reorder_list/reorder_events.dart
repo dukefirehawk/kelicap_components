@@ -18,7 +18,7 @@ class MultiReorderEvent extends ReorderEvent {
   final List<int> sourceIndexes;
 
   MultiReorderEvent(this.sourceIndexes, int destIndex)
-      : super(sourceIndexes[0], destIndex);
+    : super(sourceIndexes[0], destIndex);
 }
 
 /// An event to represent each selection change.
@@ -27,5 +27,5 @@ class ItemSelectionEvent {
   final List<int> selectedIndexes;
 
   ItemSelectionEvent(List<int> indexes)
-      : selectedIndexes = List<int>.unmodifiable(indexes);
+    : selectedIndexes = List<int>.unmodifiable(indexes);
 }

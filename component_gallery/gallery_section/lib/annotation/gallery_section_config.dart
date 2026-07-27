@@ -19,7 +19,7 @@ class GallerySectionConfig {
   ///
   /// Specify docs in the order that they should be displayed. Asset id must be
   /// a String of the form 'package|path/to/asset.md'.
-  final List<dynamic /* Type | Function | String*/ >? docs;
+  final List<dynamic /* Type | Function | String*/>? docs;
 
   /// A list of example component classes to include in the section.
   ///
@@ -45,14 +45,15 @@ class GallerySectionConfig {
   /// should be displayed.
   final bool? showGeneratedDocs;
 
-  const GallerySectionConfig(
-      {this.displayName,
-      this.group,
-      this.docs,
-      this.demos,
-      this.mainDemo,
-      this.owners,
-      this.uxOwners,
-      this.relatedUrls,
-      this.showGeneratedDocs});
+  const GallerySectionConfig({
+    this.displayName,
+    this.group,
+    this.docs,
+    this.demos,
+    this.mainDemo,
+    this.owners,
+    this.uxOwners,
+    this.relatedUrls,
+    this.showGeneratedDocs,
+  });
 }

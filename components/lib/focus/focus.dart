@@ -160,6 +160,7 @@ class FocusMoveEvent {
     void preventDefaultFn() {
       kbEvent.preventDefault();
     }
+
     if (_isHomeKey(keyCode)) {
       return FocusMoveEvent.homeKey(item, preventDefaultFn);
     }

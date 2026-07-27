@@ -804,26 +804,28 @@ const linkVisited = deepPurple500;
 const linkActive = red700;
 
 /// A list of all material colors.
-final materialColors = Map<String, Color>.unmodifiable({}
-  ..addAll(reds)
-  ..addAll(pinks)
-  ..addAll(purples)
-  ..addAll(deepPurples)
-  ..addAll(indigos)
-  ..addAll(blues)
-  ..addAll(lightBlues)
-  ..addAll(cyans)
-  ..addAll(teals)
-  ..addAll(greens)
-  ..addAll(lightGreens)
-  ..addAll(limes)
-  ..addAll(yellows)
-  ..addAll(oranges)
-  ..addAll(deepOranges)
-  ..addAll(browns)
-  ..addAll(greys)
-  ..addAll(blueGreys)
-  ..addAll(ambers));
+final materialColors = Map<String, Color>.unmodifiable(
+  {}
+    ..addAll(reds)
+    ..addAll(pinks)
+    ..addAll(purples)
+    ..addAll(deepPurples)
+    ..addAll(indigos)
+    ..addAll(blues)
+    ..addAll(lightBlues)
+    ..addAll(cyans)
+    ..addAll(teals)
+    ..addAll(greens)
+    ..addAll(lightGreens)
+    ..addAll(limes)
+    ..addAll(yellows)
+    ..addAll(oranges)
+    ..addAll(deepOranges)
+    ..addAll(browns)
+    ..addAll(greys)
+    ..addAll(blueGreys)
+    ..addAll(ambers),
+);
 
 /// Find the name of the closest Material Color given the [searchColor] color.
 String closestMaterialColorName(Color searchColor) {

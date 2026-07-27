@@ -77,8 +77,7 @@ class MaterialProgressComponent implements AfterViewInit, OnDestroy {
   bool get useFallbackAnimation =>
       indeterminate && (!_useFancyAnimation || !supportsAnimationApi);
 
-  String? get ariaValueNow =>
-      indeterminate == true ? null : '$activeProgress';
+  String? get ariaValueNow => indeterminate == true ? null : '$activeProgress';
 
   String get ariaValue =>
       indeterminate ? _loadingValue : _activeProgressValue(activeProgress);

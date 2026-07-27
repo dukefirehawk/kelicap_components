@@ -2,7 +2,6 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-
 import 'package:observable/observable.dart';
 
 /// Describes an entity and its previous location (or marking it as a new one).
@@ -88,8 +87,10 @@ class _ObservedListDiff<T> implements ListDiff<T> {
       for (int i = 0; i < record.removed.length; i++) {
         var entity = record.removed[i] as T;
         assert(!removed.containsKey(entity));
-        removed[entity] =
-            DiffEntry<T>.oldEntry(entity, record.index + offset + i);
+        removed[entity] = DiffEntry<T>.oldEntry(
+          entity,
+          record.index + offset + i,
+        );
       }
       offset += record.removed.length;
       for (int i = 0; i < record.addedCount; i++) {
@@ -101,8 +102,9 @@ class _ObservedListDiff<T> implements ListDiff<T> {
       offset -= record.addedCount;
     }
     for (int i = entries!.length; i < event.last.object.length; i++) {
-      entries!
-          .add(DiffEntry<T>.oldEntry(event.last.object[i] as T, i + offset));
+      entries!.add(
+        DiffEntry<T>.oldEntry(event.last.object[i] as T, i + offset),
+      );
     }
     if (removed.isNotEmpty) {
       for (int i = 0; i < entries!.length; i++) {

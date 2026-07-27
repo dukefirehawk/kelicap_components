@@ -15,11 +15,12 @@ class _MultiSelectionModelImpl<T> extends PropertyChangeNotifier
   final LinkedHashSet<T> selectedValues;
 
   _MultiSelectionModelImpl(
-      Iterable<T> initialSelection, KeyProvider<T> keyProvider)
-      : selectedValues = LinkedHashSet<T>(
-            equals: (a, b) => keyProvider(a) == keyProvider(b),
-            hashCode: (o) => keyProvider(o).hashCode)
-          ..addAll(initialSelection);
+    Iterable<T> initialSelection,
+    KeyProvider<T> keyProvider,
+  ) : selectedValues = LinkedHashSet<T>(
+        equals: (a, b) => keyProvider(a) == keyProvider(b),
+        hashCode: (o) => keyProvider(o).hashCode,
+      )..addAll(initialSelection);
 
   @override
   void clear() {

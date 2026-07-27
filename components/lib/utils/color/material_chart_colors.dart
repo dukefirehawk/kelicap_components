@@ -18,5 +18,5 @@ const chartingPalette = [
   indigo400,
   pink300,
   teal700,
-  pink700
+  pink700,
 ];

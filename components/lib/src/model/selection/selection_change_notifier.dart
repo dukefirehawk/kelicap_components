@@ -33,7 +33,8 @@ abstract mixin class SelectionChangeNotifier<T> implements SelectionModel<T> {
         _selectionChangeRecords!.isNotEmpty) {
       //if (hasSelectionObservers) {
       var records = UnmodifiableListView<SelectionChangeRecord<T>>(
-          _selectionChangeRecords!);
+        _selectionChangeRecords!,
+      );
       _selectionChangeRecords = null;
       if (_selectionChangeController != null) {
         _selectionChangeController!.add(records);
@@ -45,8 +46,10 @@ abstract mixin class SelectionChangeNotifier<T> implements SelectionModel<T> {
   }
 
   @override
-  void notifySelectionChange(
-      {Iterable<T> added = const [], Iterable<T> removed = const []}) {
+  void notifySelectionChange({
+    Iterable<T> added = const [],
+    Iterable<T> removed = const [],
+  }) {
     if (hasSelectionObservers) {
       var record = SelectionChangeRecord<T>(added: added, removed: removed);
       if (_selectionChangeRecords == null) {
@@ -68,7 +71,8 @@ abstract mixin class SelectionChangeNotifier<T> implements SelectionModel<T> {
     if (_selectionChangeController == null) {
       _selectionChangeController =
           StreamController<List<SelectionChangeRecord<T>>>.broadcast(
-              sync: true);
+            sync: true,
+          );
     }
     return _selectionChangeController!.stream;
   }
@@ -83,8 +87,10 @@ class _SelectionChangeRecordImpl<T> extends ChangeRecord
   @override
   final Iterable<T> removed;
 
-  factory _SelectionChangeRecordImpl(
-      {Iterable<T> added = const [], Iterable<T> removed = const []}) {
+  factory _SelectionChangeRecordImpl({
+    Iterable<T> added = const [],
+    Iterable<T> removed = const [],
+  }) {
     var localAdded = UnmodifiableListView(added);
     var localRemoved = UnmodifiableListView(removed);
     /*
