@@ -1,0 +1,46 @@
+name: kelicap_component_example
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: '>=3.12.0 <4.0.0'
+
+resolution: workspace
+
+dependencies:
+  kelicap: ^1.0.0
+  kelicap_components: ^1.0.0
+  kelicap_gallery: ^1.0.0
+  app_layout_example: ^1.0.0
+  build_config: ^1.0.0
+  material_button_example: ^1.0.0
+  material_card_example: ^1.0.0
+  material_checkbox_example: ^1.0.0
+  material_chips_example: ^1.0.0
+  material_datepicker_example: ^1.0.0
+  material_dialog_example: ^1.0.0
+  material_expansionpanel_example: ^1.0.0
+  material_icon_example: ^1.0.0
+  material_input_example: ^1.0.0
+  material_list_example: ^1.0.0
+  material_menu_example: ^1.0.0
+  material_popup_example: ^1.0.0
+  material_progress_example: ^1.0.0
+  material_radio_example: ^1.0.0
+  material_select_example: ^1.0.0
+  material_slider_example: ^1.0.0
+  material_spinner_example: ^1.0.0
+  material_stepper_example: ^1.0.0
+  material_tab_example: ^1.0.0
+  material_toggle_example: ^1.0.0
+  material_tooltip_example: ^1.0.0
+  material_tree_example: ^1.0.0
+  material_yes_no_buttons_example: ^1.0.0
+  simple_html_example: ^1.0.0
+  scorecard_example: ^1.0.0
+
+dev_dependencies:
+  build_runner: ^2.1.4
+  build_web_compilers: ^4.0.0
+
+    

@@ -9,8 +9,34 @@ workspace:
   - components
   - component_gallery/gallery
   - component_gallery/gallery_section
+  - component_gallery/kelicap_components_example
+  - component_gallery/examples/app_layout_example
+  - component_gallery/examples/material_button_example
+  - component_gallery/examples/material_card_example
+  - component_gallery/examples/material_checkbox_example
+  - component_gallery/examples/material_chips_example
+  - component_gallery/examples/material_datepicker_example
+  - component_gallery/examples/material_dialog_example
+  - component_gallery/examples/material_expansionpanel_example
+  - component_gallery/examples/material_icon_example
+  - component_gallery/examples/material_input_example
+  - component_gallery/examples/material_list_example
+  - component_gallery/examples/material_menu_example
+  - component_gallery/examples/material_popup_example
+  - component_gallery/examples/material_progress_example
+  - component_gallery/examples/material_radio_example
+  - component_gallery/examples/material_select_example
+  - component_gallery/examples/material_slider_example
+  - component_gallery/examples/material_spinner_example
+  - component_gallery/examples/material_stepper_example
+  - component_gallery/examples/material_tab_example
+  - component_gallery/examples/material_toggle_example
+  - component_gallery/examples/material_tooltip_example
+  - component_gallery/examples/material_tree_example
+  - component_gallery/examples/material_yes_no_buttons_example
+  - component_gallery/examples/simple_html_example
+  - component_gallery/examples/scorecard_example
 
-  
 dev_dependencies:
   melos: ^8.0.0
   lints: ^6.0.0
