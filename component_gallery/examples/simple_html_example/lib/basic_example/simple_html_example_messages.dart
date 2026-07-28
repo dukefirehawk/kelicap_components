@@ -8,12 +8,12 @@ class SimpleHtmlExampleMessages {
   const SimpleHtmlExampleMessages();
 
   String messageWithFormatting([
-    bold = '<b>',
-    endBold = '</b>',
-    highlight = '<span class="highlight">',
-    endHighlight = '</span>',
+    String bold = '<b>',
+    String endBold = '</b>',
+    String highlight = '<span class="highlight">',
+    String endHighlight = '</span>',
   ]) => Intl.message(
-    'I ${bold}love${endBold} using ${highlight}HTML${endHighlight}.',
+    'I ${bold}love$endBold using ${highlight}HTML$endHighlight.',
     name: 'SimpleHtmlExampleMessages_messageWithFormatting',
     desc: 'Example message describing using of HTML.',
     args: [bold, endBold, highlight, endHighlight],
@@ -27,10 +27,10 @@ class SimpleHtmlExampleMessages {
   );
 
   String messageWithLink([
-    link = '<a href="localpage.html?param=1#test_fragment">',
-    endLink = '</a>',
+    String link = '<a href="localpage.html?param=1#test_fragment">',
+    String endLink = '</a>',
   ]) => Intl.message(
-    'Please consult our ${link}docs${endLink}.',
+    'Please consult our ${link}docs$endLink.',
     name: 'SimpleHtmlExampleMessages_messageLink',
     desc: 'Example message containing a link to same-origin page.',
     args: [link, endLink],
@@ -39,11 +39,11 @@ class SimpleHtmlExampleMessages {
   );
 
   String messageWithLinkInNewTab([
-    link =
+    String link =
         '<a href="localpage.html?param=1#test_fragment" target="_blank" rel="noopener">',
-    endLink = '</a>',
+    String endLink = '</a>',
   ]) => Intl.message(
-    'Alternatively, open our ${link}docs${endLink} in a new window.',
+    'Alternatively, open our ${link}docs$endLink in a new window.',
     name: 'SimpleHtmlExampleMessages_messageWithLinkInNewTab',
     desc:
         'Example message containing a link to a same-origin page that '
@@ -54,10 +54,10 @@ class SimpleHtmlExampleMessages {
   );
 
   String messageWithDisallowedLink([
-    link = '<a href="https://hecuba.org">',
-    endLink = '</a>',
+    String link = '<a href="https://hecuba.org">',
+    String endLink = '</a>',
   ]) => Intl.message(
-    'Please consult my ${link}suspicious website${endLink}.',
+    'Please consult my ${link}suspicious website$endLink.',
     name: 'SimpleHtmlExampleMessages_messageWithDisallowedHtml',
     desc: 'Example message containing a link to an untrusted site.',
     args: [link, endLink],
@@ -70,7 +70,7 @@ class SimpleHtmlExampleMessages {
     link = '<a class="trigger">',
     endLink = '</a>',
   ]) => Intl.message(
-    'You ${link}clicked here${endLink} $clickCount times.',
+    'You ${link}clicked here$endLink $clickCount times.',
     name: 'SimpleHtmlExampleMessages_messageWithClickHandler',
     desc: 'Example message containing a parameter',
     args: [clickCount, link, endLink],
@@ -79,24 +79,24 @@ class SimpleHtmlExampleMessages {
   );
 
   String blockMessage([
-    bold = '<b>',
-    endBold = '</b>',
-    startList = '<ul>',
-    endList = '</ul>',
-    startListElement = '<li>',
-    endListElement = '</li>',
+    String bold = '<b>',
+    String endBold = '</b>',
+    String startList = '<ul>',
+    String endList = '</ul>',
+    String startListElement = '<li>',
+    String endListElement = '</li>',
   ]) => Intl.message(
     '''
             A list!
 
-            ${startList}
-              ${startListElement}
-                Here's an ${bold}element${endBold}.
-              ${endListElement}
-              ${startListElement}
-                And here\'s another.
-              ${endListElement}
-            ${endList}
+            $startList
+              $startListElement
+                Here's an ${bold}element$endBold.
+              $endListElement
+              $startListElement
+                And here's another.
+              $endListElement
+            $endList
 
             And that's the end of the list.''',
     name: 'SimpleHtmlExampleMessages_blockMessage',

@@ -7,7 +7,6 @@ import 'package:kelicap_components/material_tree/material_tree.dart';
 import 'material_tree_demo_options.dart' as data;
 import 'package:kelicap_components/model/selection/selection_model.dart';
 import 'package:kelicap_components/model/selection/selection_options.dart';
-import 'package:kelicap_components/model/ui/has_renderer.dart';
 
 /// An example that renders a [MaterialTreeComponent] with nested options.
 ///
@@ -54,9 +53,9 @@ class MaterialTreeNestedExpandDemoComponent {
   final SelectionOptions<data.CategoryNode> nestedOptions = data
       .expandStateOptions();
   final multiSelection = SelectionModel<data.CategoryNode>.multi();
-  final ItemRenderer<data.CategoryNode> nameRenderer = (node) => node.name;
+  String? nameRenderer(dynamic node) => node?.name;
 
-  String? itemRenderer(item) => nameRenderer(item);
+  String? itemRenderer(Object? item) => nameRenderer(item);
 
   @ViewChild(MaterialTreeComponent)
   MaterialTreeComponent? materialTree;

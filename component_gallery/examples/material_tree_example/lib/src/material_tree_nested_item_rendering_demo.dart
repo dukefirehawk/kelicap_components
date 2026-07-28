@@ -45,7 +45,7 @@ class MaterialTreeNestedItemRenderingComponent {
   ItemRenderer<String> sampleItemRenderer = (String movieTitle) =>
       movieTitle.toUpperCase();
 
-  String? itemRenderer(item) => sampleItemRenderer(item);
+  String? itemRenderer(String item) => sampleItemRenderer(item);
 
   @ViewChild(MaterialTreeComponent)
   MaterialTreeComponent? materialTree;

@@ -2,7 +2,8 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:kelicap_components/src/material_tree/material_tree_expand_state.dart';
+//import 'package:kelicap_components/src/material_tree/material_tree_expand_state.dart';
+import 'package:kelicap_components/material_tree/material_tree.dart';
 import 'package:kelicap_components/model/selection/select.dart';
 import 'package:kelicap_components/model/selection/selection_options.dart';
 import 'package:kelicap_components/model/selection/string_selection_options.dart';
@@ -94,8 +95,7 @@ class _NestedSelectionOptions<T> extends SelectionOptions<T>
     implements Parent<T, List<OptionGroup<T>>> {
   final Map<T, List<OptionGroup<T>>> _children;
 
-  _NestedSelectionOptions(List<OptionGroup<T>> options, this._children)
-    : super(options);
+  _NestedSelectionOptions(super.options, this._children);
 
   @override
   bool hasChildren(T item) => _children.containsKey(item);
@@ -174,13 +174,12 @@ class Category {
 
 class CategoryNode extends Category with MaterialTreeExpandState {
   List<CategoryNode> children;
-  CategoryNode(String name, this.children) : super(name);
+  CategoryNode(super.name, this.children);
 }
 
 class NestedCategoryOptions extends SelectionOptions<CategoryNode>
     implements Parent<CategoryNode, List<OptionGroup<CategoryNode>>> {
-  NestedCategoryOptions(List<OptionGroup<CategoryNode>> options)
-    : super(options);
+  NestedCategoryOptions(super.options);
   @override
   DisposableFuture<List<OptionGroup<CategoryNode>>> childrenOf(
     CategoryNode parent, [

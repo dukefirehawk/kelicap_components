@@ -214,7 +214,7 @@ class ExampleLabelRendererComponent implements RendersValue {
 
 class ExampleSelectionOptions extends StringSelectionOptions<List<int>>
     implements Selectable<List<int>> {
-  ExampleSelectionOptions(List<List<int>> options) : super(options);
+  ExampleSelectionOptions(super.options);
   ExampleSelectionOptions.withOptionGroups(
     List<OptionGroup> optionGroups, {
     ItemRenderer<List<int>>? toFilterableString,

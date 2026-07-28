@@ -116,7 +116,7 @@ class MaterialDropdownSelectFullDemoComponent {
     RelativePosition.AdjacentBottomRight,
   ];
 
-  static final ItemRenderer _displayNameRenderer = (item) =>
+  static String? _displayNameRenderer(Object? item) =>
       (item as HasUIDisplayName).uiDisplayName;
 
   // Specifying an itemRenderer avoids the selected item from knowing how to
@@ -330,11 +330,8 @@ class ExampleLabelRendererComponent implements RendersValue<OptionGroup> {
 /// toFilterableString parameter must be passed to StringSelectionOptions.
 class ExampleSelectionOptions extends StringSelectionOptions<Language>
     implements Selectable<Language> {
-  ExampleSelectionOptions(List<Language> options)
-    : super(
-        options,
-        toFilterableString: (Language option) => option.toString(),
-      );
+  ExampleSelectionOptions(super.options)
+    : super(toFilterableString: (Language option) => option.toString());
   ExampleSelectionOptions.withOptionGroups(List<OptionGroup> optionGroups)
     : super.withOptionGroups(
         optionGroups as List<OptionGroup<Language>>,

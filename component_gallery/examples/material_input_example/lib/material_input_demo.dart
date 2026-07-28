@@ -102,7 +102,7 @@ class MaterialInputDemoComponent {
       // add a secondary validator that prevents 'def' (to
       // illustrate that validators can come from multiple
       // sources, and all will be used)
-      (TextValidator()..text = 'def'),
+      ((TextValidator()..text = 'def').call),
     );
   }
 

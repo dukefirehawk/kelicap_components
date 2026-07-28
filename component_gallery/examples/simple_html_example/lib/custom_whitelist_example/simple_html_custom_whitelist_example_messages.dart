@@ -7,8 +7,8 @@ import 'package:intl/intl.dart' show Intl;
 class SimpleHtmlCustomWhitelistExampleMessages {
   const SimpleHtmlCustomWhitelistExampleMessages();
 
-  String _linkTo(link, endLink) => Intl.message(
-    'Visit ${link}this site${link}!',
+  String _linkTo(String link, String endLink) => Intl.message(
+    'Visit ${link}this site$endLink!',
     name: 'SimpleHtmlCustomWhitelistExampleMessages_linkTo',
     desc: 'Example message containing a link to a URI.',
     args: [link, endLink],

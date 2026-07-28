@@ -31,9 +31,9 @@ class MaterialListDemoComponent {
       ? 'red'
       : colorSelection.selectedValues.first;
 
-  SelectionModel<dynamic> itemSelection = SelectionModel.multi();
+  SelectionModel<Object?> itemSelection = SelectionModel.multi();
 
-  void toggleItem(key) {
+  void toggleItem(Object? key) {
     if (itemSelection.isSelected(key)) {
       itemSelection.deselect(key);
     } else {

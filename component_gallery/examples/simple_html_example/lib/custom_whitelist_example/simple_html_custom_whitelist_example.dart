@@ -44,5 +44,5 @@ class SimpleHtmlCustomWhitelistExampleComponent {
   /// Message linking to a URI that cannot be whitelisted in any way due to
   /// its schema.
   String get linkToJavaScriptUriNeverPermitted =>
-      messages.linkTo("javascript:alert(\'!\')");
+      messages.linkTo("javascript:alert('!')");
 }
