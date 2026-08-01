@@ -4,7 +4,7 @@
 
 import 'dart:async';
 
-import 'package:observable/observable.dart';
+import 'package:kelicap_observable/kelicap_observable.dart';
 import 'package:quiver/core.dart';
 import 'package:kelicap_components/laminate/enums/alignment.dart';
 import 'package:kelicap_components/src/laminate/popup/popup_source.dart';

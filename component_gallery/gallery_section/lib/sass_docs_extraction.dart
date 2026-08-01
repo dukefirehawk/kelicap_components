@@ -4,6 +4,7 @@
 
 import 'package:build/build.dart';
 import 'package:collection/collection.dart' show IterableExtension;
+// ignore: implementation_imports
 import 'package:sass/src/ast/sass.dart';
 import 'package:kelicap_gallery_section/g3doc_markdown.dart';
 import 'package:kelicap_gallery_section/components/gallery_component/documentation_info.dart';

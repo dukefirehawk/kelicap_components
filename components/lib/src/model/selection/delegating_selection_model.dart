@@ -4,7 +4,7 @@
 
 import 'dart:async';
 
-import 'package:observable/observable.dart';
+import 'package:kelicap_observable/kelicap_observable.dart';
 import 'package:kelicap_components/model/selection/selection_model.dart';
 
 /// A delegating implementation of [SelectionModel].

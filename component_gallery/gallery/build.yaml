@@ -3,7 +3,7 @@ targets:
     builders:
       kelicap_components|scss_builder:
         enabled: True
-      ngdart|ngdart:
+      kelicap|kelicap:
         generate_for:
           exclude: ["lib/**"]
 

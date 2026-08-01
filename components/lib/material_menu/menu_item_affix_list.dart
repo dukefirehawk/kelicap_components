@@ -9,7 +9,7 @@ import 'package:kelicap_components/dynamic_component/dynamic_component.dart';
 import 'package:kelicap_components/interfaces/has_disabled.dart';
 import 'package:kelicap_components/material_menu/affix/base_affix.dart';
 import 'package:kelicap_components/model/menu/menu_item_affix.dart';
-import 'package:observable/observable.dart';
+import 'package:kelicap_observable/kelicap_observable.dart';
 
 /// Renders the list of menu item affixes.
 ///

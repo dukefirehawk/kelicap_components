@@ -5,7 +5,7 @@
 import 'dart:async';
 
 import 'package:built_collection/built_collection.dart';
-import 'package:observable/observable.dart';
+import 'package:kelicap_observable/kelicap_observable.dart';
 import 'package:quiver/strings.dart' show isNotEmpty;
 import 'package:kelicap_components/model/a11y/active_item.dart';
 import 'package:kelicap_components/model/collection/combined_list.dart';

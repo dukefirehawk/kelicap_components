@@ -6,7 +6,7 @@ import 'dart:async';
 import 'dart:collection';
 
 import 'package:kelicap_components/utils/disposer/disposer.dart';
-import 'package:observable/observable.dart';
+import 'package:kelicap_observable/kelicap_observable.dart';
 
 class LazyListTracker<S, T> extends Object
     with ListMixin<T>

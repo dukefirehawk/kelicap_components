@@ -16,7 +16,7 @@ import 'package:kelicap_components/model/selection/select.dart';
 import 'package:kelicap_components/model/selection/selection_model.dart';
 import 'package:kelicap_components/model/ui/icon.dart';
 import 'package:kelicap_components/utils/disposer/disposer.dart';
-import 'package:observable/observable.dart';
+import 'package:kelicap_observable/kelicap_observable.dart';
 import 'package:web/web.dart';
 
 @Component(

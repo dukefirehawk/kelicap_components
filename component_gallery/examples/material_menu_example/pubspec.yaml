@@ -13,5 +13,5 @@ dependencies:
   kelicap_gallery: ^1.0.0
   kelicap_gallery_section: ^1.0.0
   build_config: ^1.0.0
-  observable: ^0.24.0
+  kelicap_observable: ^1.0.0
   web: ^1.0.0

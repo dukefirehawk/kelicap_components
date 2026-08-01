@@ -2,7 +2,7 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:observable/observable.dart';
+import 'package:kelicap_observable/kelicap_observable.dart';
 
 /// Describes an entity and its previous location (or marking it as a new one).
 class DiffEntry<T> {

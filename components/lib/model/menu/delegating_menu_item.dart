@@ -3,7 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:built_collection/built_collection.dart';
-import 'package:observable/observable.dart';
+import 'package:kelicap_observable/kelicap_observable.dart';
 import 'package:kelicap_components/model/menu/menu.dart';
 import 'package:kelicap_components/model/ui/icon.dart';
 

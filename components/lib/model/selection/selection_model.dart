@@ -7,7 +7,7 @@ library;
 import 'dart:async';
 import 'dart:collection';
 
-import 'package:observable/observable.dart';
+import 'package:kelicap_observable/kelicap_observable.dart';
 
 import 'package:kelicap_components/src/model/selection/radio_group_single_selection_model.dart';
 

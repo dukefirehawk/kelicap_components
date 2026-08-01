@@ -21,7 +21,7 @@ dependencies:
   web: ^1.0.0
   logging: ^1.0.2
   meta: ^1.0.4
-  observable: ^0.24.0
+  kelicap_observable: ^1.0.0
   protobuf: ^6.0.0
   quiver: ^3.0.1
   sass_builder: ^2.4.0+1

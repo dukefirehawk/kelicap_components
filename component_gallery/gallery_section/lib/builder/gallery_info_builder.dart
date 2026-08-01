@@ -368,10 +368,13 @@ class GalleryInfoBuilder extends Builder {
   /// as reachable from [rootLibrary].
   LibraryElement? _getLibrary(String name, LibraryElement rootLibrary) {
     //var result = rootLibrary.scope.lookup(name).getter;
-    var result = rootLibrary.exportNamespace.get2(name);
+    // var result = rootLibrary.exportNamespace.get2(name);
+    var result = rootLibrary.library.getters.firstWhere(
+      (element) => element.name == name,
+    );
 
     if (result == null) {
-      throw 'Error: Failed to locatnamee a library containing $name.';
+      throw 'Error: Failed to locate a library containing $name.';
     }
 
     return result.library;
