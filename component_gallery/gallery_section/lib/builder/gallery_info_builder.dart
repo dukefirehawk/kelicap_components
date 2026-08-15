@@ -373,10 +373,6 @@ class GalleryInfoBuilder extends Builder {
       (element) => element.name == name,
     );
 
-    if (result == null) {
-      throw 'Error: Failed to locate a library containing $name.';
-    }
-
     return result.library;
   }
 }
