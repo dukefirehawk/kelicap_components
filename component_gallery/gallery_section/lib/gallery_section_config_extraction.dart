@@ -17,9 +17,9 @@ import 'src/common_extractors.dart';
 Future<Iterable<ConfigInfo>?> extractGallerySectionConfigs(
   AssetId assetId,
   AssetReader assetReader,
-) async => parseString(
-  content: await assetReader.readAsString(assetId),
-).unit.accept(GallerySectionConfigExtraction());
+) async =>
+    parseString(content: await assetReader.readAsString(assetId)).unit
+        .accept(GallerySectionConfigExtraction());
 
 /// [AstVisitor] to extract multiple @GallerySectionConfig annotations, and
 /// the parameters they are constructed with.

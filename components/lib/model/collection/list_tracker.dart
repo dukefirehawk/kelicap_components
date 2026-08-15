@@ -225,9 +225,11 @@ class LazyListTracker<S, T> extends Object
       if (_onInsertBackpass != null) {
         for (; end >= 0; end--) {
           int index = record.index + end;
-          T? object =
-              _onInsertBackpass(index, record.object[index], _target![index])
-                  as T?;
+          T? object = _onInsertBackpass(
+            index,
+            record.object[index],
+            _target![index],
+          ) as T?;
           if (object == null) {
             break;
           } else {

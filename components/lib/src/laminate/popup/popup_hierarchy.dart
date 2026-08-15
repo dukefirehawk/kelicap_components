@@ -3,7 +3,9 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'dart:async';
+
 import 'package:web/web.dart';
+
 import 'dart:js_interop';
 
 import 'package:kelicap/kelicap.dart';
@@ -48,9 +50,9 @@ class PopupHierarchy {
     _triggerListener ??= events
         .triggersOutsideAny((node) => false)
         .listen(_onTrigger);
-    _keyUpListener ??= EventStreamProvider<KeyboardEvent>(
-      'keyup',
-    ).forTarget(document).listen(_onKeyUp);
+    _keyUpListener ??= EventStreamProvider<KeyboardEvent>('keyup')
+        .forTarget(document)
+        .listen(_onKeyUp);
   }
 
   void _disposeListeners() {

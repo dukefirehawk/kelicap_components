@@ -41,9 +41,9 @@ class TreeSelectionOptions<T> extends SelectionOptions<T>
        ),
        super(const []) {
     _comparator = comparator ?? _defaultComparator;
-    _parentToChildrenMap =
-        _generateParentToChildrenMap(listOfOptions)
-            as Map<T, List<OptionGroup<T>>>;
+    _parentToChildrenMap = _generateParentToChildrenMap(
+      listOfOptions,
+    ) as Map<T, List<OptionGroup<T>>>;
 
     /// Sets the actual options to start from.
     optionGroups = _parentToChildrenMap.remove(null) ?? [OptionGroup<T>([])];

@@ -98,9 +98,9 @@ class MaterialTooltipDirective extends TooltipTarget
     }
     if (isHammerLoaded()) {
       _disposer.addStreamSubscription(
-        EventStreamProvider<Event>(
-          'press',
-        ).forTarget(element).listen(handleLongPress),
+        EventStreamProvider<Event>('press')
+            .forTarget(element)
+            .listen(handleLongPress),
       );
       _disposer.addStreamSubscription(element.onTouchEnd.listen(endLongPress));
     }

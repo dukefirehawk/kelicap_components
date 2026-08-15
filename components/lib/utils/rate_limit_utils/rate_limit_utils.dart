@@ -11,8 +11,10 @@ typedef DebouncedNullaryFunction = Future Function();
 
 /// A function that rate-limits a delegate function. Helper typedef for
 /// consumers.
-typedef RateLimitStrategy<T> =
-    UnaryFunction<T> Function(UnaryFunction<T> delegate, Duration duration);
+typedef RateLimitStrategy<T> = UnaryFunction<T> Function(
+  UnaryFunction<T> delegate,
+  Duration duration,
+);
 
 /// Returns a wrapper function that, when called with x, executes delegate(x)
 /// [delay] from now iff there is no other call to the wrapper between now and

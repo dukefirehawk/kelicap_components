@@ -13,6 +13,7 @@ import 'package:kelicap_gallery_section/visitors/path_utils.dart' as path_utils;
 import 'package:build/build.dart';
 
 import 'package:collection/collection.dart' show IterableExtension;
+
 import 'src/common_extractors.dart';
 
 /// Extracts a [DartDocInfo] from [assetId] for the identifier [name].
@@ -22,8 +23,8 @@ Future<DartDocInfo?> extractDocumentation(
   String name,
   AssetId assetId,
   AssetReader assetReader,
-) async =>
-    parseString(content: await assetReader.readAsString(assetId)).unit.accept(
+) async => parseString(content: await assetReader.readAsString(assetId)).unit
+    .accept(
       GalleryDocumentationExtraction(
         name,
         path_utils.assetToPath(assetId.toString()),

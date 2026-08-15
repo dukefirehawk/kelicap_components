@@ -8,6 +8,7 @@ library;
 import 'dart:async';
 import 'dart:js_interop';
 import 'dart:math';
+
 import 'package:web/web.dart';
 
 import 'package:kelicap_components/utils/browser/feature_detector/feature_detector.dart';

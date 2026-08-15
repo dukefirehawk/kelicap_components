@@ -4,6 +4,7 @@
 
 import 'dart:async';
 import 'dart:js_interop';
+
 import 'package:web/web.dart';
 
 import 'package:kelicap/kelicap.dart';
@@ -529,11 +530,9 @@ class MaterialCalendarPickerComponent
       start.classList.add('start');
     } else if (startMonth < _renderedMonths.first &&
         endMonth >= _renderedMonths.first) {
-      start =
-          _container!.querySelector(
-                '.month:first-of-type .day-slot:first-of-type',
-              )
-              as HTMLElement?;
+      start = _container!.querySelector(
+        '.month:first-of-type .day-slot:first-of-type',
+      ) as HTMLElement?;
     }
 
     if (endMonth >= _renderedMonths.first && endMonth <= _renderedMonths.last) {
@@ -544,11 +543,9 @@ class MaterialCalendarPickerComponent
       end.classList.add('end');
     } else if (startMonth <= _renderedMonths.last &&
         endMonth > _renderedMonths.last) {
-      end =
-          _container!.querySelector(
-                '.month:last-of-type .day-slot:last-of-type',
-              )
-              as HTMLElement?;
+      end = _container!.querySelector(
+        '.month:last-of-type .day-slot:last-of-type',
+      ) as HTMLElement?;
     }
 
     // If it's out of view, we're done.
@@ -656,9 +653,9 @@ class MaterialCalendarPickerComponent
         var a = selections[i];
         var b = selections[j];
         if (a.contains(b.start) && a.start! < b.start) {
-          HTMLElement? start =
-              _container!.querySelector(_slotSelector(b.start!))
-                  as HTMLElement?;
+          HTMLElement? start = _container!.querySelector(
+            _slotSelector(b.start!),
+          ) as HTMLElement?;
           if (start != null) {
             start.classList.add('left');
             start.classList.add('left-${a.id}');
@@ -689,9 +686,9 @@ class MaterialCalendarPickerComponent
         _container!.querySelector('.day-slot.hover') as HTMLElement?;
     if (el != null) el.classList.remove('hover');
     if (_model.value!.preview != null) {
-      el =
-          _container!.querySelector(_slotSelector(_model.value!.preview!))
-              as HTMLElement?;
+      el = _container!.querySelector(
+        _slotSelector(_model.value!.preview!),
+      ) as HTMLElement?;
       if (el != null) el.classList.add('hover');
     }
   }

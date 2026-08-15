@@ -4,6 +4,7 @@
 
 import 'dart:async';
 import 'dart:math';
+
 import 'package:web/web.dart';
 
 import 'package:kelicap_components/laminate/enums/visibility.dart';
@@ -17,8 +18,10 @@ import 'package:kelicap_components/src/laminate/overlay/overlay_state.dart';
 ///
 /// This exists to separate the ruler API from tight coupling on overlays; see
 /// [Ruler.update] for the default implementation.
-typedef AsyncApplyState<E> =
-    Future<void> Function(OverlayState state, E element);
+typedef AsyncApplyState<E> = Future<void> Function(
+  OverlayState state,
+  E element,
+);
 
 /// A handler to return the position and size of the *content* of [element].
 ///
@@ -26,8 +29,10 @@ typedef AsyncApplyState<E> =
 ///
 /// This exists to separate the ruler API from tight coupling on overlays; see
 /// [Ruler.measure] and [Ruler.track] for the default implementations.
-typedef AsyncMeasureSize<E> =
-    Stream<Rectangle> Function(E element, {bool track});
+typedef AsyncMeasureSize<E> = Stream<Rectangle> Function(
+  E element, {
+  bool track,
+});
 
 /// A handle to manipulate an existing overlay pane.
 class OverlayRef implements PortalHost {
@@ -54,12 +59,11 @@ class OverlayRef implements PortalHost {
     }
     await _applyChanges();
     yield* (_runOutsideKelicap(() {
-          return _asyncMeasureSize(
-            overlayElement,
-            track: true,
-          ).distinct(_isEqualSize);
-        })
-        as Stream<Rectangle>?)!;
+      return _asyncMeasureSize(
+        overlayElement,
+        track: true,
+      ).distinct(_isEqualSize);
+    }) as Stream<Rectangle>?)!;
   }
 
   /// An event stream that fires when the overlay's visibility changes.

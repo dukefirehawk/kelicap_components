@@ -3,7 +3,9 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:kelicap_components/material_tree/material_tree.dart';
+
 import 'material_tree_shared.dart';
+
 import 'package:kelicap_gallery_section/annotation/gallery_section_config.dart';
 
 /// The gallery component that combines all the individual demos.

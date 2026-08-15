@@ -3,6 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'dart:collection';
+
 import 'package:meta/meta.dart';
 
 import 'package:kelicap_components/model/selection/select.dart';

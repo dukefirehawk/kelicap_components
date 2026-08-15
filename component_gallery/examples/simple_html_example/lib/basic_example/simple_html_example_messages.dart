@@ -39,8 +39,7 @@ class SimpleHtmlExampleMessages {
   );
 
   String messageWithLinkInNewTab([
-    String link =
-        '<a href="localpage.html?param=1#test_fragment" target="_blank" rel="noopener">',
+    String link = '<a href="localpage.html?param=1#test_fragment" target="_blank" rel="noopener">',
     String endLink = '</a>',
   ]) => Intl.message(
     'Alternatively, open our ${link}docs$endLink in a new window.',

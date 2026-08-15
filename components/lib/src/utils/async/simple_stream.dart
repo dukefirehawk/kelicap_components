@@ -6,8 +6,9 @@ import 'dart:async';
 
 typedef StreamCallContextFunc = void Function(dynamic Function() func);
 typedef StreamCallbackFunc<T> = void Function(T value);
-typedef SubscriptionChangeListener<T> =
-    void Function(StreamSubscription<T> subscription);
+typedef SubscriptionChangeListener<T> = void Function(
+  StreamSubscription<T> subscription,
+);
 
 /// A ListenOnly Implementation of a [Stream].  It only supports the listen
 /// method with the onData parameter.  Additionally, the streamsubscription can
@@ -303,14 +304,12 @@ class LastStateStream<T> extends SimpleStream<T?> {
     void Function()? onDone,
     bool? cancelOnError,
   }) {
-    SimpleStreamSubscription<T?> sub =
-        super.listen(
-              onData,
-              onError: onError,
-              onDone: onDone,
-              cancelOnError: cancelOnError,
-            )
-            as SimpleStreamSubscription<T?>;
+    SimpleStreamSubscription<T?> sub = super.listen(
+      onData,
+      onError: onError,
+      onDone: onDone,
+      cancelOnError: cancelOnError,
+    ) as SimpleStreamSubscription<T?>;
     if (_lastItem != null) {
       /// If the stream is synchronous, send the item immediately, if it is
       /// asynchronous then make sure that items are not pending by checking
