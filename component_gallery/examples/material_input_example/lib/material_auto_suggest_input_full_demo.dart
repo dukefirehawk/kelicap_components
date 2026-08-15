@@ -217,11 +217,8 @@ class ExampleSelectionOptions extends StringSelectionOptions<List<int>>
   ExampleSelectionOptions(super.options);
   ExampleSelectionOptions.withOptionGroups(
     List<OptionGroup> optionGroups, {
-    ItemRenderer<List<int>>? toFilterableString,
-  }) : super.withOptionGroups(
-         optionGroups as List<OptionGroup<List<int>>>,
-         toFilterableString: toFilterableString,
-       );
+    super.toFilterableString,
+  }) : super.withOptionGroups(optionGroups as List<OptionGroup<List<int>>>);
   @override
   SelectableOption getSelectable(List<int> item) {
     if (item.contains(13)) {
