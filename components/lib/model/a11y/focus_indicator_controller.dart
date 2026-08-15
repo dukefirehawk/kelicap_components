@@ -123,7 +123,7 @@ class FocusIndicatorController {
     }
   }
 
-  void _reposition(_) {
+  void _reposition(num _) {
     var rect = _activeElement!.getBoundingClientRect();
     var elm = _focusIndicator as HTMLElement;
     elm.style.top = '${rect.top}px';

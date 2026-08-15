@@ -184,7 +184,7 @@ class DomService {
         // TODO(google): figure out a better way to initialize this earlier
         init();
         _nextFrameId = _window.requestAnimationFrame(
-          ((highResTimer) {
+          ((num highResTimer) {
             // Protect against window implementation that does not
             // cancel the frame.
             if (completer.isCompleted) return;
@@ -397,7 +397,7 @@ class DomService {
         // Listening Kelicap turn done events coming from other apps.
         _window.addEventListener(
           _TURN_DONE_EVENT_TYPE,
-          ((_) {
+          ((Event _) {
             if (!_inDispatchTurnDoneEvent) {
               _scheduleOnLayoutChanged();
             }

@@ -293,7 +293,7 @@ abstract class ScrollHostBase implements ScrollHost {
     if (_scrollFrameScheduled && throttleScrollEvents) return;
     _scrollFrameScheduled = true;
     window.requestAnimationFrame(
-      ((_) {
+      ((num _) {
         if (_scrollFrameDelta != 0) {
           _scrollInProgress = true;
           scrollWithDelta(_scrollFrameDelta);

@@ -695,7 +695,7 @@ class MaterialPopupComponent extends Object
     }
   }
 
-  void _reposition(_) {
+  void _reposition(num _) {
     _repositionLoopId = window.requestAnimationFrame(_reposition.toJS);
 
     var sourceDimensions = _sourceDimensions;

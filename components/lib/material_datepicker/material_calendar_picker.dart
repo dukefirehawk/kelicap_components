@@ -718,7 +718,7 @@ class MaterialCalendarPickerComponent
       }
       if (!_isRenderScheduled) {
         window.requestAnimationFrame(
-          ((_) {
+          ((num _) {
             _resetHighlights();
             _renderHighlights();
             _renderToday();
@@ -859,7 +859,7 @@ class MaterialCalendarPickerComponent
 
     // Wait to render until after the initial scroll.
     window.requestAnimationFrame(
-      ((_) {
+      ((Event _) {
         _initializePanels();
         _isRenderScheduled = false;
       }).toJS,
@@ -917,7 +917,7 @@ class MaterialCalendarPickerComponent
     if (_isRenderScheduled) return;
     _isRenderScheduled = true;
     window.requestAnimationFrame(
-      ((_) {
+      ((Event _) {
         _renderVisible();
         _isRenderScheduled = false;
       }).toJS,

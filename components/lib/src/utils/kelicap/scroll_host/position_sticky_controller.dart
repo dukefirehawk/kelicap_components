@@ -119,7 +119,7 @@ class PositionStickyController implements StickyController {
     if (_isUpdateScheduled) return;
     _isUpdateScheduled = true;
     window.requestAnimationFrame(
-      ((_) {
+      ((num _) {
         _isUpdateScheduled = false;
         _update();
       }).toJS,
