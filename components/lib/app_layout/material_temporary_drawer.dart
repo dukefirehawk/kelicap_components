@@ -2,6 +2,8 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:web/web.dart';
+
 import 'package:kelicap/kelicap.dart';
 import 'package:kelicap_components/content/deferred_content_aware.dart';
 
@@ -41,4 +43,12 @@ class MaterialTemporaryDrawerComponent extends MaterialDrawerBase {
 
   @Input()
   bool canClose = true;
+
+  /// Stops [event] from reaching the elements around the one it is on.
+  ///
+  /// Called from the template with `$event`, which is typed here, as reading
+  /// a member of `$event` there is dynamic, which fails in a release build
+  /// (dart2js).
+  @visibleForTemplate
+  void stopEventPropagation(Event event) => event.stopPropagation();
 }

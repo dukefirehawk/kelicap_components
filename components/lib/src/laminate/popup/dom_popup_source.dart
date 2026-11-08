@@ -4,6 +4,7 @@
 
 import 'dart:async';
 import 'dart:math';
+
 import 'package:kelicap_components/utils/browser/dom_herlper/dom_helper.dart';
 import 'package:web/web.dart';
 
@@ -17,8 +18,10 @@ import 'package:kelicap_components/src/laminate/popup/popup_source.dart';
 ///
 /// If [track] is true, should observe the DOM for layout changes. This is used
 /// to decouple [DomPopupSource] from the Ruler package.
-typedef AsyncMeasureSize<E> =
-    Stream<Rectangle> Function(E element, {bool track});
+typedef AsyncMeasureSize<E> = Stream<Rectangle> Function(
+  E element, {
+  bool track,
+});
 
 /// A factory that can [createPopupSource] from HTML elements.
 @Injectable()

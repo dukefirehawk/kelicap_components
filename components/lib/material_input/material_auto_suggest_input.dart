@@ -47,8 +47,10 @@ import 'package:web/web.dart' as html;
 
 import 'material_input.dart';
 
-typedef InputChangeCallback =
-    dynamic Function(Object inputText, {String rawValue});
+typedef InputChangeCallback = dynamic Function(
+  Object inputText, {
+  String rawValue,
+});
 
 /// See material_auto_suggest_input.md for an overview of the component.
 /// See examples for usage.

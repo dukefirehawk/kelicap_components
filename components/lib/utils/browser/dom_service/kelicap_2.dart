@@ -5,7 +5,7 @@
 import 'package:web/web.dart' hide Module;
 
 import 'package:kelicap/kelicap.dart';
-import 'package:kelicap/experimental.dart';
+//import 'package:kelicap/experimental.dart';
 import 'package:kelicap_components/utils/browser/dom_service/dom_service.dart';
 import 'package:kelicap_components/utils/browser/dom_service/dom_service_webdriver_testability.dart';
 import 'package:kelicap_components/utils/disposer/disposer.dart';
@@ -68,7 +68,16 @@ DomService createDomService(
 // to send layout change notifications only if dom has been mutated by kelicap.
 void setupAcxRootDomRenderer(Injector appInjector) {
   appInjector.get(DomService)
+    ..isDomMutatedPredicate = true
+    ..resetIsDomMutated = false
+    ..init();
+}
+
+/* TODO: FIX IT?
+void setupAcxRootDomRenderer(Injector appInjector) {
+  appInjector.get(DomService)
     ..isDomMutatedPredicate = isDomRenderDirty
     ..resetIsDomMutated = resetDomRenderDirty
     ..init();
 }
+*/

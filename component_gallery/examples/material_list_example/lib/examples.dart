@@ -5,6 +5,7 @@
 import 'package:kelicap_components/material_list/material_list.dart';
 import 'package:kelicap_components/material_list/material_list_item.dart';
 import 'package:kelicap_gallery_section/annotation/gallery_section_config.dart';
+
 import 'material_list_demo.dart';
 
 @GallerySectionConfig(

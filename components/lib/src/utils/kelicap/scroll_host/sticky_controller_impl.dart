@@ -3,7 +3,9 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'dart:async';
+
 import 'package:web/web.dart';
+
 import 'dart:math' show min, max, Rectangle;
 
 import 'package:kelicap_components/utils/kelicap/scroll_host/interface.dart';

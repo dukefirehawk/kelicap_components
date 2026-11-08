@@ -44,4 +44,12 @@ class MaterialYesNoButtonsExample {
     pending = true;
     Future.delayed(const Duration(seconds: 2), () => pending = false);
   }
+
+  /// Stops [event] from reaching the elements around the one it is on.
+  ///
+  /// Called from the template with `$event`, which is typed here, as reading
+  /// a member of `$event` there is dynamic, which fails in a release build
+  /// (dart2js).
+  @visibleForTemplate
+  void stopEventPropagation(Event event) => event.stopPropagation();
 }

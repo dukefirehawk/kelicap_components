@@ -48,8 +48,8 @@
                            #menuSource="popupSource"
                            alignPositionX="after"
                            alignPositionY="start"
-                           (click)="$event.stopPropagation()"
-                           (keypress)="$event.stopPropagation()"
+                           (click)="stopEventPropagation($event)"
+                           (keypress)="stopEventPropagation($event)"
                            (trigger)="popup.toggle()">
             <material-icon icon="arrow_drop_down"></material-icon>
           </material-button>
@@ -85,7 +85,7 @@
                           (trigger)="onRangeClicked($event, daysToTodayRange)"
                           [selected]="isSelected(daysToTodayRange)">
       <material-input [(ngModel)]="daysToToday"
-                      (click)="$event.stopPropagation()"
+                      (click)="stopEventPropagation($event)"
                       [displayBottomPanel]="false"
                       [maxCount]="maxDaysInputLength"></material-input>
       <span>{{daysToTodayMsg}}</span>
@@ -95,7 +95,7 @@
                           (trigger)="onRangeClicked($event, daysToYesterdayRange)"
                           [selected]="isSelected(daysToYesterdayRange)">
       <material-input [(ngModel)]="daysToYesterday"
-                      (click)="$event.stopPropagation()"
+                      (click)="stopEventPropagation($event)"
                       [displayBottomPanel]="false"
                       [maxCount]="maxDaysInputLength"></material-input>
       <span>{{daysToYesterdayMsg}}</span>

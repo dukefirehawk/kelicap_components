@@ -4,7 +4,9 @@
 
 import 'dart:async';
 import 'dart:js_interop';
+
 import 'package:web/web.dart';
+
 import 'dart:math' show max, Rectangle;
 
 import 'package:kelicap/kelicap.dart';
@@ -291,7 +293,7 @@ abstract class ScrollHostBase implements ScrollHost {
     if (_scrollFrameScheduled && throttleScrollEvents) return;
     _scrollFrameScheduled = true;
     window.requestAnimationFrame(
-      ((_) {
+      ((num _) {
         if (_scrollFrameDelta != 0) {
           _scrollInProgress = true;
           scrollWithDelta(_scrollFrameDelta);

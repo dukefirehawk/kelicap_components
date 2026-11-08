@@ -15,8 +15,10 @@ String _stringFormatSuggestion(String? value) =>
 ItemRenderer<T> _defaultRenderer<T>(ItemRenderer<String> sanitizeString) =>
     newCachingItemRenderer<T>((T? value) => sanitizeString(value.toString()));
 
-typedef StringSuggestionFilter<T> =
-    bool Function(T suggestion, String filterQuery);
+typedef StringSuggestionFilter<T> = bool Function(
+  T suggestion,
+  String filterQuery,
+);
 
 /// The class is meant to be used in areas where a selection can be represented
 /// as a string.

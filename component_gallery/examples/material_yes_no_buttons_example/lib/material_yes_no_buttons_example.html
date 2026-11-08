@@ -62,7 +62,7 @@
   <h2>Escape anywhere except stopped section triggers `no`</h2>
   <h3>Propagation works here</h3>
   Dummy input: <input /><br>
-  <div (keyup)="$event.stopPropagation()">
+  <div (keyup)="stopEventPropagation($event)">
     <h3>No propagation up</h3>
     Dummy input: <input /><br>
     <button>Dummy button</button><br>

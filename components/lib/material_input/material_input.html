@@ -121,7 +121,7 @@
        *ngSwitchWhen="emptyState"
        tabindex="-1"
        aria-hidden="true"
-       (focus)="$event.stopPropagation()">
+       (focus)="stopEventPropagation($event)">
     &nbsp;
   </div>
   <div *ngIf="showCharacterCount"

@@ -3,6 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'dart:async';
+
 import 'package:web/web.dart';
 
 import 'package:kelicap/kelicap.dart';
@@ -21,9 +22,10 @@ class GlobalEscapeDirective {
 
   /// Event triggered when the escape key is pressed.
   @Output()
-  Stream<KeyboardEvent> get globalEscape => EventStreamProvider<KeyboardEvent>(
-    'keyup',
-  ).forTarget(_window).where((event) => event.keyCode == KeyCode.ESC);
+  Stream<KeyboardEvent> get globalEscape =>
+      EventStreamProvider<KeyboardEvent>('keyup')
+          .forTarget(_window)
+          .where((event) => event.keyCode == KeyCode.ESC);
 
   GlobalEscapeDirective(this._window);
 }

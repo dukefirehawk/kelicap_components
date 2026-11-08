@@ -3,7 +3,9 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'dart:async';
+
 import 'package:web/web.dart';
+
 import 'dart:math';
 
 import 'package:kelicap/kelicap.dart';
@@ -384,9 +386,9 @@ class DateRangeEditorComponent implements OnInit, AfterViewInit, Focusable {
     // triggered for a long time (since the main calendar init takes 100+ ms,
     // requestAnimationFrame() tries to render at 10 fps).
     if (_elementRef.querySelector('.preset-list') != null) {
-      (_elementRef.querySelector('.preset-list material-select-item.selected')
-              as HTMLElement?)
-          ?.focus();
+      (_elementRef.querySelector(
+        '.preset-list material-select-item.selected',
+      ) as HTMLElement?)?.focus();
     } else {
       (_elementRef.querySelector('material-input.active input') as HTMLElement?)
           ?.focus();
@@ -671,6 +673,14 @@ class DateRangeEditorComponent implements OnInit, AfterViewInit, Focusable {
     name: 'DateRangeEditorComponent_rangeDisabledTooltip',
     desc: 'Message that explains why a date range is invalid.',
   );
+
+  /// Stops [event] from reaching the elements around the one it is on.
+  ///
+  /// Called from the template with `$event`, which is typed here, as reading
+  /// a member of `$event` there is dynamic, which fails in a release build
+  /// (dart2js).
+  @visibleForTemplate
+  void stopEventPropagation(Event event) => event.stopPropagation();
 }
 
 typedef NextPrevCallback = void Function();

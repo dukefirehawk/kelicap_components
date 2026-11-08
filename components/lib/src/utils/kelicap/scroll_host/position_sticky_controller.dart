@@ -5,6 +5,7 @@
 import 'dart:async';
 import 'dart:js_interop';
 import 'dart:math';
+
 import 'package:web/web.dart';
 
 import 'package:quiver/core.dart';
@@ -118,7 +119,7 @@ class PositionStickyController implements StickyController {
     if (_isUpdateScheduled) return;
     _isUpdateScheduled = true;
     window.requestAnimationFrame(
-      ((_) {
+      ((num _) {
         _isUpdateScheduled = false;
         _update();
       }).toJS,

@@ -4,6 +4,7 @@
 
 import 'dart:async';
 import 'dart:js_interop';
+
 import 'package:web/web.dart';
 
 import 'package:kelicap/kelicap.dart';
@@ -176,17 +177,17 @@ class MaterialMonthPickerComponent
     HTMLElement? start;
     HTMLElement? end;
 
-    start =
-        _container!.querySelector(_monthSelector(selection.start!))
-            as HTMLElement?;
+    start = _container!.querySelector(
+      _monthSelector(selection.start!),
+    ) as HTMLElement?;
     if (start == null) return;
     for (final className in ['boundary', 'start']) {
       start.classList.add(className);
     }
 
-    end =
-        _container!.querySelector(_monthSelector(selection.end!))
-            as HTMLElement?;
+    end = _container!.querySelector(
+      _monthSelector(selection.end!),
+    ) as HTMLElement?;
     if (end == null) return;
     for (final className in ['boundary', 'end']) {
       end.classList.add(className);
@@ -240,9 +241,9 @@ class MaterialMonthPickerComponent
         _container!.querySelector('.month.hover') as HTMLElement?;
     if (element != null) element.classList.remove('hover');
     if (_model.value!.preview != null) {
-      element =
-          _container!.querySelector(_monthSelector(_model.value!.preview!))
-              as HTMLElement?;
+      element = _container!.querySelector(
+        _monthSelector(_model.value!.preview!),
+      ) as HTMLElement?;
       if (element != null) element.classList.add('hover');
     }
   }
@@ -347,17 +348,17 @@ class MaterialMonthPickerComponent
     // Disable all months before minDate.
     HTMLElement? element;
     for (var i = 1; i < minDate!.month; i++) {
-      element =
-          _container!.querySelector(_monthSelector(Date(minDate!.year, i, 1)))
-              as HTMLElement?;
+      element = _container!.querySelector(
+        _monthSelector(Date(minDate!.year, i, 1)),
+      ) as HTMLElement?;
       element!.classList.add('disabled');
     }
 
     // Disable all months after maxDate.
     for (var i = maxDate!.month + 1; i <= 12; i++) {
-      element =
-          _container!.querySelector(_monthSelector(Date(maxDate!.year, i, 1)))
-              as HTMLElement?;
+      element = _container!.querySelector(
+        _monthSelector(Date(maxDate!.year, i, 1)),
+      ) as HTMLElement?;
       element!.classList.add('disabled');
     }
   }

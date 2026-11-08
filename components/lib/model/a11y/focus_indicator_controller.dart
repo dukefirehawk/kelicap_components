@@ -3,7 +3,9 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'dart:async';
+
 import 'package:web/web.dart';
+
 import 'dart:js_interop';
 
 import 'package:kelicap/di.dart';
@@ -121,7 +123,7 @@ class FocusIndicatorController {
     }
   }
 
-  void _reposition(_) {
+  void _reposition(num _) {
     var rect = _activeElement!.getBoundingClientRect();
     var elm = _focusIndicator as HTMLElement;
     elm.style.top = '${rect.top}px';

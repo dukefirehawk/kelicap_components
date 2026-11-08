@@ -31,16 +31,14 @@ class GallerySectionBuilder extends Builder {
     final apis = [];
 
     for (final assetId in infoAssets) {
-      final infoList =
-          (jsonDecode(await buildStep.readAsString(assetId)) as List).map(
-            (info) => ResolvedConfig.fromJson(info),
-          );
+      final infoList = (jsonDecode(
+        await buildStep.readAsString(assetId),
+      ) as List).map((info) => ResolvedConfig.fromJson(info));
 
       // There is an API page generated for every .gallery_info.json file.
       final api = <String, dynamic>{
-        'apiImport': assetToImport(
-          assetId.toString(),
-        ).replaceFirst('.gallery_info.json', '.api.dart'),
+        'apiImport': assetToImport(assetId.toString())
+            .replaceFirst('.gallery_info.json', '.api.dart'),
       };
 
       var docs = [];

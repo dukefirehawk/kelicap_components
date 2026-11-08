@@ -190,11 +190,10 @@ class NestedCategoryOptions extends SelectionOptions<CategoryNode>
   bool hasChildren(CategoryNode item) => item.children.isNotEmpty;
 }
 
-var _ctn =
-    (
-      String name, [
-      List<CategoryNode> subCategories = const <CategoryNode>[],
-    ]) => CategoryNode(name, subCategories);
+var _ctn = (
+  String name, [
+  List<CategoryNode> subCategories = const <CategoryNode>[],
+]) => CategoryNode(name, subCategories);
 
 NestedCategoryOptions expandStateOptions() => NestedCategoryOptions([
   OptionGroup([

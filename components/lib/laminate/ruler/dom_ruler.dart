@@ -4,6 +4,7 @@
 
 import 'dart:async';
 import 'dart:math';
+
 import 'package:web/web.dart';
 
 import 'package:kelicap/kelicap.dart';
@@ -82,12 +83,12 @@ class DomRulerImpl extends RulerBase<Element> implements DomRuler {
 
   @override
   void removeCssClassesSync(Element element, List<String> classes) {
-    classes.forEach(element.classList.remove);
+    classes.forEach((c) => element.classList.remove(c));
   }
 
   @override
   void addCssClassesSync(Element element, List<String> classes) {
-    classes.forEach(element.classList.add);
+    classes.forEach((c) => element.classList.add(c));
   }
 
   @override

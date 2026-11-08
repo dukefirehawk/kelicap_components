@@ -4,7 +4,9 @@
 
 import 'dart:async';
 import 'dart:js_interop';
+
 import 'package:web/web.dart';
+
 import 'dart:math';
 
 import 'package:kelicap/kelicap.dart';
@@ -693,7 +695,7 @@ class MaterialPopupComponent extends Object
     }
   }
 
-  void _reposition(_) {
+  void _reposition(num _) {
     _repositionLoopId = window.requestAnimationFrame(_reposition.toJS);
 
     var sourceDimensions = _sourceDimensions;
