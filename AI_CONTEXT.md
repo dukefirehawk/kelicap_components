@@ -27,7 +27,7 @@ The repository is a Dart workspace (`workspace:` in the root `pubspec.yaml`), wi
 ## Key Principles & Conventions
 
 1. **`package:web` only**: DOM access uses `package:web` types (`Element`, `HTMLInputElement`, `UIEvent` and the like), not `dart:html`.
-2. **No dynamic access to DOM objects**: `$event` is `dynamic` in the generated code, and a release build (dart2js) cannot read members of a JavaScript object dynamically. Never read a member of `$event` in a template or a `@HostListener` argument, such as `(click)="$event.stopPropagation()"`. Pass `$event` to a method that takes a typed `Event`, and read it there. The material input, drawer, date range editor and yes/no buttons example have a `stopEventPropagation(Event)` method for this. The `[stopPropagation]` directive (`lib/stop_propagation/`) stops `click`, and `keypress` of Enter or Space, only. `kelicap_compiler` 1.1.3 warns about these reads, including the event of an `@Output()` that is a `Stream` of a `package:web` type, such as `ButtonDirective.trigger` (`Stream<UIEvent>`).
+2. **No dynamic access to DOM objects**: `$event` is `dynamic` in the generated code, and a release build (dart2js) cannot read members of a JavaScript object dynamically. Never read a member of `$event` in a template or a `@HostListener` argument, such as `(click)="$event.stopPropagation()"`. Pass `$event` to a method that takes a typed `Event`, and read it there. `BaseMaterialInput` (and so both material inputs), the temporary and stackable drawers, the date range editor and the yes/no buttons example have a `stopEventPropagation(Event)` method for this. A template can only call a method of its own component or one it inherits, so add the method where the component's class hierarchy will reach it. The `[stopPropagation]` directive (`lib/stop_propagation/`) stops `click`, and `keypress` of Enter or Space, only. `kelicap_compiler` 1.1.3 warns about these reads, including the event of an `@Output()` that is a `Stream` of a `package:web` type, such as `ButtonDirective.trigger` (`Stream<UIEvent>`).
 3. **Typed callbacks**: Browser event and `requestAnimationFrame` callbacks are typed, not `dynamic`.
 4. **Imports**: Code in `components/lib` imports the package's own libraries as `package:kelicap_components/...`.
 5. **Lints**: `package:lints/recommended.yaml`. `uri_has_not_been_generated` and `todo` are ignored, since templates are generated at build time.
@@ -42,12 +42,26 @@ The repository is a Dart workspace (`workspace:` in the root `pubspec.yaml`), wi
   ```bash
   dart format --output=none --set-exit-if-changed .
   dart analyze
-  dart run build_runner build --delete-conflicting-outputs
+  dart run build_runner build
   ```
 
-  The build compiles every template and stylesheet, so it catches template errors that `dart analyze` does not, and shows the compiler's warnings. It takes about two minutes. There are no unit tests: `test/ensure_proto_build_test.dart` checks that the proto classes are up to date, is tagged `presubmit-only`, and is skipped by default.
+  The build generates every `.template.dart` and stylesheet, and shows the template compiler's errors and warnings, such as a binding to an unknown input. It takes about two minutes. (`build_runner` 2.16 ignores `--delete-conflicting-outputs`.) It does not compile the generated Dart, as `components` has no entrypoint, so it passes when a template calls a method that the component does not have, such as `(focus)="stopEventPropagation($event)"` on a component that does not inherit it: `dart analyze` does not see the generated code either. To catch those, build into a directory outside the repository, give it a package config, and analyze it, generated code included:
+
+  ```bash
+  out=/tmp/components_out
+  rm -rf $out && dart run build_runner build -o $out
+  mkdir -p $out/.dart_tool && (cd $out/packages && ls | grep -v '^\$' |
+    sed 's|.*|{"name":"&","rootUri":"../packages/&","packageUri":"."}|' |
+    paste -sd, | sed 's|.*|{"configVersion":2,"packages":[&]}|') \
+    > $out/.dart_tool/package_config.json
+  cd $out/packages/kelicap_components && dart analyze . | grep 'error -'
+  ```
+
+  `packages/<name>` in the output holds each package's `lib`, generated files beside their sources. An error in a `.template.dart`, such as `The getter 'stopEventPropagation' isn't defined for the type 'MaterialMultilineInputComponent'`, is a template that calls a member its component does not have.
+
+  There are no unit tests: `test/ensure_proto_build_test.dart` checks that the proto classes are up to date, is tagged `presubmit-only`, and is skipped by default.
 - **Against a local Kelicap**: The build uses the `kelicap_compiler` from pub.dev. To check a change in a local checkout of `kelicap`, such as a new compiler warning, the workspace needs a `dependency_overrides` with `path:` to its packages, which changes `pubspec.lock`. Don't commit the override.
-- **Gallery**: Build or serve the gallery from `component_gallery/kelicap_components_example`, as its `README.md` describes:
+- **Gallery**: Build or serve the gallery from `component_gallery/kelicap_components_example`, as its `README.md` describes. Its build currently fails: the `kelicap_gallery_section` builder throws `Bad state: No element` in `GalleryInfoBuilder._getLibrary` (`gallery_section/lib/builder/gallery_info_builder.dart`) for every example.
 
   ```bash
   dart run build_runner serve web            # development (DDC)
@@ -58,7 +72,7 @@ The repository is a Dart workspace (`workspace:` in the root `pubspec.yaml`), wi
 - **Datepicker proto**: The date classes in `lib/material_datepicker/proto` are generated with `protoc`, by `components/tool/protoc.sh`. `components/tool/travis/install_protoc.sh` installs `protoc`.
 - **CI**: None in the repository. Run the checks locally.
 - **Versions**: `kelicap_components` is `1.1.1`. Bump `version` in `components/pubspec.yaml`, and add a `CHANGELOG.md` entry, for each release.
-- **Changelog**: `components/CHANGELOG.md` lists each release's changes as Conventional Commit-style bullets (`- fix: ...`, `- chore: ...`). Commit messages use [Conventional Commits](https://www.conventionalcommits.org/) (`type(scope): description`).
+- **Changelog**: Every user-facing change gets an entry in the affected package's `CHANGELOG.md`, written as plain-English statements about the package (not commit messages). Group a release's entries under `### Breaking changes in X.Y.Z` (each entry prefixed `**Breaking:**`), `### New in X.Y.Z` and `### Fixes in X.Y.Z`, in that order, omitting empty sections.
 
 ## Current Focus
 
