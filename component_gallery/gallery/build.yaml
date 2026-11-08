@@ -16,8 +16,16 @@ builders:
       galleryLibBuilder,
       syntaxHighlightBuilder,
     ]
+    # Every output of the three builders: the app builder (home.dart, and
+    # index.html, main.dart and style.scss), the lib builder (lib/gallery/*)
+    # and the syntax highlight builder (syntax_highlight.scss).
     build_extensions: {
-      ".html": [".dart"],
-      "$web$": ["index.html", "main.dart", "style.scss"]}
+      "^lib/gallery/home.html": ["lib/gallery/home.dart"],
+      "$web$": ["index.html", "main.dart", "style.scss", "syntax_highlight.scss"],
+      "$lib$": [
+        "gallery/gallery.dart",
+        "gallery/gallery.html",
+        "gallery/gallery.scss",
+        "gallery/gallery_route_library.dart"]}
     auto_apply: dependents
     runs_before: ["kelicap|kelicap", "kelicap_components|scss_builder"]

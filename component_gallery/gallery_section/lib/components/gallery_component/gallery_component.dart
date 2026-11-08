@@ -14,6 +14,7 @@ import 'package:kelicap_components/laminate/popup/module.dart';
 import 'package:kelicap_gallery/gallery/gallery_tokens.dart';
 import 'package:kelicap_gallery_section/components/gallery_component/documentation_component.dart';
 import 'package:kelicap_gallery_section/components/gallery_component/gallery_info.dart';
+import 'package:kelicap_gallery_section/components/gallery_component/source_code_link.dart';
 import 'package:web/web.dart';
 
 /// The gallery component details page that encompass the component's dart docs,
@@ -54,12 +55,9 @@ class GalleryComponent {
 
   String getTeamsLink(String ldap) => 'http://who/$ldap';
 
-  /// Reformats a library path name to a link path that can be used by
-  /// CodeSearch.
+  /// Returns the link to the source of [componentPath] in the repository.
   String getCodeSearchLink(String componentPath) =>
-      componentPath.contains('example')
-      ? '$_sourcecodeUrl/examples/$componentPath'
-      : '$_sourcecodeUrl$componentPath';
+      sourceCodeLink(_sourcecodeUrl, componentPath);
 }
 
 /// Applies code highlighting on `<pre><code>` elements within [htmlFragment].
