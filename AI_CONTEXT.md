@@ -19,7 +19,7 @@ The repository is a Dart workspace (`workspace:` in the root `pubspec.yaml`), wi
 ## Tech Stack
 
 - **Language**: Dart `>=3.13.0 <4.0.0`
-- **Framework**: `kelicap`, `kelicap_forms` and `kelicap_observable` `^1.0.0`, from pub.dev, not from a local checkout of `kelicap`.
+- **Framework**: `kelicap`, `kelicap_forms` and `kelicap_observable` `^1.1.3`, from pub.dev, not from a local checkout of `kelicap`. 1.1.3 is the first `kelicap_compiler` that builds the gallery, and that warns about `$event` member reads.
 - **DOM interop**: `package:web`.
 - **Styles**: Sass, through the package's own `scss_builder`. `sass_builder`'s builder is disabled in `components/build.yaml`.
 - **Other dependencies**: `intl` (messages), `protobuf` (the date model of `material_datepicker`), `quiver`, `built_collection`, `fixnum`.
@@ -31,6 +31,8 @@ The repository is a Dart workspace (`workspace:` in the root `pubspec.yaml`), wi
 3. **Typed callbacks**: Browser event and `requestAnimationFrame` callbacks are typed, not `dynamic`.
 4. **Imports**: Code in `components/lib` imports the package's own libraries as `package:kelicap_components/...`.
 5. **Lints**: `package:lints/recommended.yaml`. `uri_has_not_been_generated` and `todo` are ignored, since templates are generated at build time.
+6. **JS interop signatures**: An `external` member takes and returns JS or `package:web` types, or `void`, never `dynamic`: DDC rejects `dynamic` there (`External JS interop member contains invalid types`), as in `external void highlightBlock(Element block)` in the gallery.
+7. **Generic components in templates**: A generic component used without `directiveTypes`, such as `MaterialTreeComponent`, is created with `dynamic` type arguments, so a callback bound to one of its inputs takes `dynamic` or `Object?`, not the item type: `String? itemRenderer(Object? item)`, not `String? itemRenderer(String item)`, which does not compile in the generated code.
 
 ## Development Workflow
 
@@ -59,9 +61,23 @@ The repository is a Dart workspace (`workspace:` in the root `pubspec.yaml`), wi
 
   `packages/<name>` in the output holds each package's `lib`, generated files beside their sources. An error in a `.template.dart`, such as `The getter 'stopEventPropagation' isn't defined for the type 'MaterialMultilineInputComponent'`, is a template that calls a member its component does not have.
 
-  There are no unit tests: `test/ensure_proto_build_test.dart` checks that the proto classes are up to date, is tagged `presubmit-only`, and is skipped by default.
-- **Against a local Kelicap**: The build uses the `kelicap_compiler` from pub.dev. To check a change in a local checkout of `kelicap`, such as a new compiler warning, the workspace needs a `dependency_overrides` with `path:` to its packages, which changes `pubspec.lock`. Don't commit the override.
-- **Gallery**: Build or serve the gallery from `component_gallery/kelicap_components_example`, as its `README.md` describes. Its build currently fails: the `kelicap_gallery_section` builder throws `Bad state: No element` in `GalleryInfoBuilder._getLibrary` (`gallery_section/lib/builder/gallery_info_builder.dart`) for every example.
+  There are no unit tests: `test/ensure_proto_build_test.dart` checks that the proto classes are up to date, is tagged `presubmit-only`, and is skipped by default. As it imports `dart:io`, the build warns that it skips compiling it with DDC, which is expected.
+- **Against a local Kelicap**: The build uses the `kelicap` packages from pub.dev. To build against a local checkout of `kelicap` next to this repository, such as for a compiler change that is not released yet, override all seven of its packages, as overriding only `kelicap_compiler` fails to resolve (it needs the unreleased `kelicap_common` of the same version), and a newer compiler can generate code that needs the runtime of the same version. Back up `pubspec.lock` first, since the override rewrites it:
+
+  ```bash
+  cp pubspec.lock /tmp/pubspec.lock.bak
+  { echo 'dependency_overrides:'
+    for p in kelicap kelicap_ast kelicap_common kelicap_compiler kelicap_forms kelicap_observable kelicap_router; do
+      printf '  %s:\n    path: ../kelicap/packages/%s\n' $p $p
+    done; } > pubspec_overrides.yaml
+  dart pub get
+  ```
+
+  Afterwards, delete the root `pubspec_overrides.yaml`, restore `pubspec.lock`, and run `dart pub get`. Don't commit the override.
+- **`build_runner`**: `components` needs `build_runner` ^2.16.2. 2.16.0 does not compile against analyzer 14.7 (`The setter 'contextFeatures' isn't defined for the type 'AnalysisOptionsImpl'`).
+- **Gallery**: Build or serve the gallery from `component_gallery/kelicap_components_example`, as its `README.md` describes. Its DDC build compiles the generated templates of every component and example it uses, so it is the end-to-end check for template errors, alongside the analysis above. It takes about a minute and a half.
+
+  It needs `kelicap_compiler` 1.1.3 or later: 1.1.2 does not find an unnamed constructor declared after another one, such as the `factory` of `MaterialMenuDemoComponent` after `MaterialMenuDemoComponent._`, as analyzer 14 names it `new`, and fails with `No constructors found`. If the build fails that way, run `dart pub upgrade` at the root. The Sass deprecation warnings (`W kelicap_components:scss_builder`) of the build are expected.
 
   ```bash
   dart run build_runner serve web            # development (DDC)
@@ -71,9 +87,9 @@ The repository is a Dart workspace (`workspace:` in the root `pubspec.yaml`), wi
 - **Release builds (dart2js)**: DDC tolerates dynamic access to JavaScript objects, and dart2js does not, so a component can work in the gallery under `serve` and fail in a release build. After changing anything that touches the DOM, build the gallery with `--release` and check the component in a browser.
 - **Datepicker proto**: The date classes in `lib/material_datepicker/proto` are generated with `protoc`, by `components/tool/protoc.sh`. `components/tool/travis/install_protoc.sh` installs `protoc`.
 - **CI**: None in the repository. Run the checks locally.
-- **Versions**: `kelicap_components` is `1.1.1`. Bump `version` in `components/pubspec.yaml`, and add a `CHANGELOG.md` entry, for each release.
+- **Versions**: `kelicap_components` is `1.1.2`. Bump `version` in `components/pubspec.yaml`, and add a `CHANGELOG.md` entry, for each release.
 - **Changelog**: Every user-facing change gets an entry in the affected package's `CHANGELOG.md`, written as plain-English statements about the package (not commit messages). Group a release's entries under `### Breaking changes in X.Y.Z` (each entry prefixed `**Breaking:**`), `### New in X.Y.Z` and `### Fixes in X.Y.Z`, in that order, omitting empty sections.
 
 ## Current Focus
 
-Recent work fixes JavaScript interop errors and removes dynamic access to DOM objects, so that the components work in release builds: typing browser event callbacks, and replacing `$event` member reads in templates with typed methods.
+Recent work fixes JavaScript interop errors and removes dynamic access to DOM objects, so that the components work in release builds: typing browser event callbacks, and replacing `$event` member reads in templates with typed methods. The gallery's builders (`gallery_section`) were ported to the analyzer 14 element model, where a library's names are looked up in `firstFragment.scope` and a class's members are in `body.members`, so that the gallery builds again.

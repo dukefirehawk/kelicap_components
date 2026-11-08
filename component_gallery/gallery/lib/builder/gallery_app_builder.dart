@@ -50,7 +50,6 @@ class GalleryWebBuilder extends Builder {
 
   Future<void> _generateMainDart(BuildStep buildStep) async {
     var binding = _galleryBindingName != null && _galleryBindingImport != null;
-    print("Binding: $binding");
 
     final Map<String, Object?> mustacheContext = {
       'galleryImportUri':

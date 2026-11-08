@@ -91,7 +91,7 @@ class GalleryLibBuilder extends Builder {
     BuildStep buildStep,
     List<Example> examples,
   ) async {
-    final Map<String, List<Map<String, String>>> mustacheContext = {
+    final Map<String, List<Map<String, Object>>> mustacheContext = {
       'examples': examples.map((e) => e.toJson()).toList(),
     };
 
@@ -135,7 +135,7 @@ class GalleryLibBuilder extends Builder {
             summary['group'] ?? '',
             summary['dartImport'] ?? '',
             summary['componentClass'] ?? '',
-            List<String>.from(summary['docs'] ?? {}),
+            List<String>.from(summary['docs'] ?? const []),
           ),
         ),
       );
@@ -171,8 +171,11 @@ class Example {
 
   String get loader => 'load${name}Example';
 
-  Map<String, String> toJson() {
-    Map<String, String> map = {};
+  /// The context of the example in the mustache templates.
+  ///
+  /// [relatedComponents] stays a list, which the templates loop over.
+  Map<String, Object> toJson() {
+    Map<String, Object> map = {};
     map["name"] = name;
     map["displayName"] = displayName;
     map["group"] = group;
@@ -180,7 +183,7 @@ class Example {
     map["component"] = component;
     map["linkName"] = linkName;
     map["loader"] = loader;
-    map["relatedComponents"] = json.encode(relatedComponents);
+    map["relatedComponents"] = relatedComponents;
 
     return map;
   }
