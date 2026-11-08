@@ -66,9 +66,12 @@ class GalleryDocumentationExtraction extends SimpleAstVisitor<DartDocInfo> {
 
     var allProperties = <DartPropertyInfo?>[];
     var propertyVisitor = _AllMemberDocsExtraction(_filePath);
-    // We know that [node] is definitely either a ClassDeclaration or
-    // MixinDeclaration.
-    for (Declaration member in (node as dynamic).members) {
+    final members = switch (node) {
+      ClassDeclaration() => node.body.members,
+      MixinDeclaration() => node.body.members,
+      _ => const <ClassMember>[],
+    };
+    for (Declaration member in members) {
       // Must collect the annotations early because class fields don't have
       // annotations attached to their actual node. The comments are attached to
       // the field nodes so we have to continue visiting.

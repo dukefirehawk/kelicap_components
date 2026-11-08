@@ -98,7 +98,7 @@ String applyHighlighting(String htmlFragment) {
 }
 
 @JS('hljs.highlightBlock')
-external dynamic highlightBlock(dynamic block);
+external void highlightBlock(Element block);
 
 /// A [NodeTreeSanitizer] that provides no sanitization.
 // class _NullNodeTreeSanitizer implements NodeTreeSanitizer {
