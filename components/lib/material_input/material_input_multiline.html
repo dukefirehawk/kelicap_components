@@ -89,7 +89,7 @@
   <div class="spaceholder"
        *ngSwitchWhen="emptyState"
        tabindex="-1"
-       (focus)="$event.stopPropagation()">
+       (focus)="stopEventPropagation($event)">
     &nbsp;
   </div>
   <div *ngIf="maxCount != null || showCharacterCount"

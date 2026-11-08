@@ -673,6 +673,14 @@ class DateRangeEditorComponent implements OnInit, AfterViewInit, Focusable {
     name: 'DateRangeEditorComponent_rangeDisabledTooltip',
     desc: 'Message that explains why a date range is invalid.',
   );
+
+  /// Stops [event] from reaching the elements around the one it is on.
+  ///
+  /// Called from the template with `$event`, which is typed here, as reading
+  /// a member of `$event` there is dynamic, which fails in a release build
+  /// (dart2js).
+  @visibleForTemplate
+  void stopEventPropagation(Event event) => event.stopPropagation();
 }
 
 typedef NextPrevCallback = void Function();

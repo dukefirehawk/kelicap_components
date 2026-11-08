@@ -38,7 +38,7 @@ workspace:
   - component_gallery/examples/scorecard_example
 
 dev_dependencies:
-  melos: ^8.0.0
+  melos: ^8.10.0
   lints: ^6.0.0
 
 melos:
