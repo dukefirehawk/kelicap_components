@@ -29,6 +29,13 @@ class FocusIndicatorController {
   Element? _focusIndicator;
   int? _repositionLoopId;
 
+  // Each `toJS` makes a new JavaScript function, and `removeEventListener`
+  // removes a listener only when given the same function, so each callback is
+  // wrapped once. This also saves a new function for each animation frame.
+  late final JSFunction _onFocusCallback = _onFocus.toJS;
+  late final JSFunction _onBlurCallback = _onBlur.toJS;
+  late final JSFunction _repositionCallback = _reposition.toJS;
+
   Element? _activeElement;
   Element? get activeElement => _activeElement;
 
@@ -46,8 +53,8 @@ class FocusIndicatorController {
   }
 
   void _turnOnKeyNavMode() {
-    window.addEventListener('focus', _onFocus.toJS, true.toJS);
-    window.addEventListener('blur', _onBlur.toJS, true.toJS);
+    window.addEventListener('focus', _onFocusCallback, true.toJS);
+    window.addEventListener('blur', _onBlurCallback, true.toJS);
 
     _activeElement = document.activeElement;
 
@@ -65,8 +72,8 @@ class FocusIndicatorController {
   }
 
   void _turnOffKeyNavMode() {
-    window.removeEventListener('focus', _onFocus.toJS, true.toJS);
-    window.removeEventListener('blur', _onBlur.toJS, true.toJS);
+    window.removeEventListener('focus', _onFocusCallback, true.toJS);
+    window.removeEventListener('blur', _onBlurCallback, true.toJS);
 
     _activeElement = null;
 
@@ -113,7 +120,7 @@ class FocusIndicatorController {
   }
 
   void _startRepositionLoop() {
-    _repositionLoopId = window.requestAnimationFrame(_reposition.toJS);
+    _repositionLoopId = window.requestAnimationFrame(_repositionCallback);
   }
 
   void _cancelRepositionLoop() {

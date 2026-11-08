@@ -12,7 +12,10 @@
 * **App layout:** The temporary and stackable drawers stop a `click` inside their content from propagating in a release build, with the `stopEventPropagation` method of `MaterialTemporaryDrawerComponent`
 * **Date range editor:** The preset button and the day inputs stop their `click` and `keypress` events from propagating in a release build, with the `stopEventPropagation` method of `DateRangeEditorComponent`
 * **Calendar picker:** The `requestAnimationFrame` callbacks that initialize the calendar and render its months on scroll take the frame's timestamp, a number, where they declared an `Event`
+* **Focus indicator:** `FocusIndicatorController` removes its `focus` and `blur` listeners from `window` when it is disabled, where they stayed, and a pair more was added each time it was enabled again
+* **Popup:** A popup that follows its source, and the focus indicator, no longer create a JavaScript function for each animation frame
 * **DOM service:** `setupAcxRootDomRenderer` sets up the `DomService` to send layout change notifications only when Kelicap has changed the DOM, where it threw a `TypeError` on a `bool` assigned to a function
+* **README:** The banner and the License badge link work on pub.dev, and the installation snippet asks for `^1.1.2`
 
 ## 1.1.1
 
