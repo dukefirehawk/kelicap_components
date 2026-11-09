@@ -27,5 +27,4 @@ targets:
           compiler: dart2js
           dart2js_args:
             - --minify
-            - --dump-info
             - -O4

@@ -9,11 +9,15 @@ which examples appear in the gallery.
 ## Build
 
 Build the entire gallery from the `component_gallery/kelicap_components_example`
-directory.
+directory. To deploy it, or to check it in a release build, build it with
+dart2js:
 
 ```bash
-dart run build_runner build --output <output directory>
+dart run build_runner build --release --output <output directory>
 ```
+
+The gallery is then in `web` of the output directory. Without `--release`, the
+build compiles with dartdevc (DDC), for development.
 
 ## Serve
 
@@ -25,7 +29,9 @@ dart run build_runner serve web
 
 Both of the __build__ and __serve__ commands compile with dartdevc (DDC) by
 default, and accept `--release` to build with dart2js (`-O4 --minify`)
-instead.
+instead. DDC tolerates some code that fails in a release build, such as reading
+a member of a JavaScript object dynamically, so check a component in a
+`--release` build after changing anything that touches the DOM.
 
 __Known Issues:__
 
