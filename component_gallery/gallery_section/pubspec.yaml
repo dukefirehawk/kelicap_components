@@ -23,3 +23,5 @@ dependencies:
   sass: ^1.100.0
   sanitize_html: ^2.2.0
   lints: ^6.0.0
+dev_dependencies:
+  test: ^1.0.0

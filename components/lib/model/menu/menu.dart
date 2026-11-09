@@ -210,8 +210,7 @@ class MenuItem<T> with MenuItemMixin implements HasUIDisplayName, HasIcon {
     this.secondaryLabel = '',
     String? ariaLabel,
   }) : itemSuffixes =
-           itemSuffixes ??
-           ObservableList<MenuItemAffix>.from(itemSuffix as Iterable<dynamic>),
+           itemSuffixes ?? ObservableList<MenuItemAffix>.from([?itemSuffix]),
        cssClasses = BuiltList<String>((cssClasses ?? const <String>[])),
        subMenu = subMenu ?? MenuModel([]),
        ariaLabel = ariaLabel ?? label {

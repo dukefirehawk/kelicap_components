@@ -24,7 +24,11 @@ Builder galleryAppBuilder(BuilderOptions options) => MergedBuilder([
 Builder galleryLibBuilder(BuilderOptions options) => GalleryLibBuilder(
   options.config['galleryTitle'] ?? 'Example Gallery',
   (options.config['styleUrls'] as List?)?.cast<String>() ?? [],
-  (options.config['examples'] as String?)?.split(',') ?? [],
+  [
+    for (final example
+        in (options.config['examples'] as String?)?.split(',') ?? <String>[])
+      if (example.trim().isNotEmpty) example.trim(),
+  ],
 );
 
 /// Builder to generate the Sass styles for syntax highlighting with
@@ -39,14 +43,21 @@ class MergedBuilder implements Builder {
   @override
   Future<void> build(BuildStep buildStep) async {
     for (var builder in builders) {
-      // Replicate the multiplex logic: only run if the input matches the builder's extensions
+      // Only run a builder on the inputs that its extensions match.
       if (builder.buildExtensions.keys.any(
-        (ext) => buildStep.inputId.path.endsWith(ext),
+        (input) => _matches(input, buildStep.inputId.path),
       )) {
         await builder.build(buildStep);
       }
     }
   }
+
+  /// Whether an input [path] matches [input], a key of `buildExtensions`.
+  ///
+  /// A key that starts with `^` is a path from the package root. Any other
+  /// key, such as `.html` or the synthetic `$web$`, is an ending of the path.
+  static bool _matches(String input, String path) =>
+      input.startsWith('^') ? path == input.substring(1) : path.endsWith(input);
 
   @override
   Map<String, List<String>> get buildExtensions {

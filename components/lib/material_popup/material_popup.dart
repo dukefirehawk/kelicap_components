@@ -162,6 +162,9 @@ class MaterialPopupComponent extends Object
   int _repositionOffsetX = 0;
   int _repositionOffsetY = 0;
   int? _repositionLoopId;
+
+  /// [_reposition], wrapped once rather than for each animation frame.
+  late final JSFunction _repositionCallback = _reposition.toJS;
   List<Element> _autoDismissBlockers = [];
 
   @override
@@ -670,7 +673,7 @@ class MaterialPopupComponent extends Object
 
   void _startRepositionLoop() {
     _ngZone.runOutsideKelicap(() {
-      _repositionLoopId = window.requestAnimationFrame(_reposition.toJS);
+      _repositionLoopId = window.requestAnimationFrame(_repositionCallback);
     });
   }
 
@@ -696,7 +699,7 @@ class MaterialPopupComponent extends Object
   }
 
   void _reposition(num _) {
-    _repositionLoopId = window.requestAnimationFrame(_reposition.toJS);
+    _repositionLoopId = window.requestAnimationFrame(_repositionCallback);
 
     var sourceDimensions = _sourceDimensions;
     if (sourceDimensions == null) return;

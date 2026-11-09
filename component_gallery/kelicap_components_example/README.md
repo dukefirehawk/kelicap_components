@@ -1,17 +1,23 @@
-This unpublished package (`angular_components_example`) contains the
+# Kelicap Components Gallery
+
+This unpublished package (`kelicap_components_example`) contains the
 `build.yaml` file that controls the code generation for the
-[AngularDart Components Gallery].
+[Kelicap Components Gallery].
 In particular, the build file configures the gallery homepage and specifies
 which examples appear in the gallery.
 
 ## Build
 
-Build the entire gallery from the `examples/angular_components_example`
-directory.
+Build the entire gallery from the `component_gallery/kelicap_components_example`
+directory. To deploy it, or to check it in a release build, build it with
+dart2js:
 
 ```bash
-dart run build_runner build --output <output directory>
+dart run build_runner build --release --output <output directory>
 ```
+
+The gallery is then in `web` of the output directory. Without `--release`, the
+build compiles with dartdevc (DDC), for development.
 
 ## Serve
 
@@ -21,18 +27,19 @@ Run a local development server with a file watcher and incremental rebuilds:
 dart run build_runner serve web
 ```
 
-Both of the __build__ and __serve__ commands will accept `--release` to build
-with dart2js instead of the default dartdevc.
+Both of the __build__ and __serve__ commands compile with dartdevc (DDC) by
+default, and accept `--release` to build with dart2js (`-O4 --minify`)
+instead. DDC tolerates some code that fails in a release build, such as reading
+a member of a JavaScript object dynamically, so check a component in a
+`--release` build after changing anything that touches the DOM.
 
 __Known Issues:__
 
 When building and viewing the gallery these issues are expected at this time:
 
-*   Runtime Warning:
+* Runtime Warning:
 
     `SEVERE: OverlayService must be a singleton: Check that there is no nested
     overlayBindings or popupBindings`
 
-[AngularDart Components Gallery]: https://angulardart.github.io/angular_components/
-[build_runner]: https://pub.dev/packages/build_runner
-[build]: https://pub.dev/packages/build
+[Kelicap Components Gallery]: https://pub.dev/packages/kelicap_components

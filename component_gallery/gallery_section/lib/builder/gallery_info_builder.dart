@@ -366,13 +366,9 @@ class GalleryInfoBuilder extends Builder {
 
   /// Returns the library that defines [name] as a class or top level function,
   /// as reachable from [rootLibrary].
-  LibraryElement? _getLibrary(String name, LibraryElement rootLibrary) {
-    //var result = rootLibrary.scope.lookup(name).getter;
-    // var result = rootLibrary.exportNamespace.get2(name);
-    var result = rootLibrary.library.getters.firstWhere(
-      (element) => element.name == name,
-    );
-
-    return result.library;
-  }
+  ///
+  /// Returns `null` if no class or function named [name] is declared in, or
+  /// imported into, [rootLibrary].
+  LibraryElement? _getLibrary(String name, LibraryElement rootLibrary) =>
+      rootLibrary.firstFragment.scope.lookup(name).getter?.library;
 }

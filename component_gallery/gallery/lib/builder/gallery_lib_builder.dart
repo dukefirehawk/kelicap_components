@@ -58,7 +58,7 @@ class GalleryLibBuilder extends Builder {
     List<Example> examples,
   ) async {
     final Map<String, List<Object>> mustacheContext = {
-      'styleUrls': _styleUrls,
+      'styleUrls': _styleUrls.map(dartStringContent).toList(),
       'examples': examples.map((e) => e.toJson()).toList(),
     };
 
@@ -91,7 +91,7 @@ class GalleryLibBuilder extends Builder {
     BuildStep buildStep,
     List<Example> examples,
   ) async {
-    final Map<String, List<Map<String, String>>> mustacheContext = {
+    final Map<String, List<Map<String, Object>>> mustacheContext = {
       'examples': examples.map((e) => e.toJson()).toList(),
     };
 
@@ -120,7 +120,14 @@ class GalleryLibBuilder extends Builder {
         package,
         'lib/gallery_section_summary.json',
       );
-      if (!await buildStep.canRead(gallerySectionSummaryId)) continue;
+      if (!await buildStep.canRead(gallerySectionSummaryId)) {
+        log.warning(
+          'Skipping the example package "$package": it has no '
+          'lib/gallery_section_summary.json. Check its name in the "examples" '
+          'option, and that it is a dependency with a @GallerySectionConfig.',
+        );
+        continue;
+      }
 
       final summaryContents = await buildStep.readAsString(
         gallerySectionSummaryId,
@@ -135,7 +142,7 @@ class GalleryLibBuilder extends Builder {
             summary['group'] ?? '',
             summary['dartImport'] ?? '',
             summary['componentClass'] ?? '',
-            List<String>.from(summary['docs'] ?? {}),
+            List<String>.from(summary['docs'] ?? const []),
           ),
         ),
       );
@@ -144,9 +151,72 @@ class GalleryLibBuilder extends Builder {
     examples.sort(
       (Example a, Example b) => a.displayName.compareTo(b.displayName),
     );
+    assignExampleNames(examples);
     return examples;
   }
 }
+
+/// Words that cannot be the name of an example, which is a deferred import
+/// prefix and is used in an `async` function in gallery_route_library.dart.
+///
+/// The reserved words and built-in identifiers of Dart, `await` and `yield`,
+/// and `home`, the prefix of the import of the home page.
+const _unusableNames = {
+  // Reserved words.
+  'assert', 'break', 'case', 'catch', 'class', 'const', 'continue', 'default',
+  'do', 'else', 'enum', 'extends', 'false', 'final', 'finally', 'for', 'if',
+  'in', 'is', 'new', 'null', 'rethrow', 'return', 'super', 'switch', 'this',
+  'throw', 'true', 'try', 'var', 'void', 'while', 'with',
+  // Built-in identifiers, which cannot be an import prefix.
+  'abstract', 'as', 'covariant', 'deferred', 'dynamic', 'export', 'extension',
+  'external', 'factory', 'function', 'get', 'implements', 'import',
+  'interface', 'late', 'library', 'mixin', 'operator', 'part', 'required',
+  'set', 'static', 'typedef',
+  // Not allowed as an identifier in an `async` function.
+  'await', 'yield',
+  // Used by the generated libraries.
+  'home',
+};
+
+/// Gives each of [examples] a [Example.name] that is a valid Dart identifier,
+/// and different from the others.
+///
+/// The name is the snake case of the display name, without the characters
+/// that cannot be in an identifier. It is `example` if nothing is left, starts
+/// with `example_` if it would start with a digit, and ends with `_example` if
+/// it would be a word that cannot be a name. A name already taken gets `_2`,
+/// `_3`, and so on.
+void assignExampleNames(Iterable<Example> examples) {
+  final taken = <String>{};
+  for (final example in examples) {
+    var base = strings.underscore(
+      example.displayName.replaceAll(RegExp(r'[^a-zA-Z0-9 _-]'), ''),
+    );
+    // `underscore` can leave `_` at either end, and more than one in a row.
+    base = base.replaceAll(RegExp('_+'), '_').replaceAll(RegExp(r'^_|_$'), '');
+    if (base.isEmpty) {
+      base = 'example';
+    } else if (base.startsWith(RegExp('[0-9]'))) {
+      base = 'example_$base';
+    } else if (_unusableNames.contains(base)) {
+      base = '${base}_example';
+    }
+    var name = base;
+    for (var i = 2; !taken.add(name); i++) {
+      name = '${base}_$i';
+    }
+    example.name = name;
+  }
+}
+
+/// Returns [value] escaped to be put between the single quotes of a Dart
+/// string literal.
+String dartStringContent(String value) => value
+    .replaceAll(r'\', r'\\')
+    .replaceAll("'", r"\'")
+    .replaceAll(r'$', r'\$')
+    .replaceAll('\n', r'\n')
+    .replaceAll('\r', r'\r');
 
 class Example {
   String displayName;
@@ -163,24 +233,31 @@ class Example {
     this.relatedComponents,
   );
 
-  String get name => strings.underscore(
-    displayName.replaceAll(RegExp(r'[^a-zA-Z0-9 _-]'), ''),
-  );
+  /// The identifier of the example, a deferred import prefix and the path of
+  /// its route, set by [assignExampleNames].
+  late String name;
 
   String get linkName => strings.capitalizeFirstLetter(name) ?? '';
 
   String get loader => 'load${name}Example';
 
-  Map<String, String> toJson() {
-    Map<String, String> map = {};
+  /// The context of the example in the mustache templates.
+  ///
+  /// [relatedComponents] stays a list, which the templates loop over. The
+  /// values that the templates put in Dart string literals are escaped for
+  /// them, so the templates insert them as they are, with `{{{ }}}`.
+  Map<String, Object> toJson() {
+    Map<String, Object> map = {};
     map["name"] = name;
-    map["displayName"] = displayName;
-    map["group"] = group;
-    map["dartImport"] = dartImport;
+    map["displayName"] = dartStringContent(displayName);
+    map["group"] = dartStringContent(group);
+    map["dartImport"] = dartStringContent(dartImport);
     map["component"] = component;
     map["linkName"] = linkName;
     map["loader"] = loader;
-    map["relatedComponents"] = json.encode(relatedComponents);
+    map["relatedComponents"] = relatedComponents
+        .map(dartStringContent)
+        .toList();
 
     return map;
   }

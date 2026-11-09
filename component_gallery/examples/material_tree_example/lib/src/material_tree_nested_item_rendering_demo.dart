@@ -47,7 +47,9 @@ class MaterialTreeNestedItemRenderingComponent {
   ItemRenderer<String> sampleItemRenderer = (String movieTitle) =>
       movieTitle.toUpperCase();
 
-  String? itemRenderer(String item) => sampleItemRenderer(item);
+  // The tree is a `MaterialTreeComponent<dynamic>`, whose `itemRenderer` takes
+  // any item, so this has to take one too.
+  String? itemRenderer(Object? item) => sampleItemRenderer(item as String);
 
   @ViewChild(MaterialTreeComponent)
   MaterialTreeComponent? materialTree;

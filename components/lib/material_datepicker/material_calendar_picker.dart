@@ -859,7 +859,7 @@ class MaterialCalendarPickerComponent
 
     // Wait to render until after the initial scroll.
     window.requestAnimationFrame(
-      ((Event _) {
+      ((num _) {
         _initializePanels();
         _isRenderScheduled = false;
       }).toJS,
@@ -917,7 +917,7 @@ class MaterialCalendarPickerComponent
     if (_isRenderScheduled) return;
     _isRenderScheduled = true;
     window.requestAnimationFrame(
-      ((Event _) {
+      ((num _) {
         _renderVisible();
         _isRenderScheduled = false;
       }).toJS,

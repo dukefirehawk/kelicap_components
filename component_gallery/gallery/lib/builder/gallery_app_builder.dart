@@ -7,6 +7,7 @@ import 'dart:async';
 import 'package:build/build.dart';
 
 import '../src/template_util.dart';
+import 'gallery_lib_builder.dart' show dartStringContent;
 
 /// Generates web/index.html, web/main.dart, and web/style.scss for the ACX
 /// component gallery.
@@ -50,7 +51,6 @@ class GalleryWebBuilder extends Builder {
 
   Future<void> _generateMainDart(BuildStep buildStep) async {
     var binding = _galleryBindingName != null && _galleryBindingImport != null;
-    print("Binding: $binding");
 
     final Map<String, Object?> mustacheContext = {
       'galleryImportUri':
@@ -58,8 +58,9 @@ class GalleryWebBuilder extends Builder {
       'hasBinding': binding,
       'bindingName': _galleryBindingName,
       'bindingImport': _galleryBindingImport,
-      'bugUrl': _bugUrl,
-      'sourcecodeUrl': _sourcecodeUrl,
+      // Put in Dart string literals.
+      'bugUrl': dartStringContent(_bugUrl),
+      'sourcecodeUrl': dartStringContent(_sourcecodeUrl),
     };
 
     final newAssetId = AssetId(buildStep.inputId.package, 'web/main.dart');
@@ -87,14 +88,15 @@ class GalleryWebBuilder extends Builder {
   };
 }
 
-/// Generates a home.dart component for the html template.
+/// Generates lib/gallery/home.dart, the component of the gallery's home page,
+/// for its template, lib/gallery/home.html.
 class HomeDartBuilder extends Builder {
   @override
   Future<void> build(BuildStep buildStep) async {
     final inputId = buildStep.inputId;
     final Map<String, String> mustacheContext = {
-      'htmlTemplateUrl':
-          'package:${inputId.package}${inputId.path.replaceFirst('lib', '')}',
+      // `package:<package>/gallery/home.html`.
+      'htmlTemplateUrl': dartStringContent(inputId.uri.toString()),
     };
     await writeAsset(
       buildStep,
@@ -106,6 +108,6 @@ class HomeDartBuilder extends Builder {
 
   @override
   Map<String, List<String>> get buildExtensions => {
-    '.html': ['.dart'],
+    '^lib/gallery/home.html': ['lib/gallery/home.dart'],
   };
 }

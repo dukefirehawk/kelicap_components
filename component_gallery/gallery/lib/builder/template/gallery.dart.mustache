@@ -121,9 +121,9 @@ List<_Example> allExamples = const <_Example>[
 {{# examples }}
     _Example(
         '/{{{ name }}}',
-        '{{ displayName }}',
-        '{{ group }}',
-        <String>[{{# relatedComponents }}'{{.}}',{{/ relatedComponents }}]
+        '{{{ displayName }}}',
+        '{{{ group }}}',
+        <String>[{{# relatedComponents }}'{{{.}}}',{{/ relatedComponents }}]
     ),
 {{/ examples }}
 ];

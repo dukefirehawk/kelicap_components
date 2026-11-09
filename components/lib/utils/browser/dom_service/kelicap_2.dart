@@ -2,10 +2,16 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+// `isDomRenderDirty` and `resetDomRenderDirty` are experimental in Kelicap,
+// and are what lets the DomService skip layout checks when Kelicap has not
+// changed the DOM.
+// ignore_for_file: experimental_member_use
+
 import 'package:web/web.dart' hide Module;
 
 import 'package:kelicap/kelicap.dart';
-//import 'package:kelicap/experimental.dart';
+import 'package:kelicap/experimental.dart'
+    show isDomRenderDirty, resetDomRenderDirty;
 import 'package:kelicap_components/utils/browser/dom_service/dom_service.dart';
 import 'package:kelicap_components/utils/browser/dom_service/dom_service_webdriver_testability.dart';
 import 'package:kelicap_components/utils/disposer/disposer.dart';
@@ -67,17 +73,8 @@ DomService createDomService(
 // Initializes DOM service and wires up DomService and AcxRootDomRender
 // to send layout change notifications only if dom has been mutated by kelicap.
 void setupAcxRootDomRenderer(Injector appInjector) {
-  appInjector.get(DomService)
-    ..isDomMutatedPredicate = true
-    ..resetIsDomMutated = false
-    ..init();
-}
-
-/* TODO: FIX IT?
-void setupAcxRootDomRenderer(Injector appInjector) {
-  appInjector.get(DomService)
+  (appInjector.get(DomService) as DomService)
     ..isDomMutatedPredicate = isDomRenderDirty
     ..resetIsDomMutated = resetDomRenderDirty
     ..init();
 }
-*/
