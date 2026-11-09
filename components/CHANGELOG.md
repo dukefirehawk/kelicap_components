@@ -8,6 +8,7 @@
 
 ### Fixes in 1.1.2
 
+* **Menu:** `MenuItem` and `SelectableMenuItem` can be created without `itemSuffixes`, which threw a `TypeError` (`Null is not a subtype of Iterable`), so that every menu failed to show. An `itemSuffix` is their only suffix, where it threw as well
 * **Material input:** The single-line and multiline inputs stop a `focus` event on their placeholder from propagating in a release build (dart2js), where it was read dynamically from `$event`. They do it with `stopEventPropagation`, a method of `BaseMaterialInput`
 * **App layout:** The temporary and stackable drawers stop a `click` inside their content from propagating in a release build, with the `stopEventPropagation` method of `MaterialTemporaryDrawerComponent`
 * **Date range editor:** The preset button and the day inputs stop their `click` and `keypress` events from propagating in a release build, with the `stopEventPropagation` method of `DateRangeEditorComponent`

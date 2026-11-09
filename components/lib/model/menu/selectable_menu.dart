@@ -141,8 +141,7 @@ class SelectableMenuItem<ItemType> extends PropertyChangeNotifier
        icon = icon ?? Icon.blank(),
        shouldSelectOnItemClick = shouldSelectOnItemClick ?? subMenu == null,
        itemSuffixes =
-           itemSuffixes ??
-           ObservableList<MenuItemAffix>.from(itemSuffix as Iterable<dynamic>),
+           itemSuffixes ?? ObservableList<MenuItemAffix>.from([?itemSuffix]),
        cssClasses = BuiltList<String>((cssClasses ?? const <String>[])) {
     assert(
       itemSuffix == null || itemSuffixes == null,
