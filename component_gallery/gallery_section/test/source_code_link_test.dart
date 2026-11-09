@@ -22,6 +22,21 @@ void main() {
     );
   });
 
+  test('links a file of the gallery packages to component_gallery', () {
+    expect(
+      sourceCodeLink(repository, 'kelicap_gallery/lib/builder.dart'),
+      '$repository/component_gallery/gallery/lib/builder.dart',
+    );
+    expect(
+      sourceCodeLink(repository, 'kelicap_gallery_section/lib/builder.dart'),
+      '$repository/component_gallery/gallery_section/lib/builder.dart',
+    );
+    expect(
+      sourceCodeLink(repository, 'kelicap_components_example/build.yaml'),
+      '$repository/component_gallery/kelicap_components_example/build.yaml',
+    );
+  });
+
   test('links a file of another package to a directory of its name', () {
     expect(
       sourceCodeLink(repository, 'other/lib/other.dart'),

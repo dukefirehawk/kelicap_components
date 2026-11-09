@@ -5,8 +5,9 @@
 /// as `kelicap_components/lib/material_button/material_button.dart`, as the
 /// gallery builders record it for documentation and demos. The package is
 /// mapped to its directory in the repository: `kelicap_components` is in
-/// `components`, and an example package, such as `material_button_example`,
-/// is in `component_gallery/examples`. Another package is assumed to be in a
+/// `components`, the gallery's own packages are in `component_gallery`, and
+/// another example package, such as `material_button_example`, is in
+/// `component_gallery/examples`. Another package is assumed to be in a
 /// directory of its name.
 ///
 /// Returns [repositoryUrl] if [path] has no package.
@@ -19,6 +20,10 @@ String sourceCodeLink(String repositoryUrl, String path) {
   final package = path.substring(0, slash);
   final directory = switch (package) {
     'kelicap_components' => 'components',
+    'kelicap_gallery' => 'component_gallery/gallery',
+    'kelicap_gallery_section' => 'component_gallery/gallery_section',
+    'kelicap_components_example' =>
+      'component_gallery/kelicap_components_example',
     _ when package.endsWith('_example') =>
       'component_gallery/examples/$package',
     _ => package,

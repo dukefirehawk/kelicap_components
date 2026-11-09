@@ -31,7 +31,7 @@ The repository is a Dart workspace (`workspace:` in the root `pubspec.yaml`), wi
 3. **Typed callbacks**: Browser event and `requestAnimationFrame` callbacks are typed, not `dynamic`. A `requestAnimationFrame` callback takes the frame's timestamp, a `num`. Each `.toJS` makes a new JavaScript function, and `removeEventListener` removes a listener only when given the same function as `addEventListener`, so wrap a callback that is added and removed, or scheduled again each frame, once, in a field such as `late final JSFunction _onFocusCallback = _onFocus.toJS;`, and use that field each time.
 4. **Imports**: Code in `components/lib` imports the package's own libraries as `package:kelicap_components/...`.
 5. **Lints**: `package:lints/recommended.yaml`. `uri_has_not_been_generated` and `todo` are ignored, since templates are generated at build time.
-6. **JS interop signatures**: An `external` member takes and returns JS or `package:web` types, or `void`, never `dynamic`: DDC rejects `dynamic` there (`External JS interop member contains invalid types`), as in `external void highlightBlock(Element block)` in the gallery.
+6. **JS interop signatures**: An `external` member takes and returns JS or `package:web` types, or `void`, never `dynamic`: DDC rejects `dynamic` there, and so does dart2js (`External JS interop member contains invalid types`), as in `external void highlightBlock(Element block)` in the gallery.
 7. **Generic components in templates**: A generic component used without `directiveTypes`, such as `MaterialTreeComponent`, is created with `dynamic` type arguments, so a callback bound to one of its inputs takes `dynamic` or `Object?`, not the item type: `String? itemRenderer(Object? item)`, not `String? itemRenderer(String item)`, which does not compile in the generated code.
 
 ## Development Workflow
@@ -75,7 +75,7 @@ The repository is a Dart workspace (`workspace:` in the root `pubspec.yaml`), wi
 
   Afterwards, delete the root `pubspec_overrides.yaml`, restore `pubspec.lock`, and run `dart pub get`. Don't commit the override.
 - **`build_runner`**: `components` needs `build_runner` ^2.16.2. 2.16.0 does not compile against analyzer 14.7 (`The setter 'contextFeatures' isn't defined for the type 'AnalysisOptionsImpl'`).
-- **Gallery**: Build or serve the gallery from `component_gallery/kelicap_components_example`, as its `README.md` describes. Its DDC build compiles the generated templates of every component and example it uses, so it is the end-to-end check for template errors, alongside the analysis above. It takes about a minute and a half.
+- **Gallery**: Build or serve the gallery from `component_gallery/kelicap_components_example`, as its `README.md` describes. A build compiles the generated templates of every component and example it uses, so it is the end-to-end check for template errors, alongside the analysis above. A plain build or `serve` compiles with DDC; `--release` compiles with dart2js (`-O4 --minify --dump-info`, set under `release_options` of `build_web_compilers|entrypoint` in its `build.yaml`). Each takes one and a half to three minutes.
 
   It needs `kelicap_compiler` 1.1.3 or later: 1.1.2 does not find an unnamed constructor declared after another one, such as the `factory` of `MaterialMenuDemoComponent` after `MaterialMenuDemoComponent._`, as analyzer 14 names it `new`, and fails with `No constructors found`. If the build fails that way, run `dart pub upgrade` at the root. The Sass deprecation warnings (`W kelicap_components:scss_builder`) of the build are expected.
 

@@ -8,7 +8,7 @@ which examples appear in the gallery.
 
 ## Build
 
-Build the entire gallery from the `examples/kelicap_components_example`
+Build the entire gallery from the `component_gallery/kelicap_components_example`
 directory.
 
 ```bash
@@ -23,8 +23,9 @@ Run a local development server with a file watcher and incremental rebuilds:
 dart run build_runner serve web
 ```
 
-Both of the __build__ and __serve__ commands will accept `--release` to build
-with dart2js instead of the default dartdevc.
+Both of the __build__ and __serve__ commands compile with dartdevc (DDC) by
+default, and accept `--release` to build with dart2js (`-O4 --minify`)
+instead.
 
 __Known Issues:__
 
