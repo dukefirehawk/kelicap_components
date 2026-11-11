@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.1.3
+
+### Fixes in 1.1.3
+
+* **Ruler:** `DomRuler` ignores an empty CSS class, and splits one that contains whitespace (`'a b'`) into its classes, where `classList` threw, so that `update` left the element half-updated, and could no longer update its classes
+* **Pubspec:** The package links to its documentation, on the [Kelicap GitBook site](https://dukefirehawk.gitbook.io/kelicap-docs), from pub.dev
+
 ## 1.1.2
 
 ### Breaking changes in 1.1.2
