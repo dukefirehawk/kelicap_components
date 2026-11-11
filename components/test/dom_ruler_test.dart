@@ -52,4 +52,47 @@ void main() {
       expect(element.className, 'd');
     });
   });
+
+  group('updateSync', () {
+    List<String> classes() => [
+      for (var i = 0; i < element.classList.length; i++)
+        element.classList.item(i)!,
+    ];
+
+    test('adds the classes, and removes those the next update drops', () {
+      ruler.updateSync(element, cssClasses: ['modal', 'visible']);
+      expect(classes(), ['modal', 'visible']);
+      ruler.updateSync(element, cssClasses: ['visible']);
+      expect(classes(), ['visible']);
+      ruler.updateSync(element, cssClasses: []);
+      expect(classes(), isEmpty);
+    });
+
+    test('keeps a class the element had before the ruler added it', () {
+      element.className = 'modal host';
+      ruler.updateSync(element, cssClasses: ['modal', 'visible']);
+      ruler.updateSync(element, cssClasses: []);
+      expect(classes(), ['modal', 'host']);
+    });
+
+    test('leaves the classes it keeps between updates in place', () {
+      ruler.updateSync(element, cssClasses: ['modal']);
+      element.classList.add('other');
+      ruler.updateSync(element, cssClasses: ['modal', 'visible']);
+      // A removed and added again `modal` would come after `other`.
+      expect(classes(), ['modal', 'other', 'visible']);
+    });
+
+    test('leaves the classes alone without cssClasses', () {
+      ruler.updateSync(element, cssClasses: ['modal']);
+      ruler.updateSync(element, width: 10);
+      expect(classes(), ['modal']);
+    });
+
+    test('splits its classes on whitespace, and ignores empty ones', () {
+      ruler.updateSync(element, cssClasses: ['modal visible', '']);
+      ruler.updateSync(element, cssClasses: ['visible']);
+      expect(classes(), ['visible']);
+    });
+  });
 }

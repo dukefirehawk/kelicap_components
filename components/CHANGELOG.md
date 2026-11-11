@@ -5,6 +5,7 @@
 ### Fixes in 1.1.3
 
 * **Ruler:** `DomRuler` ignores an empty CSS class, and splits one that contains whitespace (`'a b'`) into its classes, where `classList` threw, so that `update` left the element half-updated, and could no longer update its classes
+* **Ruler:** An update of the CSS classes of an element, as an overlay's `modal` and `visible`, removes only those the ruler added and the update no longer asks for. It removed every class it had added, including one the element already had, such as a class copied from the host of a `material-popup`, and removed and added again the classes it kept
 * **Pubspec:** The package links to its documentation, on the [Kelicap GitBook site](https://dukefirehawk.gitbook.io/kelicap-docs), from pub.dev
 
 ## 1.1.2

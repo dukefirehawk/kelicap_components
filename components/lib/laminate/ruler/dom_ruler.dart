@@ -83,25 +83,22 @@ class DomRulerImpl extends RulerBase<Element> implements DomRuler {
 
   @override
   void removeCssClassesSync(Element element, List<String> classes) {
-    for (final c in _classTokens(classes)) {
+    // `classList` throws for an empty class or one with whitespace.
+    for (final c in cssClassTokens(classes)) {
       element.classList.remove(c);
     }
   }
 
   @override
   void addCssClassesSync(Element element, List<String> classes) {
-    for (final c in _classTokens(classes)) {
+    for (final c in cssClassTokens(classes)) {
       element.classList.add(c);
     }
   }
 
-  /// The single classes of [classes], each of which can hold several separated
-  /// by whitespace, as `'a b'`, or none, as `''`: `classList` throws for an
-  /// empty class or one with whitespace.
-  static Iterable<String> _classTokens(List<String> classes) =>
-      classes.expand((c) => c.split(_whitespace)).where((c) => c.isNotEmpty);
-
-  static final _whitespace = RegExp(r'\s+');
+  @override
+  bool hasCssClassSync(Element element, String cssClass) =>
+      element.classList.contains(cssClass);
 
   @override
   void clearCssPropertiesSync(Element element) {
