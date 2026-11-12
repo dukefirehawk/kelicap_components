@@ -9,6 +9,16 @@ import 'package:kelicap_components/laminate/enums/position.dart';
 import 'package:kelicap_components/laminate/enums/visibility.dart';
 import 'package:kelicap_components/utils/browser/dom_service/dom_service.dart';
 
+/// The single CSS classes of [classes], each of which can hold several
+/// separated by whitespace, as `'a b'`, or none, as `''`, without duplicates.
+Set<String> cssClassTokens(Iterable<String> classes) => {
+  for (final c in classes)
+    for (final token in c.split(_whitespace))
+      if (token.isNotEmpty) token,
+};
+
+final _whitespace = RegExp(r'\s+');
+
 /// A ruler is an interface for querying and manipulating element positions
 /// and size through asynchronous APIs, and with integration with internal
 /// DOM scheduling to prevent synchronous reflows.
@@ -88,8 +98,10 @@ abstract class Ruler<E> {
 /// - [measureSync]
 /// - [setProperties]
 abstract class RulerBase<E> implements Ruler<E> {
-  // Holds what CSS classes were previously set by the Ruler.
-  final _addedCssClasses = Expando<List<String>>();
+  // The CSS classes of each element that the ruler added, and so removes when
+  // an update no longer asks for them. A class the element already had is not
+  // one of them, so the ruler leaves it.
+  final _addedCssClasses = Expando<Set<String>>();
 
   /// Return true if [element] can be synchronously updated safely because it is
   /// not in the live DOM document.
@@ -119,6 +131,9 @@ abstract class RulerBase<E> implements Ruler<E> {
 
   /// Synchronously set [element].classes to add [classes].
   void addCssClassesSync(E element, List<String> classes);
+
+  /// Whether [element] has the CSS class [cssClass].
+  bool hasCssClassSync(E element, String cssClass);
 
   /// Clear all CSS style properties on [element].
   void clearCssPropertiesSync(E element);
@@ -241,12 +256,25 @@ abstract class RulerBase<E> implements Ruler<E> {
       visibility.apply(setProperty);
     }
     if (cssClasses != null) {
-      var lastCssClasses = _addedCssClasses[element!];
-      if (lastCssClasses != null) {
-        removeCssClassesSync(element, lastCssClasses);
-      }
-      addCssClassesSync(element, cssClasses);
-      _addedCssClasses[element] = cssClasses;
+      // Changes only the classes that differ from the last update, and adds
+      // only those the element doesn't have, so that it removes none that
+      // another owner set, as a class copied from the host of a popup.
+      var wanted = cssClassTokens(cssClasses);
+      var added = _addedCssClasses[element!] ?? const <String>{};
+      removeCssClassesSync(element, [
+        for (final c in added)
+          if (!wanted.contains(c)) c,
+      ]);
+      var adding = [
+        for (final c in wanted)
+          if (!added.contains(c) && !hasCssClassSync(element, c)) c,
+      ];
+      addCssClassesSync(element, adding);
+      _addedCssClasses[element] = {
+        for (final c in added)
+          if (wanted.contains(c)) c,
+        ...adding,
+      };
     }
     if (width != null) {
       setProperty('width', width == 0 ? '0' : '${width}px');
