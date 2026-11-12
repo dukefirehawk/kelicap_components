@@ -253,7 +253,7 @@ Click <a href="//example.com" class="trigger" (trigger)="myTrigger()">here</a>
 then they will navigate to example.com _and_ `myTrigger` will be executed.
 
 The trigger definition can also refer to the original Kelicap
-[`$event`](https://webdev.dartlang.org/kelicap/guide/template-syntax#event-and-event-handling-statements).
+[`$event`](https://dukefirehawk.gitbook.io/kelicap-docs/docs/user-guide/template-syntax#usdevent-and-event-handling-statements).
 This can be useful for more advanced features such as:
 
 * Selectively preventing the default behaviour (such as navigation) by calling
