@@ -99,15 +99,7 @@ Each component lives in its own directory under [`components/lib/`](components/l
 
 ## Component gallery
 
-The gallery shows a demo and the API docs of each component. To run it locally:
-
-```bash
-dart pub get
-cd component_gallery/kelicap_components_example
-dart run build_runner serve web
-```
-
-Then open <http://localhost:8080>. See [its README](component_gallery/kelicap_components_example/README.md) for release builds and known issues.
+Try the components of `kelicap_components` live in the [Kelicap Components Gallery](https://kelicap-components-gallery.web.app/), with the source code of each example.
 
 ## Development
 
@@ -122,8 +114,6 @@ dart run build_runner build
 ```
 
 Some code works in a development build and fails in a release build, such as reading a member of a JavaScript object dynamically. After changing anything that touches the DOM, build the gallery with `--release` and check the component in a browser.
-
-[AGENTS.md](AGENTS.md) describes the conventions, checks and build details in full.
 
 ## License
 
