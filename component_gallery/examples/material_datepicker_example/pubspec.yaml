@@ -8,7 +8,7 @@ environment:
 resolution: workspace
 
 dependencies:
-  kelicap: '>=1.1.3 <3.0.0'
+  kelicap: '>=1.1.4 <3.0.0'
   kelicap_components: ^1.0.0
   kelicap_gallery: ^1.0.0
   kelicap_gallery_section: ^1.0.0
