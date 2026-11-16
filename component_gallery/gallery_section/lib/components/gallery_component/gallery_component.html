@@ -42,14 +42,14 @@
 <section class="toc" *ngIf="showToc">
   <ng-container *ngIf="model.docs.isNotEmpty">
     <label>Docs</label>
-    <a *ngFor="let doc of model.docs" buttonDecorator (trigger)="scroll('#' + getDocId(doc))">
+    <a *ngFor="let doc of model.docs" buttonDecorator (trigger)="scroll(getDocId(doc))">
       {{doc.name}}
     </a>
   </ng-container>
 
   <ng-container *ngIf="model.demos.isNotEmpty">
     <label>Demos</label>
-    <a *ngFor="let demo of model.demos" buttonDecorator (trigger)="scroll('#' + getDemoId(demo))">
+    <a *ngFor="let demo of model.demos" buttonDecorator (trigger)="scroll(getDemoId(demo))">
       {{demo.name}}
     </a>
   </ng-container>

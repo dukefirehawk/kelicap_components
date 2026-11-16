@@ -31,7 +31,7 @@ Add the package to your app's `pubspec.yaml`:
 ```yaml
 dependencies:
   kelicap: ^2.0.1
-  kelicap_components: ^1.2.0
+  kelicap_components: ^2.0.0
 ```
 
 The components use the Roboto font and the Material Icons font. Load them in your app's `web/index.html`:

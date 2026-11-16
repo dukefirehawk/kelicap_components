@@ -1,12 +1,12 @@
 # Change Log
 
-## 1.2.0
+## 2.0.0
 
-### New in 1.2.0
+### New in 2.0.0
 
 * **Kelicap 2.0:** The components work with `kelicap`, `kelicap_forms` and `kelicap_observable` 2.0, as well as 1.x: the package accepts `>=1.1.4 <3.0.0` of each
 
-### Fixes in 1.2.0
+### Fixes in 2.0.0
 
 * **Pubspec:** Requires `kelicap`, `kelicap_forms` and `kelicap_observable` 1.1.4 or later, where it accepted 1.1.3. With `kelicap` 1.1.3, the auto-suggest input, datepicker, dialog, dropdown select, expansion panel, input, menu, popup, select, tooltip and tree threw `NoSuchMethodError` (`querySelector` not found) and did not render fully, and the stepper threw on a null check. `kelicap` 1.1.4 injects each `package:web` type, such as `Document`, from its own provider
 

@@ -87,7 +87,7 @@ The repository is a Dart workspace (`workspace:` in the root `pubspec.yaml`), wi
 - **Release builds (dart2js)**: DDC tolerates dynamic access to JavaScript objects, and dart2js does not, so a component can work in the gallery under `serve` and fail in a release build. After changing anything that touches the DOM, build the gallery with `--release` and check the component in a browser.
 - **Datepicker proto**: The date classes in `lib/material_datepicker/proto` are generated with `protoc`, by `components/tool/protoc.sh`. `components/tool/travis/install_protoc.sh` installs `protoc`.
 - **CI**: None in the repository. Run the checks locally.
-- **Versions**: `kelicap_components` is `1.2.0`. Bump `version` in `components/pubspec.yaml`, and add a `CHANGELOG.md` entry, for each release.
+- **Versions**: `kelicap_components` is `2.0.0`. Bump `version` in `components/pubspec.yaml`, and add a `CHANGELOG.md` entry, for each release.
 - **Changelog**: Every user-facing change gets an entry in the affected package's `CHANGELOG.md`, written as plain-English statements about the package (not commit messages). Group a release's entries under `### Breaking changes in X.Y.Z` (each entry prefixed `**Breaking:**`), `### New in X.Y.Z` and `### Fixes in X.Y.Z`, in that order, omitting empty sections.
 
 ## Current Focus

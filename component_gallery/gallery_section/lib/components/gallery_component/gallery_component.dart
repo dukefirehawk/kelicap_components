@@ -50,8 +50,11 @@ class GalleryComponent {
 
   String getDemoId(Demo demo) => '${demo.name}Demo';
 
-  void scroll(String locator) =>
-      document.querySelector(locator)!.scrollIntoView();
+  /// Scrolls to the element whose id is [id].
+  ///
+  /// Looks it up by id, not with a `#id` selector, as ids such as
+  /// `Sass:_mixinsDoc` are not valid in a selector.
+  void scroll(String id) => document.getElementById(id)?.scrollIntoView();
 
   String getTeamsLink(String ldap) => 'http://who/$ldap';
 
