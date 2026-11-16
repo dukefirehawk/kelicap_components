@@ -22,7 +22,7 @@ Kelicap Components is a fork of AngularDart Components (`angular_components`), u
 ### Requirements
 
 - Dart SDK 3.13 or later
-- [`kelicap`](https://pub.dev/packages/kelicap) 1.1.4 or later, including 2.x
+- [`kelicap`](https://pub.dev/packages/kelicap) 2.0.1 or later (for Kelicap 1.x, use `kelicap_components` 1.1.3)
 
 ### Installation
 

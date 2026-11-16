@@ -19,7 +19,7 @@ The repository is a Dart workspace (`workspace:` in the root `pubspec.yaml`), wi
 ## Tech Stack
 
 - **Language**: Dart `>=3.13.0 <4.0.0`
-- **Framework**: `kelicap`, `kelicap_forms` and `kelicap_observable` `>=1.1.4 <3.0.0`, from pub.dev, not from a local checkout of `kelicap`. 1.1.3 is the first `kelicap_compiler` that builds the gallery, and that warns about `$event` member reads, but with `kelicap` 1.1.3 most components fail at runtime (`querySelector` is not found on a `package:web` object that the injector got wrong): 1.1.4 is the lowest that works. Check both ends of the range before a release: `dart pub downgrade` and `dart pub upgrade` of the `kelicap` packages, and a release build of the gallery with each.
+- **Framework**: `kelicap`, `kelicap_forms` and `kelicap_observable` ^2.0.1, from pub.dev, not from a local checkout of `kelicap`. `kelicap_components` 1.1.x is the line for Kelicap 1.x. Check both ends of the range before a release: `dart pub downgrade` and `dart pub upgrade` of the `kelicap` packages, and a release build of the gallery with each.
 - **DOM interop**: `package:web`.
 - **Styles**: Sass, through the package's own `scss_builder`. `sass_builder`'s builder is disabled in `components/build.yaml`.
 - **Other dependencies**: `intl` (messages), `protobuf` (the date model of `material_datepicker`), `quiver`, `built_collection`, `fixnum`.

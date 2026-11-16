@@ -9,7 +9,7 @@ resolution: workspace
 
 dependencies:
   analyzer:  ^14.0.0
-  kelicap: '>=1.1.4 <3.0.0'
+  kelicap: ^2.0.1
   kelicap_components: ^2.0.0
   kelicap_gallery: ^1.0.0
   build: ^4.0.0

@@ -7,10 +7,10 @@ environment:
 resolution: workspace
 
 dependencies:
-  kelicap: '>=1.1.4 <3.0.0'
+  kelicap: ^2.0.1
   kelicap_components: ^2.0.0
-  kelicap_forms: '>=1.1.4 <3.0.0'
-  kelicap_router: '>=1.1.4 <3.0.0'
+  kelicap_forms: ^2.0.1
+  kelicap_router: ^2.0.1
   build: ^4.0.0
   build_config: ^1.0.0
   #mustache: ^1.0.0
