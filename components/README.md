@@ -15,14 +15,14 @@ This package is a fork of AngularDart Components (`angular_components`), updated
 ### Requirements
 
 - Dart SDK 3.13 or later
-- [`kelicap`](https://pub.dev/packages/kelicap) 1.1.3 or later
+- [`kelicap`](https://pub.dev/packages/kelicap) 2.0.1 or later (for Kelicap 1.x, use `kelicap_components` 1.1.3)
 
 ### Installation
 
 ```yaml
 dependencies:
-  kelicap: ^1.1.3
-  kelicap_components: ^1.1.3
+  kelicap: ^2.0.1
+  kelicap_components: ^2.0.0
 ```
 
 The components use the Roboto font and the Material Icons font. Load them in your app's `web/index.html`:

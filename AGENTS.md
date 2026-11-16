@@ -19,7 +19,7 @@ The repository is a Dart workspace (`workspace:` in the root `pubspec.yaml`), wi
 ## Tech Stack
 
 - **Language**: Dart `>=3.13.0 <4.0.0`
-- **Framework**: `kelicap`, `kelicap_forms` and `kelicap_observable` `^1.1.3`, from pub.dev, not from a local checkout of `kelicap`. 1.1.3 is the first `kelicap_compiler` that builds the gallery, and that warns about `$event` member reads.
+- **Framework**: `kelicap`, `kelicap_forms` and `kelicap_observable` ^2.0.1, from pub.dev, not from a local checkout of `kelicap`. `kelicap_components` 1.1.x is the line for Kelicap 1.x. Check both ends of the range before a release: `dart pub downgrade` and `dart pub upgrade` of the `kelicap` packages, and a release build of the gallery with each.
 - **DOM interop**: `package:web`.
 - **Styles**: Sass, through the package's own `scss_builder`. `sass_builder`'s builder is disabled in `components/build.yaml`.
 - **Other dependencies**: `intl` (messages), `protobuf` (the date model of `material_datepicker`), `quiver`, `built_collection`, `fixnum`.
@@ -87,7 +87,7 @@ The repository is a Dart workspace (`workspace:` in the root `pubspec.yaml`), wi
 - **Release builds (dart2js)**: DDC tolerates dynamic access to JavaScript objects, and dart2js does not, so a component can work in the gallery under `serve` and fail in a release build. After changing anything that touches the DOM, build the gallery with `--release` and check the component in a browser.
 - **Datepicker proto**: The date classes in `lib/material_datepicker/proto` are generated with `protoc`, by `components/tool/protoc.sh`. `components/tool/travis/install_protoc.sh` installs `protoc`.
 - **CI**: None in the repository. Run the checks locally.
-- **Versions**: `kelicap_components` is `1.1.2`. Bump `version` in `components/pubspec.yaml`, and add a `CHANGELOG.md` entry, for each release.
+- **Versions**: `kelicap_components` is `2.0.0`. Bump `version` in `components/pubspec.yaml`, and add a `CHANGELOG.md` entry, for each release.
 - **Changelog**: Every user-facing change gets an entry in the affected package's `CHANGELOG.md`, written as plain-English statements about the package (not commit messages). Group a release's entries under `### Breaking changes in X.Y.Z` (each entry prefixed `**Breaking:**`), `### New in X.Y.Z` and `### Fixes in X.Y.Z`, in that order, omitting empty sections.
 
 ## Current Focus

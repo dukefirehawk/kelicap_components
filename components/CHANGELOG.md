@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.0.0
+
+### Breaking changes in 2.0.0
+
+* **Breaking:** Requires `kelicap`, `kelicap_forms` and `kelicap_observable` 2.0.1 or later, where 1.1.x accepted 1.x. See the changelog of `kelicap` for what changed in 2.0. Apps on Kelicap 1.x stay on `kelicap_components` 1.1.3
+
+### New in 2.0.0
+
+* **Kelicap 2.0:** The components work with `kelicap`, `kelicap_forms` and `kelicap_observable` 2.0.1. Their API is the same as in 1.1.3
+
 ## 1.1.3
 
 ### Fixes in 1.1.3

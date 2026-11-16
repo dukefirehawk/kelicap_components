@@ -2,6 +2,10 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+// [SelectionModel] implements [Observable], whose members it forwards to the
+// model it delegates to, deprecated ones included, until it no longer does.
+// ignore_for_file: deprecated_member_use
+
 import 'dart:async';
 
 import 'package:kelicap_observable/kelicap_observable.dart';
